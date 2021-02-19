@@ -1,0 +1,16 @@
+body {
+    font-family: 'Jost',sans-serif;
+    background-color: dodgerblue;
+}
+header {
+    margin: auto;
+}
+.container {
+
+}
+.logo   {
+    width: 100px;
+}
+.nextInput {
+    width: 40px;
+}
