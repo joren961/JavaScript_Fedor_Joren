@@ -1,16 +1,50 @@
 body {
-    font-family: 'Jost',sans-serif;
-    background-color: dodgerblue;
+    font-family: "Trebuchet MS";
+    background-color: whitesmoke;
+    background-image: url("https://wallpaperaccess.com/full/1906529.jpg");
 }
 header {
     margin: auto;
+    font-size: 30px;
 }
-.container {
-
+input {
+    width: 25px;
+    height: 20px;
+    border: black outset 2px;
+    border-radius: 5px;
+}
+#regionlabel {
+    width: 90px;
+}
+.regionForm {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .logo   {
     width: 100px;
 }
 .nextInput {
-    width: 40px;
+    width: 60px;
+    margin-top: 10px;
+    text-decoration: none;
+    color: black;
+    height:25px;
+    text-align: center;
+    line-height:20px;
+    background: #f3f0f1;
+    background: #f3f0f1;
+    border: black solid 2px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
 }

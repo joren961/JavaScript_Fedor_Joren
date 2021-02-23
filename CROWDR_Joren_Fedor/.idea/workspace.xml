@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8d9699a-bd95-488d-b2ce-50f445c6968c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FestivalObjects/DrinkStand.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FestivalObjects/FoodStand.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FestivalObjects/Tent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FestivalObjects/ToiletBuilding.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FestivalObjects/Trashcan.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FestivalObjects/Tree.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HomePage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HomePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/HomePage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +25,7 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -66,6 +58,7 @@
       <updated>1613407712653</updated>
       <workItem from="1613407713798" duration="66000" />
       <workItem from="1613750606127" duration="5675000" />
+      <workItem from="1613996254551" duration="338000" />
     </task>
     <servers />
   </component>
