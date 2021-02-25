@@ -41,6 +41,9 @@ function addInput() {
 }
 
 function resetForm() {
+    if (nextInputButton.style.display == "none") {
+        nextInputButton.style.display = "block";
+    }
     regionForm.innerHTML = "";
     let oldTag = document.createElement("label");
     oldTag.innerHTML="What is your region's name?";
