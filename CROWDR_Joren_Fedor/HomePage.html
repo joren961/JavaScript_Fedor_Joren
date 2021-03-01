@@ -16,23 +16,8 @@
 <nav class="navigation" style="width: 0px">
     <div class="menuItems">
         <ul>
-            <li>
-                hahaxd
-            </li>
-            <li>
-                hahaxd2
-            </li>
-            <li>
-                hahaxd3ddd
-            </li>
-            <li>
-                hahaxd4
-            </li>
-            <li>
-                hahaxd5
-            </li>
-            <li>
-                hahaxd6
+            <li id="emptyListItem">
+                Your submitted regions will be listed here
             </li>
         </ul>
     </div>
@@ -45,9 +30,11 @@
     </header>
 
     <div class="flex-container">
-        <form class="regionForm">
-            <label id="regionlabel">What is your region's name?</label>
-            <input id="regioninput" type="text" placeholder="Region name..">
+        <form name="regionForm" class="regionForm">
+            <label>What is your region's name?</label>
+            <input class="regioninput" type="text" required placeholder="Region name..">
+            <label>How many visitors are allowed?</label>
+            <input type="number" required placeholder="0" min="0">
         </form>
         <a href="#" class="nextInput"><i class="fa fa-plus"></i></a>
         <a href="#" id="reset" class="button">Reset</a>

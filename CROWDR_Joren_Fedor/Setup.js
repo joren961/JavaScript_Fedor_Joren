@@ -11,26 +11,23 @@ function addInput() {
             if (i > lastInputId) {
                 lastInputId = i;
             }
-
-        console.log(lastInputId);
     }
 
     let newTag = document.createElement("label");
     let newInput = document.createElement("input");
 
-    if (lastInputId === 2) {
+    if (lastInputId === 4) {
         addTents(newTag,newInput);
-    } else if (lastInputId === 4) {
-        addFoodStands(newTag,newInput);
     } else if (lastInputId === 6) {
-        addDrinkStands(newTag,newInput);
+        addFoodStands(newTag,newInput);
     } else if (lastInputId === 8) {
-        addTrees(newTag,newInput);
+        addDrinkStands(newTag,newInput);
     } else if (lastInputId === 10) {
-        addToiletBuildings(newTag,newInput);
+        addTrees(newTag,newInput);
     } else if (lastInputId === 12) {
+        addToiletBuildings(newTag,newInput);
+    } else if (lastInputId === 14) {
         addTrashcans(newTag,newInput);
-    } else if (lastInputId === 14){
         let submit = document.createElement("a");
         submit.innerText = "Submit";
         submit.className = "button";
@@ -45,15 +42,22 @@ function resetForm() {
         nextInputButton.style.display = "block";
     }
     regionForm.innerHTML = "";
-    let oldTag = document.createElement("label");
-    oldTag.innerHTML="What is your region's name?";
-    oldTag.id = "regionlabel"
-    let oldInput = document.createElement("input");
-    oldInput.setAttribute("type", "text")
-    oldInput.setAttribute("placeholder","Region name..");
-    oldInput.id = "regioninput";
-    regionForm.append(oldTag);
-    regionForm.append(oldInput);
+    let tagName = document.createElement("label");
+    tagName.innerHTML="What is your region's name?";
+    let inputName = document.createElement("input");
+    inputName.setAttribute("type", "text");
+    inputName.setAttribute("placeholder","Region name..");
+    inputName.className = "regioninput";
+    let tagVisitors = document.createElement("label");
+    tagVisitors.innerHTML="How many visitors are allowed?";
+    let inputVisitors = document.createElement("input");
+    inputVisitors.setAttribute("type","number");
+    inputVisitors.setAttribute("placeholder","0");
+
+    regionForm.append(tagName);
+    regionForm.append(inputName);
+    regionForm.append(tagVisitors);
+    regionForm.append(inputVisitors);
 }
 
 function addTents(newTag, newInput){
@@ -61,6 +65,8 @@ function addTents(newTag, newInput){
     newInput.setAttribute('type', 'number');
     newInput.setAttribute('min','0');
     newInput.setAttribute('placeholder', '0');
+    newInput.id = "tents";
+    newInput.required = true;
     regionForm.append(newTag);
     regionForm.append(newInput);
 }
@@ -69,7 +75,9 @@ function addFoodStands(newTag, newInput) {
     newTag.innerHTML = "How many food-stands does your region have?";
     newInput.setAttribute('type', 'number');
     newInput.setAttribute('min','0');
+    newInput.setAttribute('max','6');
     newInput.setAttribute('placeholder', '0');
+    newInput.required = true;
     regionForm.append(newTag);
     regionForm.append(newInput);
 }
@@ -78,7 +86,9 @@ function addDrinkStands(newTag, newInput) {
     newTag.innerHTML = "How many drinking stands does your region have?";
     newInput.setAttribute('type', 'number');
     newInput.setAttribute('min','0');
+    newInput.setAttribute('max','4');
     newInput.setAttribute('placeholder', '0');
+    newInput.required = true;
     regionForm.append(newTag);
     regionForm.append(newInput);
 }
@@ -88,6 +98,7 @@ function addTrees(newTag, newInput) {
     newInput.setAttribute('type', 'number');
     newInput.setAttribute('min','0');
     newInput.setAttribute('placeholder', '0');
+    newInput.required = true;
     regionForm.append(newTag);
     regionForm.append(newInput);
 }
@@ -96,7 +107,9 @@ function addToiletBuildings(newTag, newInput) {
     newTag.innerHTML = "How many toilet-buildings does your region have?"
     newInput.setAttribute('type', 'number');
     newInput.setAttribute('min','0');
+    newInput.setAttribute('max','5');
     newInput.setAttribute('placeholder', '0');
+    newInput.required = true;
     regionForm.append(newTag);
     regionForm.append(newInput);
 }
@@ -106,10 +119,54 @@ function addTrashcans(newTag, newInput) {
     newInput.setAttribute('type', 'number');
     newInput.setAttribute('min','0');
     newInput.setAttribute('placeholder', '0');
+    newInput.required = true;
     regionForm.append(newTag);
     regionForm.append(newInput);
 }
 
 function submitArea() {
-    //TODO
+    if (ValidateForm() === true) {
+
+    } else {
+
+    }
+}
+
+function ValidateForm() {
+    debugger;
+    let allAreFilled = true;
+    let inputCorrect = true;
+    regionForm.querySelectorAll(".validationMessage").forEach(function (i) {
+        i.parentNode.removeChild(i);
+    })
+    regionForm.querySelectorAll("[required]").forEach(function(i) {
+        console.log(i.value)
+        if (i.value == null || i.value.trim() === "") {
+            allAreFilled = false;
+        }
+        else if (i.getAttribute("type") === "number") {
+            if(parseInt(i.value) < parseInt(i.getAttribute("min"))) {
+                inputCorrect = false;
+                let error = document.createElement("label");
+                error.className = "validationMessage";
+                error.innerText = "Minimum: " + i.getAttribute("min");
+                i.parentNode.insertBefore(error,i);
+            }
+            else if (i.getAttribute("max") != null) {
+                if (parseInt(i.value) > parseInt(i.getAttribute("max"))) {
+                    console.log(i.getAttribute("max"));
+                    inputCorrect = false;
+                    let error = document.createElement("label");
+                    error.className = "validationMessage";
+                    error.innerText = "Maximum: " + i.getAttribute("max");
+                    i.parentNode.insertBefore(error,i);
+                }
+            }
+        }
+    })
+    if (allAreFilled && inputCorrect === true) {
+        return true;
+    } else if (!allAreFilled) {
+        alert("Please fill all the required fields.");
+    }
 }
