@@ -1,9 +1,6 @@
 class Tent {
-
-    constructor(maxVisitors, openingTime) {
-        this._openingTime = openingTime;
-        this._maxVisitors = maxVisitors;
-    }
+    _maxVisitors;
+    _openingTime;
 
     get maxVisitors() {
         return this._maxVisitors;

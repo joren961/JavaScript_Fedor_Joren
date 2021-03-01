@@ -1,8 +1,10 @@
 class FoodStand {
 
-    constructor(maxVisitors, foodType) {
-        this._foodType = foodType;
-        this._maxVisitors = maxVisitors;
+    _foodType;
+    _maxVisitors;
+
+    constructor() {
+
     }
 
     get maxVisitors() {

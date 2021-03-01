@@ -1,9 +1,6 @@
 class Trashcan {
-
-    constructor(capacity, emptyingTime) {
-        this._emptyingTime = emptyingTime;
-        this._capacity = capacity;
-    }
+    _emptyingTime;
+    _capacity;
 
     get capacity() {
         return this._capacity;

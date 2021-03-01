@@ -31,51 +31,38 @@ function addInput() {
         let submit = document.createElement("a");
         submit.innerText = "Submit";
         submit.className = "button";
+        submit.id="submit";
         submit.addEventListener("click",submitArea);
         regionForm.append(submit);
         nextInputButton.style.display = "none";
     }
 }
 
-function resetForm() {
-    if (nextInputButton.style.display == "none") {
-        nextInputButton.style.display = "block";
-    }
-    regionForm.innerHTML = "";
-    let tagName = document.createElement("label");
-    tagName.innerHTML="What is your region's name?";
-    let inputName = document.createElement("input");
-    inputName.setAttribute("type", "text");
-    inputName.setAttribute("placeholder","Region name..");
-    inputName.className = "regioninput";
-    let tagVisitors = document.createElement("label");
-    tagVisitors.innerHTML="How many visitors are allowed?";
-    let inputVisitors = document.createElement("input");
-    inputVisitors.setAttribute("type","number");
-    inputVisitors.setAttribute("placeholder","0");
 
-    regionForm.append(tagName);
-    regionForm.append(inputName);
-    regionForm.append(tagVisitors);
-    regionForm.append(inputVisitors);
-}
 
 function addTents(newTag, newInput){
-    newTag.innerHTML = "How many tents does your region have?";
+    newTag.innerHTML = "How many tents does your region have? This number gets locked in when you press next";
     newInput.setAttribute('type', 'number');
     newInput.setAttribute('min','0');
     newInput.setAttribute('placeholder', '0');
-    newInput.id = "tents";
+    newInput.className = "tents";
     newInput.required = true;
     regionForm.append(newTag);
     regionForm.append(newInput);
 }
 
 function addFoodStands(newTag, newInput) {
-    newTag.innerHTML = "How many food-stands does your region have?";
+    let maxValue;
+    regionForm.querySelector(".tents").readOnly = true;
+    if (regionForm.querySelector(".tents").value > 0) {
+        maxValue = 3;
+    } else {
+        maxValue = 6;
+    }
+    newTag.innerHTML = "How many food-stands does your region have? Maximum: " + maxValue;
     newInput.setAttribute('type', 'number');
     newInput.setAttribute('min','0');
-    newInput.setAttribute('max','6');
+    newInput.setAttribute('max',maxValue);
     newInput.setAttribute('placeholder', '0');
     newInput.required = true;
     regionForm.append(newTag);
@@ -83,10 +70,16 @@ function addFoodStands(newTag, newInput) {
 }
 
 function addDrinkStands(newTag, newInput) {
-    newTag.innerHTML = "How many drinking stands does your region have?";
+    let maxValue;
+    if (regionForm.querySelector(".tents").value > 0) {
+        maxValue = 2;
+    } else {
+        maxValue = 4;
+    }
+    newTag.innerHTML = "How many drinking stands does your region have? Maximum: " + maxValue;
     newInput.setAttribute('type', 'number');
     newInput.setAttribute('min','0');
-    newInput.setAttribute('max','4');
+    newInput.setAttribute('max',maxValue);
     newInput.setAttribute('placeholder', '0');
     newInput.required = true;
     regionForm.append(newTag);
@@ -104,7 +97,7 @@ function addTrees(newTag, newInput) {
 }
 
 function addToiletBuildings(newTag, newInput) {
-    newTag.innerHTML = "How many toilet-buildings does your region have?"
+    newTag.innerHTML = "How many toilet-buildings does your region have? Maximum: 5"
     newInput.setAttribute('type', 'number');
     newInput.setAttribute('min','0');
     newInput.setAttribute('max','5');
@@ -126,14 +119,11 @@ function addTrashcans(newTag, newInput) {
 
 function submitArea() {
     if (ValidateForm() === true) {
-
-    } else {
-
+        //save data
     }
 }
 
 function ValidateForm() {
-    debugger;
     let allAreFilled = true;
     let inputCorrect = true;
     regionForm.querySelectorAll(".validationMessage").forEach(function (i) {
@@ -169,4 +159,27 @@ function ValidateForm() {
     } else if (!allAreFilled) {
         alert("Please fill all the required fields.");
     }
+}
+
+function resetForm() {
+    if (nextInputButton.style.display == "none") {
+        nextInputButton.style.display = "block";
+    }
+    regionForm.innerHTML = "";
+    let tagName = document.createElement("label");
+    tagName.innerHTML="What is your region's name?";
+    let inputName = document.createElement("input");
+    inputName.setAttribute("type", "text");
+    inputName.setAttribute("placeholder","Region name..");
+    inputName.className = "regioninput";
+    let tagVisitors = document.createElement("label");
+    tagVisitors.innerHTML="How many visitors are allowed?";
+    let inputVisitors = document.createElement("input");
+    inputVisitors.setAttribute("type","number");
+    inputVisitors.setAttribute("placeholder","0");
+
+    regionForm.append(tagName);
+    regionForm.append(inputName);
+    regionForm.append(tagVisitors);
+    regionForm.append(inputVisitors);
 }

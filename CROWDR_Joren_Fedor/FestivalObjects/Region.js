@@ -1,5 +1,5 @@
 class Region {
-    name;
+    _name;
     _foodstands;
     _drinkstands;
     _tents;
