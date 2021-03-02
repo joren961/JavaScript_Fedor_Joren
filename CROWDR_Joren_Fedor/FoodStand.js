@@ -1,10 +1,14 @@
 class FoodStand {
-
+    _squares;
     _foodType;
     _maxVisitors;
 
     constructor() {
+        this._squares = 1*1;
+    }
 
+    get squares() {
+        return this._squares;
     }
 
     get maxVisitors() {

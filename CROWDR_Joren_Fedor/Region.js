@@ -1,5 +1,6 @@
 class Region {
     _name;
+    _maxVisitors;
     _foodstands;
     _drinkstands;
     _tents;
@@ -7,12 +8,17 @@ class Region {
     _trashcans;
     _trees;
 
-    constructor(name) {
+    constructor(name, maxVisitors) {
         this._name = name;
+        this._maxVisitors = maxVisitors;
     }
 
     get name() {
         return this._name;
+    }
+
+    get maxVisitors() {
+        return this._maxVisitors;
     }
 
     get trashcans() {

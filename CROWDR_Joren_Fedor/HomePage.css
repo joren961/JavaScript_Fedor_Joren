@@ -5,7 +5,6 @@ body {
     color: ghostwhite;
 }
 header {
-    margin: auto;
     font-size: 30px;
     color: ghostwhite;
 }
@@ -72,8 +71,13 @@ label {
     font-size: 60px;
     color: black;
 }
+.squaresLeft {
+    font-weight: bold;
+    font-size:20px;
+    color: black;
+}
 .hamburgerLink {
-    position: absolute;
+    position: fixed;
     margin-right: 1750px;
     cursor: pointer;
     z-index: 1;
@@ -83,7 +87,6 @@ label {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
 }
 .flex-container {
     display: flex;

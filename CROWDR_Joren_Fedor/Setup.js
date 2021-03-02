@@ -4,6 +4,7 @@ let resetButton = document.querySelector("#reset");
 nextInputButton.addEventListener("click",addInput);
 resetButton.addEventListener("click",resetForm);
 let regionForm = document.querySelector('.regionForm');
+let squareAmount = document.querySelector(".squaresLeft");
 
 function addInput() {
     let lastInputId = 0;
@@ -19,14 +20,18 @@ function addInput() {
     if (lastInputId === 4) {
         addTents(newTag,newInput);
     } else if (lastInputId === 6) {
+        subtractSquares(parseInt(document.querySelector(".tents").value) * 9);
         addFoodStands(newTag,newInput);
     } else if (lastInputId === 8) {
+        subtractSquares(parseInt(document.querySelector(".foodStands").value) * 1);
         addDrinkStands(newTag,newInput);
     } else if (lastInputId === 10) {
+        subtractSquares(parseInt(document.querySelector(".drinkStands").value) * 2);
         addTrees(newTag,newInput);
     } else if (lastInputId === 12) {
         addToiletBuildings(newTag,newInput);
     } else if (lastInputId === 14) {
+        subtractSquares(parseInt(document.querySelector(".toilets").value) * 3);
         addTrashcans(newTag,newInput);
         let submit = document.createElement("a");
         submit.innerText = "Submit";
@@ -38,10 +43,18 @@ function addInput() {
     }
 }
 
+function subtractSquares(squares) {
+    if (isNaN(squares)) {
+        return;
+    } else {
 
+        let totalSquares = parseInt(squareAmount.innerText);
+        squareAmount.innerText = `${totalSquares - squares}`;
+    }
+}
 
 function addTents(newTag, newInput){
-    newTag.innerHTML = "How many tents does your region have? This number gets locked in when you press next";
+    newTag.innerHTML = "How many tents does your region have?";
     newInput.setAttribute('type', 'number');
     newInput.setAttribute('min','0');
     newInput.setAttribute('placeholder', '0');
@@ -52,8 +65,8 @@ function addTents(newTag, newInput){
 }
 
 function addFoodStands(newTag, newInput) {
-    let maxValue;
     regionForm.querySelector(".tents").readOnly = true;
+    let maxValue;
     if (regionForm.querySelector(".tents").value > 0) {
         maxValue = 3;
     } else {
@@ -64,12 +77,14 @@ function addFoodStands(newTag, newInput) {
     newInput.setAttribute('min','0');
     newInput.setAttribute('max',maxValue);
     newInput.setAttribute('placeholder', '0');
+    newInput.className = "foodStands";
     newInput.required = true;
     regionForm.append(newTag);
     regionForm.append(newInput);
 }
 
 function addDrinkStands(newTag, newInput) {
+    regionForm.querySelector(".foodStands").readOnly = true;
     let maxValue;
     if (regionForm.querySelector(".tents").value > 0) {
         maxValue = 2;
@@ -81,37 +96,44 @@ function addDrinkStands(newTag, newInput) {
     newInput.setAttribute('min','0');
     newInput.setAttribute('max',maxValue);
     newInput.setAttribute('placeholder', '0');
+    newInput.className = "drinkStands";
     newInput.required = true;
     regionForm.append(newTag);
     regionForm.append(newInput);
 }
 
 function addTrees(newTag, newInput) {
+    regionForm.querySelector(".drinkStands").readOnly = true;
     newTag.innerHTML = "How many trees are in the area?"
     newInput.setAttribute('type', 'number');
     newInput.setAttribute('min','0');
     newInput.setAttribute('placeholder', '0');
+    newInput.className = "trees";
     newInput.required = true;
     regionForm.append(newTag);
     regionForm.append(newInput);
 }
 
 function addToiletBuildings(newTag, newInput) {
+    regionForm.querySelector(".trees").readOnly = true;
     newTag.innerHTML = "How many toilet-buildings does your region have? Maximum: 5"
     newInput.setAttribute('type', 'number');
     newInput.setAttribute('min','0');
     newInput.setAttribute('max','5');
     newInput.setAttribute('placeholder', '0');
+    newInput.className = "toilets";
     newInput.required = true;
     regionForm.append(newTag);
     regionForm.append(newInput);
 }
 
 function addTrashcans(newTag, newInput) {
+    regionForm.querySelector(".toilets").readOnly = true;
     newTag.innerHTML = "How many trashcans does your region have?";
     newInput.setAttribute('type', 'number');
     newInput.setAttribute('min','0');
     newInput.setAttribute('placeholder', '0');
+    newInput.className = "trash";
     newInput.required = true;
     regionForm.append(newTag);
     regionForm.append(newInput);
@@ -119,15 +141,70 @@ function addTrashcans(newTag, newInput) {
 
 function submitArea() {
     if (ValidateForm() === true) {
-        //save data
+        debugger;
+        if (localStorage.getItem("regions") === null) {
+            let regions = [];
+            localStorage.setItem("regions",JSON.stringify(regions));
+        }
+        let region = new Region(regionForm.querySelector(".regioninput").value, parseInt(regionForm.querySelector(".regionVisitorInput").value));
+        regionForm.querySelectorAll("input").forEach(function (input) {
+            switch (input.className) {
+                case "tents":
+                    let tents = [];
+                    for (let i = 0; i<input.value; i++) {
+                        tents[i] = new Tent();
+                    }
+                    region._tents = tents;
+                    break;
+                case "foodStands":
+                    let foodStands = [];
+                    for (let i = 0; i<input.value; i++) {
+                        foodStands[i] = new FoodStand();
+                    }
+                    region._foodstands = foodStands;
+                    break;
+                case "drinkStands":
+                    let drinkStands = [];
+                    for (let i = 0; i<input.value; i++) {
+                        drinkStands[i] = new DrinkStand();
+                    }
+                    region._drinkstands = drinkStands;
+                    break;
+                // case "trees":
+                //     let trees = [];
+                //     for (let i = 0; i<input.value; i++) {
+                //         trees[i] = new Tree();
+                //     }
+                //     region._trees = trees;
+                //     break;
+                case "toilets":
+                    let toilets = [];
+                    for (let i = 0; i<input.value; i++) {
+                        toilets[i] = new ToiletBuilding();
+                    }
+                    region._toiletbuildings = toilets;
+                    break;
+                case "trash":
+                    let trashCans = [];
+                    for (let i = 0; i<input.value; i++) {
+                        trashCans[i] = new Trashcan();
+                    }
+                    region._trashcans = trashCans;
+                    break;
+            }
+        })
+        let regionArray = JSON.parse(localStorage.getItem("regions"));
+        regionArray.push(region);
+        localStorage.setItem("regions", JSON.stringify(regionArray));
     }
 }
 
 function ValidateForm() {
     let allAreFilled = true;
     let inputCorrect = true;
-    regionForm.querySelectorAll(".validationMessage").forEach(function (i) {
-        i.parentNode.removeChild(i);
+    let enoughSpace = true;
+    regionForm.querySelectorAll(".validationMessage").forEach(function (validationMsg) {
+        validationMsg.parentNode.removeChild(validationMsg);
     })
     regionForm.querySelectorAll("[required]").forEach(function(i) {
         console.log(i.value)
@@ -154,10 +231,25 @@ function ValidateForm() {
             }
         }
     })
-    if (allAreFilled && inputCorrect === true) {
+    if (parseInt(squareAmount.innerText) < 0) {
+        enoughSpace = false;
+    }
+    if (allAreFilled && inputCorrect && enoughSpace === true) {
         return true;
-    } else if (!allAreFilled) {
-        alert("Please fill all the required fields.");
+    } else {
+
+        if (!allAreFilled) {
+            let error = document.createElement("label");
+            error.className = "validationMessage";
+            error.innerHTML = "Please fill in all of the required fields.";
+            regionForm.prepend(error);
+        }
+        if (!enoughSpace) {
+            let error = document.createElement("label");
+            error.className = "validationMessage";
+            error.innerHTML = "There is not enough space for the chosen festival objects.";
+            regionForm.prepend(error);
+        }
     }
 }
 
@@ -177,6 +269,7 @@ function resetForm() {
     let inputVisitors = document.createElement("input");
     inputVisitors.setAttribute("type","number");
     inputVisitors.setAttribute("placeholder","0");
+    squareAmount.innerText = "225";
 
     regionForm.append(tagName);
     regionForm.append(inputName);
