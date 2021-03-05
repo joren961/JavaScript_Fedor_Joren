@@ -2,9 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="HomePage.css">
+    <title>CROWDR</title>
 </head>
-<body>
 
+<body>
+<a class="hamburgerLink" onclick="toggleNav()">
+    <i id="hamburgerIcon" class="fa fa-bars"></i>
+</a>
+<nav class="navigation" style="width: 0px">
+    <div class="menuItems">
+        <ul id="areaList">
+            <li id="emptyListItem">
+                Your submitted regions will be listed here
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="flex-container">
+    <p>Space left: <span class="squaresLeft">225</span> squares</p>
+    <header>
+        <h1>Welcome to CROWDR</h1>
+    </header>
+        <form name="regionForm" class="regionForm">
+            <label>What is your region's name?</label>
+            <input class="regioninput" type="text" required placeholder="Region name..">
+            <label>How many visitors are allowed?</label>
+            <input class="regionVisitorInput" type="number" required placeholder="0" min="0">
+        </form>
+    <a href="#" class="nextInput"><i class="fa fa-plus"></i></a>
+    <a href="#" id="reset" class="button">Reset</a>
+</div>
+
+<script src="Setup.js"></script>
+<script src="Navigation.js"></script>
+<script src="FoodStand.js"></script>
+<script src="Tent.js"></script>
+<script src="DrinkStand.js"></script>
+<script src="ToiletBuilding.js"></script>
+<script src="Trashcan.js"></script>
+<script src="Tree.js"></script>
+<script src="Region.js"></script>
 </body>
+
 </html>

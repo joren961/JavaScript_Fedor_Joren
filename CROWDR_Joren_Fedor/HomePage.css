@@ -1,0 +1,117 @@
+body {
+    font-family: "Trebuchet MS";
+    background-color: whitesmoke;
+    background-image: url("https://www.bungeefun.nl/wp-content/uploads/2017/09/Home-Other-HD-Wallpapers-Plain-Light-Blue-Background.jpg");
+    color: ghostwhite;
+}
+header {
+    font-size: 30px;
+    color: ghostwhite;
+}
+::placeholder {
+    color:ghostwhite;
+}
+input {
+    width: 50px;
+    height: 20px;
+    border: #357EC7 outset 3px;
+    border-radius: 5px;
+    background: #357EC7;
+}
+
+label {
+    font-size: 20px;
+    margin-top:5px;
+    margin-bottom:5px;
+    color: ghostwhite;
+}
+.navigation {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: ghostwhite;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+.validationMessage {
+    color: red;
+    font-size: 14px;
+}
+.menuItems {
+    width:100%;
+}
+.menuItems li {
+    margin-top: 15px;
+    font-size:28px;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    list-style-type: none;
+    background-color: #357EC7;
+}
+.regioninput {
+    width: 90px;
+}
+
+#reset {
+    margin-top: 25px;
+}
+#submit {
+    margin-top: 30px;
+    font-size: 20px;
+    width: 80px;
+    height:30px;
+}
+#hamburgerIcon {
+    font-size: 60px;
+    color: black;
+}
+.squaresLeft {
+    font-weight: bold;
+    font-size:20px;
+    color: black;
+}
+.hamburgerLink {
+    position: fixed;
+    margin-right: 1750px;
+    cursor: pointer;
+    z-index: 1;
+}
+.regionForm {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.logo   {
+    width: 100px;
+}
+.nextInput i{
+    font-size: 30px;
+    margin-top: 10px;
+    color: ghostwhite;
+}
+.button {
+    width: 60px;
+    margin: 8px;
+    text-decoration: none;
+    height:25px;
+    line-height:25px;
+    text-align: center;
+    background: #357EC7;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
