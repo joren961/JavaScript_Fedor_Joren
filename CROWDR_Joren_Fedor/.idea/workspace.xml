@@ -2,19 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8d9699a-bd95-488d-b2ce-50f445c6968c" name="Default Changelist" comment="idk if this works please dont kill me if it doesnt">
-      <change afterPath="$PROJECT_DIR$/DragDropScript.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Eetkraampje(1x1).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MergeFiles(to be deleted)/Main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MergeFiles(to be deleted)/StyleSheet.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RegionView.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Bredeboom(2x1).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Drankkraampje (1x2).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Hogeboom (1x1).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Schaduwboom (3x3).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Tent (3x3).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TileView.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/w3-include-HTML.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HomePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/HomePage.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,7 +72,7 @@
       <workItem from="1613750606127" duration="5675000" />
       <workItem from="1613996254551" duration="338000" />
       <workItem from="1614953090797" duration="2282000" />
-      <workItem from="1615117343311" duration="3338000" />
+      <workItem from="1615117343311" duration="3397000" />
     </task>
     <servers />
   </component>
