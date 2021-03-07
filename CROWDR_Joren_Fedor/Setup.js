@@ -196,6 +196,12 @@ function submitArea() {
         let regionArray = JSON.parse(localStorage.getItem("regions"));
         regionArray.push(region);
         localStorage.setItem("regions", JSON.stringify(regionArray));
+
+
+        //hier
+        fetch('RegionView.html')
+            .then(data => data.text())
+            .then(html => document.getElementById('replaceDiv').innerHTML = html);
     }
 }
 

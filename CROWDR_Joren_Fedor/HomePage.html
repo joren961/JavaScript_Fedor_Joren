@@ -17,17 +17,13 @@
     <div class="menuItems">
         <ul id="areaList">
             <li id="emptyListItem">
-                Your submitted regions will be listed here
-                <button type="button" onclick="selectRegion()">View Region 1</button>
             </li>
-
-
         </ul>
     </div>
 </nav>
 
 <div class="flex-container" id="replaceDiv">
-    <p>Space left: <span class="squaresLeft">225</span> squares</p> 
+    <p>Space left: <span class="squaresLeft">225</span> squares</p>
     <header>
         <h1>Welcome to CROWDR</h1>
     </header>
@@ -53,15 +49,7 @@
 
 <script src="w3-include-HTML.js"></script>
 <script src="DragDropScript.js"></script>
-<script>
-    function selectRegion() {
-        fetch('RegionView.html')
-            .then(data => data.text())
-            .then(html => document.getElementById('replaceDiv').innerHTML = html);
 
-    }
-
-</script>
 
 </body>
 

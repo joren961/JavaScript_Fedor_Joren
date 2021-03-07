@@ -27,10 +27,23 @@ function getAreas() {
             for (const region of regions) {
                 let newArea = document.createElement("li");
                 newArea.innerText = region._name;
+                newArea.className = "clickbleLi";
+                //newArea.onclick = viewRegion();
+                newArea.addEventListener('click', (e) => viewRegion());
                 document.querySelector("#areaList").appendChild(newArea);
             }
         }
     }
 }
+
+function viewRegion()//dummy //TODO Fedor
+{
+    fetch('RegionView.html')
+        .then(data => data.text())
+        .then(html => document.getElementById('replaceDiv').innerHTML = html);
+    return;
+}
+
+
 
 
