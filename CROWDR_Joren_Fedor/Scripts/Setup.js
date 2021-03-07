@@ -141,7 +141,6 @@ function addTrashcans(newTag, newInput) {
 
 function submitArea() {
     if (ValidateForm() === true) {
-        debugger;
         if (localStorage.getItem("regions") === null) {
             let regions = [];
             localStorage.setItem("regions",JSON.stringify(regions));
@@ -209,11 +208,11 @@ function ValidateForm() {
     let allAreFilled = true;
     let inputCorrect = true;
     let enoughSpace = true;
+    let nameIsAvailable = true;
     regionForm.querySelectorAll(".validationMessage").forEach(function (validationMsg) {
         validationMsg.parentNode.removeChild(validationMsg);
     })
     regionForm.querySelectorAll("[required]").forEach(function(i) {
-        console.log(i.value)
         if (i.value == null || i.value.trim() === "") {
             allAreFilled = false;
         }
@@ -227,7 +226,6 @@ function ValidateForm() {
             }
             else if (i.getAttribute("max") != null) {
                 if (parseInt(i.value) > parseInt(i.getAttribute("max"))) {
-                    console.log(i.getAttribute("max"));
                     inputCorrect = false;
                     let error = document.createElement("label");
                     error.className = "validationMessage";
@@ -237,13 +235,16 @@ function ValidateForm() {
             }
         }
     })
+    if (regionNameTaken(regionForm.querySelector(".regioninput").value)) {
+        nameIsAvailable = false;
+    }
     if (parseInt(squareAmount.innerText) < 0) {
         enoughSpace = false;
     }
-    if (allAreFilled && inputCorrect && enoughSpace === true) {
+    if (allAreFilled && inputCorrect && enoughSpace && nameIsAvailable === true) {
         return true;
-    } else {
-
+    }
+    else {
         if (!allAreFilled) {
             let error = document.createElement("label");
             error.className = "validationMessage";
@@ -256,6 +257,32 @@ function ValidateForm() {
             error.innerHTML = "There is not enough space for the chosen festival objects.";
             regionForm.prepend(error);
         }
+        if (!nameIsAvailable) {
+            let error = document.createElement("label");
+            error.className = "validationMessage";
+            error.innerHTML = "That region name already exists. Please pick a different one.";
+            regionForm.prepend(error);
+        }
+    }
+}
+
+function regionNameTaken(regionName) {
+    let regions = localStorage.getItem("regions")
+    if (regions != null) {
+        regions = JSON.parse(regions);
+        if (regions[0] != null) {
+            for (const region of regions) {
+                if (region!=null) {
+                    if (region._name === regionName) {
+                        return true;
+                    }
+                }
+            }
+        } else {
+            return false;
+        }
+    } else {
+        return false;
     }
 }
 
