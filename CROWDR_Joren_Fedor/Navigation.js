@@ -36,12 +36,36 @@ function getAreas() {
     }
 }
 
-function viewRegion()//dummy //TODO Fedor
+function viewRegion()
 {
     fetch('RegionView.html')
         .then(data => data.text())
         .then(html => document.getElementById('replaceDiv').innerHTML = html);
+
+
+
+    //<div class="child" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+    let parentDiv = document.getElementById('parent');
+    let newSlot = document.createElement("div");
+    newSlot.innerText = "new Div";
+    newSlot.className = "child";
+    parentDiv.appendChild(newSlot);
+
+    //get the navigation
+    //let objectNav = document.getElementById("objectNav");
+    //add drinkstands
+    //let newObject = document.createElement(("Li"));
+    //newObject.innerText = "drinkStands";
+    //objectNav.appendChild(newObject);
+
     return;
+}
+
+function createNavObject(max, name)
+{
+
+
 }
 
 

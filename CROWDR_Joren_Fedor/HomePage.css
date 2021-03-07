@@ -165,7 +165,7 @@ body {
 
 }
 
-.one {
+.objectNav {
     width: 15%;
     height: 800px;
     background: cadetblue;
@@ -177,7 +177,7 @@ body {
     height: 800px;
     background: lightblue;
 }
-.parent
+#parent
 {
     background-color: antiquewhite;
     position: relative;
