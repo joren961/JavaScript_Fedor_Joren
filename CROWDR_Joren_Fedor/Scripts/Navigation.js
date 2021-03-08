@@ -48,7 +48,6 @@ function getAreas() {
 }
 
 function deleteRegion(regionName) {
-    debugger;
     let regions = localStorage.getItem("regions");
     regions = JSON.parse(regions);
     for (const region of regions) {

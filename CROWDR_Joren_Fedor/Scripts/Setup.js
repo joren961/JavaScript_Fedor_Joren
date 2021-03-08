@@ -169,13 +169,13 @@ function submitArea() {
                     }
                     region._drinkstands = drinkStands;
                     break;
-                // case "trees":
-                //     let trees = [];
-                //     for (let i = 0; i<input.value; i++) {
-                //         trees[i] = new Tree();
-                //     }
-                //     region._trees = trees;
-                //     break;
+                case "trees":
+                    let trees = [];
+                    for (let i = 0; i<input.value; i++) {
+                        trees[i] = new Tree();
+                    }
+                    region._trees = trees;
+                    break;
                 case "toilets":
                     let toilets = [];
                     for (let i = 0; i<input.value; i++) {
@@ -195,7 +195,6 @@ function submitArea() {
         let regionArray = JSON.parse(localStorage.getItem("regions"));
         regionArray.push(region);
         localStorage.setItem("regions", JSON.stringify(regionArray));
-
 
         //hier
         fetch('RegionView.html')
