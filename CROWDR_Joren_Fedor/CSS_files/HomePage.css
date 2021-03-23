@@ -116,3 +116,94 @@ label {
     cursor: pointer;
 }
 
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.wrapper {
+    width: 500px;
+    border: 1px solid black;
+}
+.first {
+    width: 300px;
+    border: 1px solid red;
+}
+.second {
+    border: 1px solid green;
+}
+.container {
+    width: 90%;
+    height: 110%;
+    background-color: #357EC7;
+    margin: auto;
+    padding: 0px;
+}
+
+.one {
+    width: 15%;
+    height: 800px;
+    background: cadetblue;
+    float: left;
+}
+
+.two {
+    margin-left: 15%;
+    height: 800px;
+    background: cadetblue;
+}
+.parent
+{
+    background-color: antiquewhite;
+    position: relative;
+    width: 780px;
+    height: 780px;
+}
+
+.child
+{
+    float: left;
+    width: 50px;
+    height: 50px;
+    display: block;
+    background-color: aliceblue;
+    border: 1px solid #999;
+}
+.threeXthree
+{
+    float: left;
+    width: 150px;
+    height: 150px;
+    display: block;
+    background-color: aliceblue;
+    border: 1px solid #999;
+}
+
+.oneXone
+{
+    float: left;
+    width: 50px;
+    height: 50px;
+    display: block;
+    background-color: aliceblue;
+    border: 1px solid #999;
+}
