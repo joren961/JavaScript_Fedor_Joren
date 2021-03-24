@@ -35,10 +35,29 @@ function generateLayout()
 
 function generateOptionsview()
 {
+    //get optionsView
+    let getOptionsView = document.getElementById('one');
+
     //DrinkStand
+    let newDrinkStand = document.createElement('div');
+    newDrinkStand.className = 'oneXone';
+    let newDrinkStandImage = document.createElement('img');
+    newDrinkStandImage.src = 'HogeBoom.png';
+    newDrinkStand.appendChild(newDrinkStandImage);
+
+    let get
+
+
+
+    //newDrinkStand.ondrop = drop(event);
+    //newDrinkStand.ondrag = allowDrop(event);
+
+
+
+
 
     //FoodStand
- 
+
     //RegionStand
 
     //Tent
@@ -54,3 +73,4 @@ function generateGridview()
 {
 
 }
+
