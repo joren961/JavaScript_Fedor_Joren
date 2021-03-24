@@ -1,76 +1,38 @@
+class GridController {
 
-viewGrid();
+    _replaceDiv;
+    _container;
+    _optionView;
+    _gridview;
 
-function viewGrid()
-{
-    document.getElementById('replaceDiv').innerHTML = '';
-    generateLayout();
-}
-function generateLayout()
-{
-    //get div
-    let replaceDiv = document.getElementById('replaceDiv');
+    constructor()
+    {
+        this._replaceDiv = document.getElementById('replaceDiv');
 
-    //add new container
-    let newContainer = document.createElement('div');
-    newContainer.className = 'container';
-    replaceDiv.appendChild(newContainer);
+        this._container = document.createElement('div');
+        this._container.className = 'container';
+        //this._replaceDiv.appendChild(this._container);
 
-    //add options div
-    let newOptionsview = document.createElement('div');
-    newOptionsview.className = 'one';
-    newContainer.appendChild(newOptionsview);
+        this._optionView = document.createElement('div');
+        this._optionView.className = 'one';
+        this._container.appendChild(this._optionView);
 
-    //fill options div
-    generateOptionsview();
-
-    //add gridview div
-    let newGridview = document.createElement('div');
-    newGridview.className = 'two';
-    newContainer.appendChild(newOptionsview);
-
-    //fill gridview div
-    generateGridview();
-}
-
-function generateOptionsview()
-{
-    //get optionsView
-    let getOptionsView = document.getElementById('one');
-
-    //DrinkStand
-    let newDrinkStand = document.createElement('div');
-    newDrinkStand.className = 'oneXone';
-    let newDrinkStandImage = document.createElement('img');
-    newDrinkStandImage.src = 'HogeBoom.png';
-    newDrinkStand.appendChild(newDrinkStandImage);
-
-    let get
+        this._gridview = document.createElement('div');
+        this._gridview.className = 'two';
+        this._container.appendChild(this._gridview);
 
 
 
-    //newDrinkStand.ondrop = drop(event);
-    //newDrinkStand.ondrag = allowDrop(event);
+    }
 
+    render()
+    {
+        this._replaceDiv.innerHTML = '';
+        this._replaceDiv.appendChild(this._container);
+    }
 
-
-
-
-    //FoodStand
-
-    //RegionStand
-
-    //Tent
-
-    //ToiletBuilding
-
-    //Trashcan
-
-    //Trees (3 different types, the pleb can deside which ever he wants)
-}
-
-function generateGridview()
-{
 
 }
 
+let gridController = new GridController();
+gridController.render();
