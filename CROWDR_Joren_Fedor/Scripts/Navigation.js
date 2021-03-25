@@ -66,13 +66,18 @@ function deleteRegion(regionName) {
         }
     }
 }
-
-function viewRegion()//dummy //TODO Fedor
+function viewRegion(regionName)
 {
-    fetch('RegionView.html')
-        .then(data => data.text())
-        .then(html => document.getElementById('replaceDiv').innerHTML = html);
-    return;
+    let regions = localStorage.getItem("regions");
+    for (const region of regions) {
+        if (region._name === regionName) {
+            alert(region._name);
+            break;
+        }
+    }
+    let gridController = new GridController();
+    gridController.render();
+
 }
 
 

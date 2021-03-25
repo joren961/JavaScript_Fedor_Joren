@@ -164,6 +164,9 @@ label {
     height: 800px;
     background: cadetblue;
     float: left;
+    display: block;
+
+
 }
 
 .two {
@@ -198,7 +201,7 @@ label {
     border: 1px solid #999;
 }
 
-.oneXone
+.oneByOne
 {
     float: left;
     width: 50px;
@@ -206,4 +209,10 @@ label {
     display: block;
     background-color: aliceblue;
     border: 1px solid #999;
+}
+
+
+.menuItemWrapper
+{
+    float: left;
 }
