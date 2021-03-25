@@ -40,7 +40,7 @@ function getAreas() {
                 newArea.appendChild(deleteArea);
 
                 //newArea.onclick = viewRegion();
-                newArea.addEventListener('click', (e) => viewRegion());
+                newArea.addEventListener('click', (e) => viewRegion("CHAD"));
                 document.querySelector("#areaList").appendChild(newArea);
             }
         }
@@ -77,7 +77,6 @@ function viewRegion(regionName)
     }
     let gridController = new GridController();
     gridController.render();
-
 }
 
 

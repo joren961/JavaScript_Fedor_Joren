@@ -113,3 +113,21 @@ class GridController {
         ev.target.appendChild(document.getElementById(data));
     }
 }
+
+
+// <section className="container">
+//     <div className="one">
+//         <div className="eetkraampje">
+//             <p className="tileTypeName">eetkraampjes</p>
+//             <div className="oneXone" onDrop="drop(event)" onDragOver="allowDrop(event)">
+//                 <img className="img-wrap" src="Resources/foodStand(1x1).png" draggable="true" onDragStart="drag(event)"
+//                      id="drag1">
+//             </div>
+//         </div>
+//         <div id="div1" onDrop="drop(event)" onDragOver="allowDrop(event)"></div>
+//     </div>
+//
+//
+//     <div className="two">
+//         <div className="parent">
+//             <div className="child" onDrop="drop(event)" onDragOver="allowDrop(event)"></div>
