@@ -10,15 +10,15 @@ class GridController {
         this._replaceDiv = document.getElementById('replaceDiv');
 
         this._container = document.createElement('div');
-        this._container.className = 'container';
+        this._container.className = 'containerGridView';
         //this._replaceDiv.appendChild(this._container);
 
         this._optionView = document.createElement('div');
-        this._optionView.className = 'one';
+        this._optionView.className = 'menuWrapper';
         this._container.appendChild(this._optionView);
 
         this._gridview = document.createElement('div');
-        this._gridview.className = 'two';
+        this._gridview.className = 'gridWrapper';
         this._container.appendChild(this._gridview);
 
     }
@@ -36,13 +36,13 @@ class GridController {
     {
         this._gridview.innerHTML = '';
         let newParent = document.createElement('div');
-        newParent.className = 'parent';
+        newParent.className = 'gridView';
         this._gridview.appendChild(newParent);
 
         for(let x = 0; x < 225; x++)
         {
             let newCellGrid = document.createElement('div');
-            newCellGrid.className = 'child';
+            newCellGrid.className = 'gridCell';
             //newCellGrid.draggable = true;
             //newCellGrid.ondragover = this.allowDrop(event);
             //newCellGrid.addEventListener('ondragover', function(){allowDrop(event)}, false)
@@ -65,13 +65,7 @@ class GridController {
         //render Tent
         this.renderMenuItem('Tent', "Resources/tent(3x3).png", 3);
 
-        //this.renderTreeMenuItem('Tree', "Resources/highTree(1x1).png", "Resources/shadowTree(3x3).png","Resources/wideTree(2x1).png", 3);
-        this.renderMenuItem('High Tree', "Resources/highTree(1x1).png", 3);
-        //render Shadow tree
-        this.renderMenuItem('Shadow Tree', "Resources/shadowTree(3x3).png", 3);
-
-        //render Wide Tree
-        this.renderMenuItem('Wide Tree', "Resources/wideTree(2x1).png", 3);
+        this.renderMenuItem('Default Tree', "Resources/highTree(1x1).png", 3);
     }
 
     renderMenuItem(type, imagesrc, amount)
@@ -111,21 +105,3 @@ class GridController {
         ev.target.appendChild(document.getElementById(data));
     }
 }
-
-
-// <section className="container">
-//     <div className="one">
-//         <div className="eetkraampje">
-//             <p className="tileTypeName">eetkraampjes</p>
-//             <div className="oneXone" onDrop="drop(event)" onDragOver="allowDrop(event)">
-//                 <img className="img-wrap" src="Resources/foodStand(1x1).png" draggable="true" onDragStart="drag(event)"
-//                      id="drag1">
-//             </div>
-//         </div>
-//         <div id="div1" onDrop="drop(event)" onDragOver="allowDrop(event)"></div>
-//     </div>
-//
-//
-//     <div className="two">
-//         <div className="parent">
-//             <div className="child" onDrop="drop(event)" onDragOver="allowDrop(event)"></div>
