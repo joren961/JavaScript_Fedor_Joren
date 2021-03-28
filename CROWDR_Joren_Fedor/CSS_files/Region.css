@@ -64,6 +64,7 @@ body {
     position: relative;
     width: 780px;
     height: 780px;
+    border: 1px solid #999;
 }
 
 .gridCell
@@ -75,22 +76,8 @@ body {
     background-color: aliceblue;
     border: 1px solid #999;
 }
-.threeXthree
-{
-    float: left;
-    width: 150px;
-    height: 150px;
-    display: block;
-    background-color: aliceblue;
-    border: 1px solid #999;
-}
 
-.oneXone
+.newDragble
 {
-    float: left;
-    width: 50px;
-    height: 50px;
-    display: block;
-    background-color: aliceblue;
-    border: 1px solid #999;
+    position: absolute;
 }

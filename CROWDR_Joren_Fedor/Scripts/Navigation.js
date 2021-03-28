@@ -77,6 +77,8 @@ function viewRegion(regionName)
     }
     let gridController = new GridController();
     gridController.render();
+
+    console.log(localStorage);
 }
 
 
