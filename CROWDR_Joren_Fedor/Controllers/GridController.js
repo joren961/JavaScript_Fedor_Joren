@@ -21,8 +21,6 @@ class GridController {
         this._gridview.className = 'two';
         this._container.appendChild(this._gridview);
 
-
-
     }
 
     render()
