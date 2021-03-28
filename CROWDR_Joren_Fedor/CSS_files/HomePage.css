@@ -44,6 +44,7 @@ label {
 }
 .menuItems {
     width:100%;
+    cursor: pointer;
 }
 .menuItems li {
     margin-top: 15px;
@@ -78,7 +79,8 @@ label {
 }
 .hamburgerLink {
     position: fixed;
-    margin-right: 1750px;
+    left: 10px;
+    top: 5px;
     cursor: pointer;
     z-index: 1;
 }

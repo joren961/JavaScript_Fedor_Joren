@@ -40,8 +40,8 @@ body {
 }
 .containerGridView {
     width: 90%;
-    height: 110%;
-    background-color: #357EC7;
+    height: 900px;
+    background-color: cadetblue;
     margin: auto;
     padding: 0px;
 }
@@ -55,8 +55,11 @@ body {
 
 .gridWrapper {
     margin-left: 15%;
-    height: 800px;
+    padding:20px;
+    height: 900px;
     background: cadetblue;
+    display: flex;
+    flex-direction: row;
 }
 .gridView
 {
@@ -66,26 +69,20 @@ body {
     height: 780px;
 }
 
-.gridCell
+.detailsBox
 {
-    float: left;
-    width: 50px;
-    height: 50px;
-    display: block;
-    background-color: aliceblue;
-    border: 1px solid #999;
-}
-.threeXthree
-{
-    float: left;
-    width: 150px;
-    height: 150px;
-    display: block;
-    background-color: aliceblue;
-    border: 1px solid #999;
+    width: 30%;
+    margin-left: 30px;
+    height: 780px;
+    border: solid white 3px;
+    border-radius: 8px;
+    background-color: #357EC7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.oneXone
+.gridCell
 {
     float: left;
     width: 50px;

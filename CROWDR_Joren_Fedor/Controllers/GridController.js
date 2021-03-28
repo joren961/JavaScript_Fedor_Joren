@@ -56,16 +56,17 @@ class GridController {
 
     renderMenu()
     {
+        //doe dit op basis van een object uit /Objects
         //render foodstand
         this.renderMenuItem('Foodstand', "Resources/foodStand(1x1).png", 5);
 
         //render drinkStand
-        this.renderMenuItem('Drikstand', "Resources/drinkStand(1x2).png", 4);
+        this.renderMenuItem('Drinkstand', "Resources/drinkStand(1x2).png", 4);
 
         //render Tent
         this.renderMenuItem('Tent', "Resources/tent(3x3).png", 3);
 
-        this.renderMenuItem('Default Tree', "Resources/highTree(1x1).png", 3);
+        this.renderMenuItem('High Tree', "Resources/highTree(1x1).png", 3);
     }
 
     renderMenuItem(type, imagesrc, amount)
@@ -86,9 +87,33 @@ class GridController {
         newDragble.className = 'img-wrap';
         newDragble.draggable = true;
 
+        //maakt details scherm on click
+        newDragble.addEventListener('click',() => this.openDetails(type));
+
         newSquare.appendChild(newDragble);
         newMenuItem.appendChild(newSquare);
         this._optionView.appendChild(newMenuItem);
+    }
+
+    openDetails(type) {
+        let oldDetailsBox = document.querySelector('.detailsBox')
+        if (document.querySelector('.detailsBox') != null) {
+            this._gridview.removeChild(oldDetailsBox);
+        }
+
+        let details = document.createElement('div');
+        details.className = "detailsBox";
+        //op basis van object, inputs maken om info te setten
+        switch (type) {
+            case "Drinkstand": break;
+            case "Foodstand": break;
+            case "Tent": break;
+            case "High Tree": break;
+        }
+        let label = document.createElement('label');
+        label.innerText = type;
+        details.appendChild(label);
+        this._gridview.appendChild(details);
     }
 
     allowDrop(ev) {
