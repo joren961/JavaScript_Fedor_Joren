@@ -65,7 +65,9 @@ function addTents(newTag, newInput){
 }
 
 function addFoodStands(newTag, newInput) {
-    regionForm.querySelector(".tents").readOnly = true;
+    let field = regionForm.querySelector(".tents");
+    field.readOnly = true;
+    field.style.border = "solid white 1.5px";
     let maxValue;
     if (regionForm.querySelector(".tents").value > 0) {
         maxValue = 3;
@@ -84,7 +86,9 @@ function addFoodStands(newTag, newInput) {
 }
 
 function addDrinkStands(newTag, newInput) {
-    regionForm.querySelector(".foodStands").readOnly = true;
+    let field = regionForm.querySelector(".foodStands");
+    field.readOnly = true;
+    field.style.border = "solid white 1.5px";
     let maxValue;
     if (regionForm.querySelector(".tents").value > 0) {
         maxValue = 2;
@@ -103,7 +107,9 @@ function addDrinkStands(newTag, newInput) {
 }
 
 function addTrees(newTag, newInput) {
-    regionForm.querySelector(".drinkStands").readOnly = true;
+    let field = regionForm.querySelector(".drinkStands");
+    field.readOnly = true;
+    field.style.border = "solid white 1.5px";
     newTag.innerHTML = "How many trees are in the area?"
     newInput.setAttribute('type', 'number');
     newInput.setAttribute('min','0');
@@ -115,7 +121,9 @@ function addTrees(newTag, newInput) {
 }
 
 function addToiletBuildings(newTag, newInput) {
-    regionForm.querySelector(".trees").readOnly = true;
+    let field = regionForm.querySelector(".trees");
+    field.readOnly = true;
+    field.style.border = "solid white 1.5px";
     newTag.innerHTML = "How many toilet-buildings does your region have? Maximum: 5"
     newInput.setAttribute('type', 'number');
     newInput.setAttribute('min','0');
@@ -128,10 +136,14 @@ function addToiletBuildings(newTag, newInput) {
 }
 
 function addTrashcans(newTag, newInput) {
-    regionForm.querySelector(".toilets").readOnly = true;
-    newTag.innerHTML = "How many trashcans does your region have?";
+    let maxValue = Math.floor(0.05*parseInt(squareAmount.innerText));
+    let field = regionForm.querySelector(".toilets");
+    field.readOnly = true;
+    field.style.border = "solid white 1.5px";
+    newTag.innerHTML = "How many trashcans does your region have? Max: " + maxValue;
     newInput.setAttribute('type', 'number');
     newInput.setAttribute('min','0');
+    newInput.setAttribute('max',maxValue);
     newInput.setAttribute('placeholder', '0');
     newInput.className = "trash";
     newInput.required = true;
@@ -196,7 +208,7 @@ function submitArea() {
         regionArray.push(region);
         localStorage.setItem("regions", JSON.stringify(regionArray));
 
-        //hier
+        //Werkt niet altijd
         fetch('RegionView.html')
             .then(data => data.text())
             .then(html => document.getElementById('replaceDiv').innerHTML = html);
