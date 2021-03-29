@@ -129,19 +129,67 @@ class GridController {
         let details = document.createElement('div');
         details.className = "detailsBox";
 
-        //op basis van object, inputs maken om info te setten
-        switch (type) {
-            case "Drink stand": break;
-            case "Food stand": break;
-            case "Tent": break;
-            case "Trashcan": break;
-            case "Toilet building": break;
-            case "Tree": break;
-        }
-
         let label = document.createElement('label');
         label.innerText = type;
         details.appendChild(label);
+
+        let newLabel = document.createElement('label');
+        let newInput = document.createElement('input');
+        newInput.required = true;
+
+        switch (type) {
+            case "Drink stand":
+                newLabel.innerText = "Maximum visitors:";
+                newInput.setAttribute('type', 'number');
+                newInput.setAttribute('min', '0');
+                newInput.setAttribute('placeholder', '0');
+                break;
+            case "Food stand":
+                newLabel.innerText = "Maximum visitors:";
+                newInput.setAttribute('type', 'number');
+                newInput.setAttribute('min', '0');
+                newInput.setAttribute('placeholder', '0');
+                //type eten
+                break;
+            case "Tent":
+                newLabel.innerText = "Maximum visitors:";
+                newInput.setAttribute('type', 'number');
+                newInput.setAttribute('min', '0');
+                newInput.setAttribute('placeholder', '0');
+                //openingstijden
+                break;
+            case "Trashcan":
+                newLabel.innerText = "Capacity in KG";
+                newInput.setAttribute('type', 'number');
+                newInput.setAttribute('min', '0');
+                newInput.setAttribute('placeholder', '0');
+                //leegtijden
+                break;
+            case "Toilet building":
+                newLabel.innerText = "Maximum visitors:";
+                newInput.setAttribute('type', 'number');
+                newInput.setAttribute('min', '0');
+                newInput.setAttribute('placeholder', '0');
+                break;
+            case "Tree":
+                let trees = ['High Tree', 'Wide Tree', 'Shadow Tree'];
+                for (const tree of trees) {
+                    let label = document.createElement('label');
+                    label.innerText = tree;
+                    let input = document.createElement('input');
+                    if (tree === "High Tree") {
+                        input.checked = true;
+                    }
+                    input.setAttribute('value', tree);
+                    input.setAttribute('name', 'Tree');
+                    input.setAttribute('type', 'radio');
+                    details.appendChild(label);
+                    details.appendChild(input);
+                }
+                break;
+        }
+        details.appendChild(newLabel);
+        details.appendChild(newInput);
         this._gridview.appendChild(details);
     }
 

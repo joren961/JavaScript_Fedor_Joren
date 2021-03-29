@@ -26,9 +26,12 @@ class FormController {
                 lastInputId = i;
             }
         }
-
         let newTag = document.createElement("label");
         let newInput = document.createElement("input");
+        newInput.required = true;
+        newInput.setAttribute('type', 'number');
+        newInput.setAttribute('min','0');
+        newInput.setAttribute('placeholder', '0');
 
         if (lastInputId === 4) {
             this.addTentInput(newTag,newInput);
@@ -55,6 +58,8 @@ class FormController {
             this._regionForm.append(submit);
             this._nextInputButton.style.display = "none";
         }
+        this._regionForm.append(newTag);
+        this._regionForm.append(newInput);
     }
 
     validateForm() {
@@ -216,13 +221,7 @@ class FormController {
 
     addTentInput(newTag, newInput) {
         newTag.innerHTML = "How many tents does your region have?";
-        newInput.setAttribute('type', 'number');
-        newInput.setAttribute('min','0');
-        newInput.setAttribute('placeholder', '0');
         newInput.className = "tents";
-        newInput.required = true;
-        this._regionForm.append(newTag);
-        this._regionForm.append(newInput);
     }
 
     addDrinkInput(newTag, newInput) {
@@ -236,14 +235,9 @@ class FormController {
             maxValue = 4;
         }
         newTag.innerHTML = "How many drinking stands does your region have? Maximum: " + maxValue;
-        newInput.setAttribute('type', 'number');
-        newInput.setAttribute('min','0');
         newInput.setAttribute('max',maxValue);
-        newInput.setAttribute('placeholder', '0');
+
         newInput.className = "drinkStands";
-        newInput.required = true;
-        this._regionForm.append(newTag);
-        this._regionForm.append(newInput);
     }
 
     addFoodInput(newTag, newInput) {
@@ -257,14 +251,9 @@ class FormController {
             maxValue = 6;
         }
         newTag.innerHTML = "How many food-stands does your region have? Maximum: " + maxValue;
-        newInput.setAttribute('type', 'number');
-        newInput.setAttribute('min','0');
         newInput.setAttribute('max',maxValue);
-        newInput.setAttribute('placeholder', '0');
         newInput.className = "foodStands";
-        newInput.required = true;
-        this._regionForm.append(newTag);
-        this._regionForm.append(newInput);
+
     }
 
     addTreeInput(newTag, newInput) {
@@ -272,13 +261,7 @@ class FormController {
         field.readOnly = true;
         field.style.border = "solid white 1.5px";
         newTag.innerHTML = "How many trees are in the area?"
-        newInput.setAttribute('type', 'number');
-        newInput.setAttribute('min','0');
-        newInput.setAttribute('placeholder', '0');
         newInput.className = "trees";
-        newInput.required = true;
-        this._regionForm.append(newTag);
-        this._regionForm.append(newInput);
     }
 
     addToiletInput(newTag, newInput) {
@@ -286,14 +269,8 @@ class FormController {
         field.readOnly = true;
         field.style.border = "solid white 1.5px";
         newTag.innerHTML = "How many toilet-buildings does your region have? Maximum: 5"
-        newInput.setAttribute('type', 'number');
-        newInput.setAttribute('min','0');
         newInput.setAttribute('max','5');
-        newInput.setAttribute('placeholder', '0');
         newInput.className = "toilets";
-        newInput.required = true;
-        this._regionForm.append(newTag);
-        this._regionForm.append(newInput);
     }
 
     addTrashInput(newTag, newInput) {
@@ -302,15 +279,7 @@ class FormController {
         field.readOnly = true;
         field.style.border = "solid white 1.5px";
         newTag.innerHTML = "How many trashcans does your region have? Max: " + maxValue;
-        newInput.setAttribute('type', 'number');
-        newInput.setAttribute('min','0');
         newInput.setAttribute('max',maxValue);
-        newInput.setAttribute('placeholder', '0');
         newInput.className = "trash";
-        newInput.required = true;
-        this._regionForm.append(newTag);
-        this._regionForm.append(newInput);
     }
-
-
 }

@@ -1,5 +1,5 @@
 class ToiletBuilding {
-    _squares
+    _squares;
     _x;
     _y;
 
