@@ -6,7 +6,7 @@ class StorageController {
     getRegion(regionName) {
         let regions = localStorage.getItem("regions");
         for (const region of regions) {
-            if (region._name === regionName) {
+            if (region._name == regionName) {
                 return region;
             }
         }

@@ -33,10 +33,9 @@ class NavigationController {
 
     viewRegion(regionName)
     {
-        this._StorageController.getRegion(regionName);
-        //deze meegeven aan controller
+        alert(regionName);
         let gridController = new GridController();
-        gridController.render();
+        gridController.render(regionName);
     }
 
     getRegions() {
@@ -63,7 +62,7 @@ class NavigationController {
                 newArea.appendChild(deleteArea);
 
                 //newArea.onclick = viewRegion();
-                newArea.addEventListener('click', (e) => this.viewRegion("CHAD"));
+                newArea.addEventListener('click', (e) => this.viewRegion(region._name));
                 document.querySelector("#areaList").appendChild(newArea);
             }
         }

@@ -8,6 +8,8 @@ class Region {
     _trashcans;
     _trees;
 
+
+
     constructor(name, maxVisitors) {
         this._name = name;
         this._maxVisitors = maxVisitors;

@@ -4,9 +4,14 @@ class GridController {
     _container;
     _optionView;
     _gridview;
+    _StorageController;
+
+    _selectedRegion;
 
     constructor()
     {
+        this._StorageController = new StorageController();
+
         this._replaceDiv = document.getElementById('replaceDiv');
 
         this._container = document.createElement('div');
@@ -23,13 +28,14 @@ class GridController {
 
     }
 
-    render()
+    render(regionName)
     {
         this._replaceDiv.innerHTML = '';
         this._replaceDiv.appendChild(this._container);
+
+        this._selectedRegion = this._StorageController.getRegion(regionName);
         this.renderGrid();
         this.renderMenu();
-
     }
 
     renderGrid()
@@ -43,30 +49,19 @@ class GridController {
         {
             let newCellGrid = document.createElement('div');
             newCellGrid.className = 'gridCell';
-            //newCellGrid.draggable = true;
-            //newCellGrid.ondragover = this.allowDrop(event);
-            //newCellGrid.addEventListener('ondragover', function(){allowDrop(event)}, false)
-            //newCellGrid.ondrop = drop(event);
-            //newCellGrid.ondragover = drag(event);
-            //newCellGrid.addEventListener('ondrop', function(){drop(event)}, false)
-            //newCellGrid.id = x;
-            //newCellGrid.addEventListener('ondragover', () => this.allowDrop(event));
+
             newCellGrid.addEventListener('dragover', ev => {
                 ev.preventDefault();
             });
-            //newCellGrid.addEventListener("drop", () => this.drop(event));
             newCellGrid.addEventListener("drop", ev => {
                 ev.preventDefault();
                 let data = ev.dataTransfer.getData("text/plain");
 
                 console.log(data);
                 ev.target.appendChild(document.getElementById(data));
-                this.renderMenu();
+                this.renderMenu();//hier
             });
-            // newCellGrid.addEventListener("drop", () => {
-            //
-            //
-            // });
+
 
             newParent.appendChild(newCellGrid);
         }
@@ -77,7 +72,7 @@ class GridController {
         //doe dit op basis van een object uit /Objects
         this._optionView.innerHTML = '';
         //render foodstand
-        this.renderMenuItem('Foodstand', "Resources/foodStand(1x1).png", 5);
+        this.renderMenuItem('Foodstand', "Resources/foodStand(1x1).png", this._selectedRegion);
 
         //render drinkStand
         this.renderMenuItem('Drinkstand', "Resources/drinkStand(1x2).png", 4);
@@ -138,21 +133,21 @@ class GridController {
         this._gridview.appendChild(details);
     }
 
-    allowDrop(ev) {
-        ev.preventDefault();
-        console.log("adasd");
-        alert('test');
-
-    }
-
-    drag(ev) {
-        ev.dataTransfer.setData("text", ev.target.id);
-        //alert('test');
-    }
-
-    drop(ev) {
-        ev.preventDefault();
-        let data = ev.dataTransfer.getData("text");
-        ev.target.appendChild(document.getElementById(data));
-    }
+    // allowDrop(ev) {
+    //     ev.preventDefault();
+    //     console.log("adasd");
+    //     alert('test');
+    //
+    // }
+    //
+    // drag(ev) {
+    //     ev.dataTransfer.setData("text", ev.target.id);
+    //     //alert('test');
+    // }
+    //
+    // drop(ev) {
+    //     ev.preventDefault();
+    //     let data = ev.dataTransfer.getData("text");
+    //     ev.target.appendChild(document.getElementById(data));
+    // }
 }
