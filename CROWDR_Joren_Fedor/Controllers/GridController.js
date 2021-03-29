@@ -77,7 +77,6 @@ class GridController {
     {
         this._optionView.innerHTML = '';
         let region = this._StorageController.getRegion(regionName);
-        console.log(region);
         for (const foodstand of region._foodstands) {
             if (foodstand!=null) {
                 this.renderMenuItem(foodstand,"Resources/foodStand(1x1).png",region._foodstands.length);
@@ -110,6 +109,7 @@ class GridController {
         }
     }
 
+    //moet ervoor zorgen dat elk object apart gemaakt wordt en op de stapel objecten van die soort wordt gegooid
     renderMenuItem(Object, imagesrc, amount)
     {
         let newMenuItem = document.createElement('div');

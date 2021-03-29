@@ -7,14 +7,12 @@ class StorageController {
     getRegion(regionName) {
         let regionsObject = [];
         let regions = JSON.parse(localStorage.getItem("regions"));
-        console.log(regions);
         for (const region of regions) {
             if (region._name === regionName) {
                 regionsObject = region;
                 break;
             }
         }
-        console.log(regionsObject);
         return regionsObject;
     }
 
