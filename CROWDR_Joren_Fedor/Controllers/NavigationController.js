@@ -33,11 +33,6 @@ class NavigationController {
         }
     }
 
-    viewRegion(regionName)
-    {
-        this._gridController.render(regionName);
-    }
-
     getRegions() {
         let areaList = document.querySelector("#areaList");
         for (const regionItem of areaList.querySelectorAll("li")) {
