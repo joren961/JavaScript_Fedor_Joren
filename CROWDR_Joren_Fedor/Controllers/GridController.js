@@ -50,6 +50,24 @@ class GridController {
             //newCellGrid.ondragover = drag(event);
             //newCellGrid.addEventListener('ondrop', function(){drop(event)}, false)
             //newCellGrid.id = x;
+            //newCellGrid.addEventListener('ondragover', () => this.allowDrop(event));
+            newCellGrid.addEventListener('dragover', ev => {
+                ev.preventDefault();
+            });
+            //newCellGrid.addEventListener("drop", () => this.drop(event));
+            newCellGrid.addEventListener("drop", ev => {
+                ev.preventDefault();
+                let data = ev.dataTransfer.getData("text/plain");
+
+                console.log(data);
+                ev.target.appendChild(document.getElementById(data));
+                this.renderMenu();
+            });
+            // newCellGrid.addEventListener("drop", () => {
+            //
+            //
+            // });
+
             newParent.appendChild(newCellGrid);
         }
     }
@@ -57,6 +75,7 @@ class GridController {
     renderMenu()
     {
         //doe dit op basis van een object uit /Objects
+        this._optionView.innerHTML = '';
         //render foodstand
         this.renderMenuItem('Foodstand', "Resources/foodStand(1x1).png", 5);
 
@@ -78,14 +97,17 @@ class GridController {
         newMenuItem.appendChild(newTitle);
         newMenuItem.className = 'menuItemWrapper';
         let newSquare = document.createElement('div');
-        newSquare.className = 'oneByOne';
         let newDragble = document.createElement('img');
-        newDragble.src = imagesrc;
-        newSquare.className = 'oneByOne';
 
-        newDragble.addEventListener('dragstart', function(){drag(event)}, false);
-        newDragble.className = 'img-wrap';
+        newDragble.src = imagesrc;
+        newDragble.id = type;
+        //newDragble.addEventListener('dragstart', () => this.drag(event));
+        newDragble.addEventListener("dragstart", e => {
+           e.dataTransfer.setData("text/plain", newDragble.id);
+        });
+
         newDragble.draggable = true;
+        newDragble.className = 'newDragble';
 
         //maakt details scherm on click
         newDragble.addEventListener('click',() => this.openDetails(type));
@@ -118,10 +140,14 @@ class GridController {
 
     allowDrop(ev) {
         ev.preventDefault();
+        console.log("adasd");
+        alert('test');
+
     }
 
     drag(ev) {
         ev.dataTransfer.setData("text", ev.target.id);
+        //alert('test');
     }
 
     drop(ev) {

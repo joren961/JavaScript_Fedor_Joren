@@ -67,6 +67,7 @@ body {
     position: relative;
     width: 780px;
     height: 780px;
+    border: 1px solid #999;
 }
 
 .detailsBox
@@ -90,4 +91,9 @@ body {
     display: block;
     background-color: aliceblue;
     border: 1px solid #999;
+}
+
+.newDragble
+{
+    position: absolute;
 }
