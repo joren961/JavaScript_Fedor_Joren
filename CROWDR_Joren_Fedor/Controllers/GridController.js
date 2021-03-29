@@ -102,11 +102,6 @@ class GridController {
                 this.renderMenuItem(trashcan,"Resources/trashcan(1x1).jpg",region._trashcans.length);
             }
         }
-        for (const tree of region._trees) {
-            if (tree!=null) {
-                this.renderMenuItem(tree,"Resources/highTree(1x1).png",region._trees.length);
-            }
-        }
     }
 
     //moet ervoor zorgen dat elk object apart gemaakt wordt en op de stapel objecten van die soort wordt gegooid
