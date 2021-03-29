@@ -29,11 +29,12 @@ class GridController {
     {
         this._replaceDiv.innerHTML = '';
         this._replaceDiv.appendChild(this._container);
-        this.renderGrid(regionName);
-        this.renderMenu(regionName);
+        let region = this._StorageController.getRegion(regionName);
+        this.renderGrid(region);
+        this.renderMenu(region);
     }
 
-    renderGrid(regionName)
+    renderGrid(region)
     {
         this._gridview.innerHTML = '';
         let newParent = document.createElement('div');
@@ -73,10 +74,9 @@ class GridController {
         }
     }
 
-    renderMenu(regionName)
+    renderMenu(region)
     {
         this._optionView.innerHTML = '';
-        let region = this._StorageController.getRegion(regionName);
         for (const foodstand of region._foodstands) {
             if (foodstand!=null) {
                 this.renderMenuItem(foodstand,"Resources/foodStand(1x1).png",region._foodstands.length);
