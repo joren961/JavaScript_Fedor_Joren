@@ -5,6 +5,7 @@ class GridController {
     _optionView;
     _gridview;
     _StorageController;
+    _selectedRegion;
 
     constructor(storageController)
     {
@@ -45,18 +46,10 @@ class GridController {
         {
             let newCellGrid = document.createElement('div');
             newCellGrid.className = 'gridCell';
-            //newCellGrid.draggable = true;
-            //newCellGrid.ondragover = this.allowDrop(event);
-            //newCellGrid.addEventListener('ondragover', function(){allowDrop(event)}, false)
-            //newCellGrid.ondrop = drop(event);
-            //newCellGrid.ondragover = drag(event);
-            //newCellGrid.addEventListener('ondrop', function(){drop(event)}, false)
-            //newCellGrid.id = x;
-            //newCellGrid.addEventListener('ondragover', () => this.allowDrop(event));
+
             newCellGrid.addEventListener('dragover', ev => {
                 ev.preventDefault();
             });
-            //newCellGrid.addEventListener("drop", () => this.drop(event));
             newCellGrid.addEventListener("drop", ev => {
                 ev.preventDefault();
                 let data = ev.dataTransfer.getData("text/plain");
@@ -65,10 +58,7 @@ class GridController {
                 ev.target.appendChild(document.getElementById(data));
                 // this.renderMenu();
             });
-            // newCellGrid.addEventListener("drop", () => {
-            //
-            //
-            // });
+
 
             newParent.appendChild(newCellGrid);
         }
