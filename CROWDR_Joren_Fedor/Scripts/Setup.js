@@ -1,10 +1,13 @@
-
+let storageController = new StorageController();
+let navigationController = new NavigationController(storageController);
+document.querySelector('.hamburgerLink').addEventListener('click',()=>navigationController.toggleNav());
 let nextInputButton = document.querySelector(".nextInput");
 let resetButton = document.querySelector("#reset");
 nextInputButton.addEventListener("click",addInput);
 resetButton.addEventListener("click",resetForm);
 let regionForm = document.querySelector('.regionForm');
 let squareAmount = document.querySelector(".squaresLeft");
+
 
 function addInput() {
     let lastInputId = 0;
@@ -23,13 +26,14 @@ function addInput() {
         subtractSquares(parseInt(document.querySelector(".tents").value) * 9);
         addFoodStands(newTag,newInput);
     } else if (lastInputId === 8) {
-        subtractSquares(parseInt(document.querySelector(".foodStands").value) * 1);
+        subtractSquares(parseInt(document.querySelector(".foodStands").value));
         addDrinkStands(newTag,newInput);
     } else if (lastInputId === 10) {
         subtractSquares(parseInt(document.querySelector(".drinkStands").value) * 2);
         addTrees(newTag,newInput);
     } else if (lastInputId === 12) {
         addToiletBuildings(newTag,newInput);
+        subtractSquares(parseInt(document.querySelector(".trees").value));
     } else if (lastInputId === 14) {
         subtractSquares(parseInt(document.querySelector(".toilets").value) * 3);
         addTrashcans(newTag,newInput);
