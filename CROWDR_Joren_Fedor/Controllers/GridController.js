@@ -79,37 +79,37 @@ class GridController {
         this._optionView.innerHTML = '';
         for (const foodstand of region._foodstands) {
             if (foodstand!=null) {
-                this.renderMenuItem(foodstand,"Resources/foodStand(1x1).png",region._foodstands.length);
+                this.renderMenuItem(foodstand,"Food stand","Resources/foodStand(1x1).png",region._foodstands.length);
             }
         }
         for (const drinkstand of region._drinkstands) {
             if (drinkstand!=null) {
-                this.renderMenuItem(drinkstand,"Resources/drinkStand(1x2).png",region._drinkstands.length);
+                this.renderMenuItem(drinkstand,"Drink stand","Resources/drinkStand(1x2).png",region._drinkstands.length);
             }
         }
         for (const tent of region._tents) {
             if (tent!=null) {
-                this.renderMenuItem(tent,"Resources/tent(3x3).png",region._tents.length);
+                this.renderMenuItem(tent,"Tent","Resources/tent(3x3).png",region._tents.length);
             }
         }
         for (const toiletbuilding of region._toiletbuildings) {
             if (toiletbuilding!=null) {
-                this.renderMenuItem(toiletbuilding,"Resources/toiletbuilding(1x3).jpg", region._toiletbuildings.length);
+                this.renderMenuItem(toiletbuilding,"Toilet building","Resources/toiletbuilding(1x3).jpg", region._toiletbuildings.length);
             }
         }
         for (const trashcan of region._trashcans) {
             if (trashcan!=null) {
-                this.renderMenuItem(trashcan,"Resources/trashcan(1x1).jpg",region._trashcans.length);
+                this.renderMenuItem(trashcan,"Trashcan","Resources/trashcan(1x1).jpg",region._trashcans.length);
             }
         }
     }
 
     //moet ervoor zorgen dat elk object apart gemaakt wordt en op de stapel objecten van die soort wordt gegooid
-    renderMenuItem(Object, imagesrc, amount)
+    renderMenuItem(object,type, imagesrc, amount)
     {
         let newMenuItem = document.createElement('div');
         let newTitle = document.createElement('p');
-        newTitle.innerText = Object.className + ": " + amount + " left";
+        newTitle.innerText = type + ": " + amount + " left";
         newTitle.className = 'menuItemTitle';
         newMenuItem.appendChild(newTitle);
         newMenuItem.className = 'menuItemWrapper';
@@ -117,24 +117,20 @@ class GridController {
         let newDragble = document.createElement('img');
 
         newDragble.src = imagesrc;
-        newDragble.id = Object.className;
+        newDragble.id = type;
         //newDragble.addEventListener('dragstart', () => this.drag(event));
         newDragble.addEventListener("dragstart", e => {
            e.dataTransfer.setData("text/plain", newDragble.id);
         });
-
         newDragble.draggable = true;
         newDragble.className = 'newDragble';
-
-        //maakt details scherm on click
-        newDragble.addEventListener('click',() => this.openDetails(Object));
-
+        newDragble.addEventListener('click',() => this.openDetails(object, type));
         newSquare.appendChild(newDragble);
         newMenuItem.appendChild(newSquare);
         this._optionView.appendChild(newMenuItem);
     }
 
-    openDetails(type) {
+    openDetails(object, type) {
         let oldDetailsBox = document.querySelector('.detailsBox')
         if (document.querySelector('.detailsBox') != null) {
             this._gridview.removeChild(oldDetailsBox);
@@ -142,13 +138,17 @@ class GridController {
 
         let details = document.createElement('div');
         details.className = "detailsBox";
+
         //op basis van object, inputs maken om info te setten
         switch (type) {
-            case "Drinkstand": break;
-            case "Foodstand": break;
+            case "Drink stand": break;
+            case "Food stand": break;
             case "Tent": break;
-            case "High Tree": break;
+            case "Trashcan": break;
+            case "Toilet building": break;
+            case "Tree": break;
         }
+
         let label = document.createElement('label');
         label.innerText = type;
         details.appendChild(label);
@@ -159,7 +159,6 @@ class GridController {
         ev.preventDefault();
         console.log("adasd");
         alert('test');
-
     }
 
     drag(ev) {
