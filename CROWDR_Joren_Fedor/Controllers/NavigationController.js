@@ -4,6 +4,7 @@ class NavigationController {
 
     constructor(storageController) {
         this._StorageController = storageController;
+        document.querySelector('.hamburgerLink').addEventListener('click',()=>navigationController.toggleNav());
     }
 
     toggleNav() {

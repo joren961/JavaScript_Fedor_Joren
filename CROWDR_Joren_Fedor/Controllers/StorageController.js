@@ -13,7 +13,23 @@ class StorageController {
     }
 
     checkRegionNameTaken(regionName) {
-
+        let regions = localStorage.getItem("regions")
+        if (regions != null) {
+            regions = JSON.parse(regions);
+            if (regions[0] != null) {
+                for (const region of regions) {
+                    if (region!=null) {
+                        if (region._name === regionName) {
+                            return true;
+                        }
+                    }
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     deleteRegion(regionName) {
