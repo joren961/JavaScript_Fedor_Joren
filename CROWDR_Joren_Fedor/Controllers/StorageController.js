@@ -3,11 +3,12 @@ class StorageController {
     constructor() {
     }
 
+    //returnt regio object
     getRegion(regionName) {
         let regions = localStorage.getItem("regions");
         for (const region of regions) {
             if (region._name === regionName) {
-                return region;
+                return JSON.parse(region);
             }
         }
     }
@@ -48,6 +49,7 @@ class StorageController {
 
     }
 
+    //returnt alle regions in object array
     getRegions() {
         let regionArray = localStorage.getItem("regions");
         let regions = JSON.parse(regionArray);
