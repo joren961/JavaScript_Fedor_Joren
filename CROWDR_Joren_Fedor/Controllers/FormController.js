@@ -1,13 +1,15 @@
 class FormController {
 
     _StorageController;
+    _GridController;
     _regionForm;
     _squaresLeft;
     _nextInputButton;
     _resetButton;
 
-    constructor(storageController) {
+    constructor(storageController, gridController) {
         this._StorageController = storageController;
+        this._GridController = gridController;
         this._regionForm = document.querySelector('.regionForm');
         this._squaresLeft = document.querySelector(".squaresLeft");
         this._nextInputButton = document.querySelector(".nextInput");
@@ -198,10 +200,7 @@ class FormController {
             regionArray.push(region);
             localStorage.setItem("regions", JSON.stringify(regionArray));
 
-            //Werkt niet altijd
-            fetch('RegionView.html')
-                .then(data => data.text())
-                .then(html => document.getElementById('replaceDiv').innerHTML = html);
+            gridController.render(region._name);
         }
     }
 

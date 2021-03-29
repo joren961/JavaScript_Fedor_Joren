@@ -1,9 +1,11 @@
 class NavigationController {
 
     _StorageController;
+    _gridController;
 
-    constructor(storageController) {
+    constructor(storageController, gridController) {
         this._StorageController = storageController;
+        this._gridController = gridController;
         document.querySelector('.hamburgerLink').addEventListener('click',()=>navigationController.toggleNav());
     }
 
@@ -33,10 +35,7 @@ class NavigationController {
 
     viewRegion(regionName)
     {
-        this._StorageController.getRegion(regionName);
-        //deze meegeven aan controller
-        let gridController = new GridController();
-        gridController.render();
+        this._gridController.render(regionName);
     }
 
     getRegions() {
@@ -63,7 +62,7 @@ class NavigationController {
                 newArea.appendChild(deleteArea);
 
                 //newArea.onclick = viewRegion();
-                newArea.addEventListener('click', (e) => this.viewRegion("CHAD"));
+                newArea.addEventListener('click', (e) => this._gridController.render(region._name));
                 document.querySelector("#areaList").appendChild(newArea);
             }
         }

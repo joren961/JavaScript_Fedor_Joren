@@ -4,9 +4,11 @@ class GridController {
     _container;
     _optionView;
     _gridview;
+    _StorageController;
 
-    constructor()
+    constructor(storageController)
     {
+        this._StorageController = storageController;
         this._replaceDiv = document.getElementById('replaceDiv');
 
         this._container = document.createElement('div');
@@ -23,16 +25,15 @@ class GridController {
 
     }
 
-    render()
+    render(regionName)
     {
         this._replaceDiv.innerHTML = '';
         this._replaceDiv.appendChild(this._container);
-        this.renderGrid();
-        this.renderMenu();
-
+        this.renderGrid(regionName);
+        this.renderMenu(regionName);
     }
 
-    renderGrid()
+    renderGrid(regionName)
     {
         this._gridview.innerHTML = '';
         let newParent = document.createElement('div');
@@ -61,7 +62,7 @@ class GridController {
 
                 console.log(data);
                 ev.target.appendChild(document.getElementById(data));
-                this.renderMenu();
+                // this.renderMenu();
             });
             // newCellGrid.addEventListener("drop", () => {
             //
@@ -72,27 +73,48 @@ class GridController {
         }
     }
 
-    renderMenu()
+    renderMenu(regionName)
     {
-        //doe dit op basis van een object uit /Objects
         this._optionView.innerHTML = '';
-        //render foodstand
-        this.renderMenuItem('Foodstand', "Resources/foodStand(1x1).png", 5);
-
-        //render drinkStand
-        this.renderMenuItem('Drinkstand', "Resources/drinkStand(1x2).png", 4);
-
-        //render Tent
-        this.renderMenuItem('Tent', "Resources/tent(3x3).png", 3);
-
-        this.renderMenuItem('High Tree', "Resources/highTree(1x1).png", 3);
+        let region = this._StorageController.getRegion(regionName);
+        console.log(region);
+        for (const foodstand of region._foodstands) {
+            if (foodstand!=null) {
+                this.renderMenuItem(foodstand,"Resources/foodStand(1x1).png",region._foodstands.length);
+            }
+        }
+        for (const drinkstand of region._drinkstands) {
+            if (drinkstand!=null) {
+                this.renderMenuItem(drinkstand,"Resources/drinkStand(1x2).png",region._drinkstands.length);
+            }
+        }
+        for (const tent of region._tents) {
+            if (tent!=null) {
+                this.renderMenuItem(tent,"Resources/tent(3x3).png",region._tents.length);
+            }
+        }
+        for (const toiletbuilding of region._toiletbuildings) {
+            if (toiletbuilding!=null) {
+                this.renderMenuItem(toiletbuilding,"Resources/toiletbuilding(1x3).jpg", region._toiletbuildings.length);
+            }
+        }
+        for (const trashcan of region._trashcans) {
+            if (trashcan!=null) {
+                this.renderMenuItem(trashcan,"Resources/trashcan(1x1).jpg",region._trashcans.length);
+            }
+        }
+        for (const tree of region._trees) {
+            if (tree!=null) {
+                this.renderMenuItem(tree,"Resources/highTree(1x1).png",region._trees.length);
+            }
+        }
     }
 
-    renderMenuItem(type, imagesrc, amount)
+    renderMenuItem(Object, imagesrc, amount)
     {
         let newMenuItem = document.createElement('div');
         let newTitle = document.createElement('p');
-        newTitle.innerText = type + ": " + amount + " left";
+        newTitle.innerText = Object.className + ": " + amount + " left";
         newTitle.className = 'menuItemTitle';
         newMenuItem.appendChild(newTitle);
         newMenuItem.className = 'menuItemWrapper';
@@ -100,7 +122,7 @@ class GridController {
         let newDragble = document.createElement('img');
 
         newDragble.src = imagesrc;
-        newDragble.id = type;
+        newDragble.id = Object.className;
         //newDragble.addEventListener('dragstart', () => this.drag(event));
         newDragble.addEventListener("dragstart", e => {
            e.dataTransfer.setData("text/plain", newDragble.id);
@@ -110,7 +132,7 @@ class GridController {
         newDragble.className = 'newDragble';
 
         //maakt details scherm on click
-        newDragble.addEventListener('click',() => this.openDetails(type));
+        newDragble.addEventListener('click',() => this.openDetails(Object));
 
         newSquare.appendChild(newDragble);
         newMenuItem.appendChild(newSquare);

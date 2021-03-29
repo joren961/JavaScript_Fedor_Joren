@@ -1,6 +1,7 @@
 let storageController = new StorageController();
-let navigationController = new NavigationController(storageController);
-let formController = new FormController(storageController);
+let gridController = new GridController(storageController);
+let navigationController = new NavigationController(storageController, gridController);
+let formController = new FormController(storageController, gridController);
 
 
 let regionForm = document.querySelector('.regionForm');
