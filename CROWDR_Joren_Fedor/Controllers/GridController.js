@@ -6,12 +6,12 @@ class GridController {
     _gridview;
     _StorageController;
     _DetailsController;
+    _regionName;
     _selectedRegion;
 
-    constructor(storageController, detailsController)
+    constructor(storageController)
     {
         this._StorageController = storageController;
-        this._DetailsController = detailsController;
         this._replaceDiv = document.getElementById('replaceDiv');
 
         this._container = document.createElement('div');
@@ -30,6 +30,8 @@ class GridController {
 
     render(regionName)
     {
+        this._DetailsController = new DetailsController(this._StorageController,regionName);
+        this._regionName = regionName;
         this._replaceDiv.innerHTML = '';
         this._replaceDiv.appendChild(this._container);
         let region = this._StorageController.getRegion(regionName);

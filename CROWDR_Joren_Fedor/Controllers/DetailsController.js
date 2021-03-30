@@ -1,8 +1,10 @@
 class DetailsController {
     _storageController;
+    _regionName;
 
-    constructor(storagecontroller) {
+    constructor(storagecontroller, regionName) {
         this._storageController = storagecontroller;
+        this._regionName = regionName;
     }
 
     openDetails(object, type, gridView) {
@@ -120,5 +122,6 @@ class DetailsController {
                 break;
         }
 
+        this._storageController.updateRegionObject(this._regionName,object);
     }
 }
