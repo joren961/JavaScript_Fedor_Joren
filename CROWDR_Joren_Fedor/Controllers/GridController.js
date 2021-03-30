@@ -5,11 +5,13 @@ class GridController {
     _optionView;
     _gridview;
     _StorageController;
+    _DetailsController;
     _selectedRegion;
 
-    constructor(storageController)
+    constructor(storageController, detailsController)
     {
         this._StorageController = storageController;
+        this._DetailsController = detailsController;
         this._replaceDiv = document.getElementById('replaceDiv');
 
         this._container = document.createElement('div');
@@ -114,84 +116,13 @@ class GridController {
         });
         newDragble.draggable = true;
         newDragble.className = 'newDragble';
-        newDragble.addEventListener('click',() => this.openDetails(object, type));
+        newDragble.addEventListener('click',(e) => this._DetailsController.openDetails(object,type,this._gridview));
         newSquare.appendChild(newDragble);
         newMenuItem.appendChild(newSquare);
         this._optionView.appendChild(newMenuItem);
     }
 
-    openDetails(object, type) {
-        let oldDetailsBox = document.querySelector('.detailsBox')
-        if (document.querySelector('.detailsBox') != null) {
-            this._gridview.removeChild(oldDetailsBox);
-        }
 
-        let details = document.createElement('div');
-        details.className = "detailsBox";
-
-        let label = document.createElement('label');
-        label.innerText = type;
-        details.appendChild(label);
-
-        let newLabel = document.createElement('label');
-        let newInput = document.createElement('input');
-        newInput.required = true;
-
-        switch (type) {
-            case "Drink stand":
-                newLabel.innerText = "Maximum visitors:";
-                newInput.setAttribute('type', 'number');
-                newInput.setAttribute('min', '0');
-                newInput.setAttribute('placeholder', '0');
-                break;
-            case "Food stand":
-                newLabel.innerText = "Maximum visitors:";
-                newInput.setAttribute('type', 'number');
-                newInput.setAttribute('min', '0');
-                newInput.setAttribute('placeholder', '0');
-                //type eten
-                break;
-            case "Tent":
-                newLabel.innerText = "Maximum visitors:";
-                newInput.setAttribute('type', 'number');
-                newInput.setAttribute('min', '0');
-                newInput.setAttribute('placeholder', '0');
-                //openingstijden
-                break;
-            case "Trashcan":
-                newLabel.innerText = "Capacity in KG";
-                newInput.setAttribute('type', 'number');
-                newInput.setAttribute('min', '0');
-                newInput.setAttribute('placeholder', '0');
-                //leegtijden
-                break;
-            case "Toilet building":
-                newLabel.innerText = "Maximum visitors:";
-                newInput.setAttribute('type', 'number');
-                newInput.setAttribute('min', '0');
-                newInput.setAttribute('placeholder', '0');
-                break;
-            case "Tree":
-                let trees = ['High Tree', 'Wide Tree', 'Shadow Tree'];
-                for (const tree of trees) {
-                    let label = document.createElement('label');
-                    label.innerText = tree;
-                    let input = document.createElement('input');
-                    if (tree === "High Tree") {
-                        input.checked = true;
-                    }
-                    input.setAttribute('value', tree);
-                    input.setAttribute('name', 'Tree');
-                    input.setAttribute('type', 'radio');
-                    details.appendChild(label);
-                    details.appendChild(input);
-                }
-                break;
-        }
-        details.appendChild(newLabel);
-        details.appendChild(newInput);
-        this._gridview.appendChild(details);
-    }
 
     allowDrop(ev) {
         ev.preventDefault();

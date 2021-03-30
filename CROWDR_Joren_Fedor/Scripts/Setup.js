@@ -1,5 +1,6 @@
 let storageController = new StorageController();
-let gridController = new GridController(storageController);
+let detailsController = new DetailsController(storageController);
+let gridController = new GridController(storageController,detailsController);
 let navigationController = new NavigationController(storageController, gridController);
 let formController = new FormController(storageController, gridController);
 
