@@ -48,8 +48,8 @@ class StorageController {
         localStorage.setItem("regions",JSON.stringify(regions));
     }
 
-    updateRegion(regionObject) {
-
+    updateRegionObject(regionName, regionObject) {
+        
     }
 
     //returnt alle regions in object array

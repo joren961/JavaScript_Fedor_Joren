@@ -15,7 +15,7 @@ class DetailsController {
         details.className = "detailsBox";
 
         let label = document.createElement('h2');
-        label.innerText = type;
+        label.innerText = type + " " + object._id;
         details.appendChild(label);
 
         let newLabel = document.createElement('label');

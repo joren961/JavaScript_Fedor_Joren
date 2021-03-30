@@ -32,6 +32,7 @@ class FormController {
         newInput.setAttribute('type', 'number');
         newInput.setAttribute('min','0');
         newInput.setAttribute('placeholder', '0');
+        let submit;
 
         if (lastInputId === 4) {
             this.addTentInput(newTag,newInput);
@@ -50,16 +51,18 @@ class FormController {
         } else if (lastInputId === 14) {
             this.calculateSquaresLeft(parseInt(document.querySelector(".toilets").value) * 3);
             this.addTrashInput(newTag,newInput);
-            let submit = document.createElement("a");
+            submit = document.createElement("a");
             submit.innerText = "Submit";
             submit.className = "button";
             submit.id="submit";
             submit.addEventListener("click",()=>this.submitForm());
-            this._regionForm.append(submit);
             this._nextInputButton.style.display = "none";
         }
         this._regionForm.append(newTag);
         this._regionForm.append(newInput);
+        if (submit!=null) {
+            this._regionForm.append(submit);
+        }
     }
 
     validateForm() {
@@ -160,42 +163,42 @@ class FormController {
                     case "tents":
                         let tents = [];
                         for (let i = 0; i<input.value; i++) {
-                            tents[i] = new Tent(i);
+                            tents[i] = new Tent(i+1);
                         }
                         region._tents = tents;
                         break;
                     case "foodStands":
                         let foodStands = [];
                         for (let i = 0; i<input.value; i++) {
-                            foodStands[i] = new FoodStand(i);
+                            foodStands[i] = new FoodStand(i+1);
                         }
                         region._foodstands = foodStands;
                         break;
                     case "drinkStands":
                         let drinkStands = [];
                         for (let i = 0; i<input.value; i++) {
-                            drinkStands[i] = new DrinkStand(i);
+                            drinkStands[i] = new DrinkStand(i+1);
                         }
                         region._drinkstands = drinkStands;
                         break;
                     case "trees":
                         let trees = [];
                         for (let i = 0; i<input.value; i++) {
-                            trees[i] = new Tree(i);
+                            trees[i] = new Tree(i+1);
                         }
                         region._trees = trees;
                         break;
                     case "toilets":
                         let toilets = [];
                         for (let i = 0; i<input.value; i++) {
-                            toilets[i] = new ToiletBuilding(i);
+                            toilets[i] = new ToiletBuilding(i+1);
                         }
                         region._toiletbuildings = toilets;
                         break;
                     case "trash":
                         let trashCans = [];
                         for (let i = 0; i<input.value; i++) {
-                            trashCans[i] = new Trashcan(i);
+                            trashCans[i] = new Trashcan(i+1);
                         }
                         region._trashcans = trashCans;
                         break;
