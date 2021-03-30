@@ -8,6 +8,12 @@ class Region {
     _trashcans;
     _trees;
 
+    _foodstands;
+    _drinkstands;
+    _tents;
+    _toiletbuildings;
+    _trashcans;
+    _trees;
 
 
     constructor(name, maxVisitors) {
@@ -70,4 +76,6 @@ class Region {
     set drinkstands(value) {
         this._drinkstands = value;
     }
+
+
 }
