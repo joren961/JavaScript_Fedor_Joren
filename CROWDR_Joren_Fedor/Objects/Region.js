@@ -8,6 +8,12 @@ class Region {
     _trashcans;
     _trees;
 
+    _foodstands;
+    _drinkstands;
+    _tents;
+    _toiletbuildings;
+    _trashcans;
+    _trees;
 
 
     constructor(name, maxVisitors) {
@@ -33,47 +39,49 @@ class Region {
         return this._trashcans;
     }
 
-    set trashcans(value) {
-        this._trashcans = value;
+    set trashcans(trashcanObject) {
+        this._trashcans = trashcanObject;
     }
 
     get trees() {
         return this._trees;
     }
 
-    set trees(value) {
-        this._trees = value;
+    set trees(treeObject) {
+        this._trees = treeObject;
     }
 
     get toiletbuildings() {
         return this._toiletbuildings;
     }
 
-    set toiletbuildings(value) {
-        this._toiletbuildings = value;
+    set toiletbuildings(toiletBuildingObject) {
+        this._toiletbuildings = toiletBuildingObject;
     }
 
     get foodstands() {
         return this._foodstands;
     }
 
-    set foodstands(value) {
-        this._foodstands = value;
+    set foodstands(foodStandObject) {
+        this._foodstands = foodStandObject;
     }
 
     get tents() {
         return this._tents;
     }
 
-    set tents(value) {
-        this._tents = value;
+    set tents(tentObject) {
+        this._tents = tentObject;
     }
 
     get drinkstands() {
         return this._drinkstands;
     }
 
-    set drinkstands(value) {
-        this._drinkstands = value;
+    set drinkstands(drinkstandObject) {
+        this._drinkstands = drinkstandObject;
     }
+
+
 }
