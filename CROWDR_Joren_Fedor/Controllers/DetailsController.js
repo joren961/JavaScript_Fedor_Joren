@@ -7,7 +7,7 @@ class DetailsController {
         this._regionName = regionName;
     }
 
-    openDetails(object, type, gridView) {
+    openDetails(object, gridView) {
         let oldDetailsBox = document.querySelector('.detailsBox')
         if (document.querySelector('.detailsBox') != null) {
             gridView.removeChild(oldDetailsBox);
@@ -17,17 +17,19 @@ class DetailsController {
         details.className = "detailsBox";
 
         let label = document.createElement('h2');
-        label.innerText = type + " " + object._id;
+        label.innerText = object._type + " " + object._id;
         details.appendChild(label);
 
-        this.addInputBasedOnType(type,details);
+        this.addInputBasedOnType(object._type,details);
 
-        let submit = document.createElement('a');
-        submit.addEventListener('click',()=>this.submitDetails(object, type));
-        submit.className="button";
-        submit.innerHTML = "Apply";
-        submit.style.border = "#357EC7 outset 3px";
-        details.appendChild(submit);
+        if (object._type !== "Toilet building") {
+            let submit = document.createElement('a');
+            submit.addEventListener('click',()=>this.submitDetails(object));
+            submit.className="button";
+            submit.innerHTML = "Apply";
+            submit.style.border = "#357EC7 outset 3px";
+            details.appendChild(submit);
+        }
         gridView.appendChild(details);
     }
 
@@ -83,6 +85,8 @@ class DetailsController {
                 trashInput.setAttribute('type','number');
                 trashInput.setAttribute('placeholder','0');
                 trashInput.id="TrashEmptyTime";
+                details.appendChild(newLabel);
+                details.appendChild(newInput);
                 details.appendChild(trashLabel);
                 details.appendChild(trashInput);
                 break;
@@ -107,33 +111,39 @@ class DetailsController {
         }
     }
 
-    submitDetails(object, type) {
-        let maxVisitors = parseInt(document.querySelector('.MaxVisitors').value);
-        let foodType = document.querySelector('#FoodType').value;
-        let tentTime = document.querySelector('#TentOpeningTime').value;
-        let trashCapacity = parseInt(document.querySelector('.TrashCapacity').value);
-        let trashTime = parseInt(document.querySelector('.TrashEmptyTime').value);
-        switch (type) {
+    submitDetails(object) {
+        let maxVisitors;
+        let foodType;
+        let tentTime;
+        let trashCapacity;
+        let trashTime;
+        switch (object._type) {
             case "Food stand":
+                maxVisitors = parseInt(document.querySelector('.MaxVisitors').value);
+                foodType = document.querySelector('#FoodType').value;
                 object._maxVisitors = maxVisitors;
                 object._foodType = foodType;
                 break;
             case "Drink stand":
+                maxVisitors = parseInt(document.querySelector('.MaxVisitors').value);
                 object._maxVisitors = maxVisitors;
                 break;
             case "Tent":
+                maxVisitors = parseInt(document.querySelector('.MaxVisitors').value);
+                tentTime = document.querySelector('#TentOpeningTime').value;
                 object._maxVisitors = maxVisitors;
                 object._openingTime = tentTime;
                 break;
-            case "Toilet building":
-                break;
             case "Trashcan":
+                trashCapacity = parseInt(document.querySelector('.TrashCapacity').value);
+                trashTime = parseInt(document.querySelector('#TrashEmptyTime').value);
                 object._capacity = trashCapacity;
                 object._emptyingTime = trashTime;
                 break;
             case "Tree":
-                
+                //todo
                 break;
+            default : return;
         }
         console.log(object);
         this._storageController.updateRegionObject(this._regionName,object);

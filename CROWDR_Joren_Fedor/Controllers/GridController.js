@@ -79,7 +79,7 @@ class GridController {
         this.renderMenuItem(region._drinkstands,"Drink stand","Resources/drinkStand(1x2).png",region._drinkstands.length);
 
         //TENTS
-        this.renderMenuItem(region._tents,"Toilet building","Resources/tent(3x3).png", region._tents.length);
+        this.renderMenuItem(region._tents,"Tent","Resources/tent(3x3).png", region._tents.length);
 
         //TOILETBUILDING
         this.renderMenuItem(region._toiletbuildings,"Toilet building","Resources/toiletbuilding(1x3).jpg", region._toiletbuildings.length);
@@ -123,7 +123,7 @@ class GridController {
         });
         newDragble.draggable = true;
         newDragble.className = type;
-        newDragble.addEventListener('click',(e) => this._DetailsController.openDetails(object,type,this._gridview));
+        newDragble.addEventListener('click',(e) => this._DetailsController.openDetails(object,this._gridview));
         parentObject.appendChild(newDragble);
     }
 }
