@@ -8,23 +8,10 @@ class Region {
     _trashcans;
     _trees;
 
-    _foodstands;
-    _drinkstands;
-    _tents;
-    _toiletbuildings;
-    _trashcans;
-    _trees;
-
 
     constructor(name, maxVisitors) {
         this._name = name;
         this._maxVisitors = maxVisitors;
-        this._foodstands.writable = true;
-        this._drinkstands.writable = true;
-        this._tents.writable = true;
-        this._toiletbuildings.writable = true;
-        this._trashcans.writable = true;
-        this._trees.writable = true;
     }
 
     get name() {

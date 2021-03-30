@@ -1,6 +1,7 @@
 class Trashcan {
     _id;
     _type;
+    _squares;
     _emptyingTime;
     _capacity;
     _x;
