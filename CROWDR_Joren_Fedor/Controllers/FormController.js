@@ -160,42 +160,42 @@ class FormController {
                     case "tents":
                         let tents = [];
                         for (let i = 0; i<input.value; i++) {
-                            tents[i] = new Tent();
+                            tents[i] = new Tent(i);
                         }
                         region._tents = tents;
                         break;
                     case "foodStands":
                         let foodStands = [];
                         for (let i = 0; i<input.value; i++) {
-                            foodStands[i] = new FoodStand();
+                            foodStands[i] = new FoodStand(i);
                         }
                         region._foodstands = foodStands;
                         break;
                     case "drinkStands":
                         let drinkStands = [];
                         for (let i = 0; i<input.value; i++) {
-                            drinkStands[i] = new DrinkStand();
+                            drinkStands[i] = new DrinkStand(i);
                         }
                         region._drinkstands = drinkStands;
                         break;
                     case "trees":
                         let trees = [];
                         for (let i = 0; i<input.value; i++) {
-                            trees[i] = new Tree();
+                            trees[i] = new Tree(i);
                         }
                         region._trees = trees;
                         break;
                     case "toilets":
                         let toilets = [];
                         for (let i = 0; i<input.value; i++) {
-                            toilets[i] = new ToiletBuilding();
+                            toilets[i] = new ToiletBuilding(i);
                         }
                         region._toiletbuildings = toilets;
                         break;
                     case "trash":
                         let trashCans = [];
                         for (let i = 0; i<input.value; i++) {
-                            trashCans[i] = new Trashcan();
+                            trashCans[i] = new Trashcan(i);
                         }
                         region._trashcans = trashCans;
                         break;

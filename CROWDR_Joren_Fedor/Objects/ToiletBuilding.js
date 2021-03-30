@@ -1,29 +1,13 @@
 class ToiletBuilding {
+    _id;
+    _type;
     _squares;
     _x;
     _y;
 
-    constructor() {
+    constructor(id) {
+        this._id = id;
+        this._type = "Toilet building";
         this._squares = 1*3;
-    }
-
-    get x() {
-        return this._x;
-    }
-
-    set x(value) {
-        this._x = value;
-    }
-
-    get y() {
-        return this._y;
-    }
-
-    set y(value) {
-        this._y = value;
-    }
-
-    get squares() {
-        return this._squares;
     }
 }

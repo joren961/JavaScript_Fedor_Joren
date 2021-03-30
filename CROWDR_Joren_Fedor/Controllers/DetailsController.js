@@ -25,14 +25,17 @@ class DetailsController {
         newInput.setAttribute('type', 'number');
         newInput.setAttribute('min', '0');
         newInput.setAttribute('placeholder', '0');
+        newInput.className= "StandardNumberInput";
 
         this.addExtraInputBasedOnType(type,details,newLabel);
 
         details.appendChild(newLabel);
         details.appendChild(newInput);
         let submit = document.createElement('a');
-        submit.addEventListener('click',()=>this.submitDetails());
+        submit.addEventListener('click',()=>this.submitDetails(object, type));
         submit.className="button";
+        submit.innerHTML = "Apply";
+        submit.style.border = "#357EC7 outset 3px";
         details.appendChild(submit);
         gridView.appendChild(details);
     }
@@ -46,6 +49,7 @@ class DetailsController {
                 foodInput.setAttribute("type","text");
                 foodInput.style.width = "150px";
                 foodInput.setAttribute('placeholder','For example: Kebab');
+                foodInput.className= "FoodType";
                 details.appendChild(foodLabel);
                 details.appendChild(foodInput);
                 break;
@@ -56,6 +60,7 @@ class DetailsController {
                 tentInput.setAttribute('type','time');
                 tentInput.style.width = "100px";
                 tentInput.setAttribute('placeholder','00:00');
+                tentInput.id ="TentOpeningTime";
                 details.appendChild(tentLabel);
                 details.appendChild(tentInput);
                 break;
@@ -66,6 +71,7 @@ class DetailsController {
                 let trashInput = document.createElement('input');
                 trashInput.setAttribute('type','number');
                 trashInput.setAttribute('placeholder','0');
+                trashInput.id="TrashCapacity";
                 details.appendChild(trashLabel);
                 details.appendChild(trashInput);
                 break;
@@ -81,6 +87,7 @@ class DetailsController {
                     input.setAttribute('value', tree);
                     input.setAttribute('name', 'Tree');
                     input.setAttribute('type', 'radio');
+                    input.className = "TreeRadio";
                     details.appendChild(label);
                     details.appendChild(input);
                 }
@@ -89,7 +96,29 @@ class DetailsController {
         }
     }
 
-    submitDetails() {
+    submitDetails(object, type) {
+        let maxVisitors = document.querySelector('.StandardNumberInput').value;
+        object._maxVisitors = maxVisitors;
+        switch (type) {
+            case "Food stand":
+
+                break;
+            case "Drink stand":
+
+                break;
+            case "Tent":
+
+                break;
+            case "Toilet building":
+
+                break;
+            case "Trashcan":
+
+                break;
+            case "Tree":
+                //set tree object type, sla op in localstorage
+                break;
+        }
 
     }
 }
