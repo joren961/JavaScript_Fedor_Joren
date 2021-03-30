@@ -102,7 +102,7 @@ class GridController {
 
         for (const object of objectArray) {
             if (object!=null) {
-                console.log(object._id);
+               // console.log(object._id);
                 this.createnewDragble(newSquare, type, object._id, imagesrc, object);
             }
         }
@@ -114,8 +114,8 @@ class GridController {
     {
         let newDragble = document.createElement('img');
         newDragble.src = imagesrc;
-        newDragble.id = id;
-        //newDragble.addEventListener('dragstart', () => this.drag(event));
+        newDragble.id = type + id;
+        console.log(newDragble.id)
         newDragble.addEventListener("dragstart", e => {
             e.dataTransfer.setData("text/plain", newDragble.id);
         });
