@@ -104,45 +104,26 @@ class GridController {
 
         for (const object of objectArray) {
             if (object!=null) {
-                console.log(object);
-                this.createnewDragble(newSquare, type, 5, imagesrc);
+               // console.log(object._id);
+                this.createnewDragble(newSquare, type, object._id, imagesrc, object);
             }
         }
         newMenuItem.appendChild(newSquare);
         this._optionView.appendChild(newMenuItem);
     }
 
-    createnewDragble(parentObject , type, id, imagesrc)
+    createnewDragble(parentObject , type, id, imagesrc, object)
     {
         let newDragble = document.createElement('img');
         newDragble.src = imagesrc;
-        newDragble.id = type;
-        //newDragble.addEventListener('dragstart', () => this.drag(event));
+        newDragble.id = type + id;
+        console.log(newDragble.id)
         newDragble.addEventListener("dragstart", e => {
             e.dataTransfer.setData("text/plain", newDragble.id);
         });
         newDragble.draggable = true;
-        newDragble.className = id;
+        newDragble.className = type;
         newDragble.addEventListener('click',(e) => this._DetailsController.openDetails(object,type,this._gridview));
         parentObject.appendChild(newDragble);
     }
-
-    // allowDrop(ev) {
-    //     ev.preventDefault();
-    //     console.log("adasd");
-    //     alert('test');
-    // }
-    //
-    // drag(ev) {
-    //     ev.dataTransfer.setData("text", ev.target.id);
-    // }
-    //
-    // drop(ev) {
-    //     ev.preventDefault();
-    //     let data = ev.dataTransfer.getData("text");
-    //     ev.target.appendChild(document.getElementById(data));
-    // }
-
-
-
 }
