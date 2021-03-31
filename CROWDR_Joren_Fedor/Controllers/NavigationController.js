@@ -70,8 +70,6 @@ class NavigationController {
     }
 
     rebuildForm() {
-        debugger;
-
         let content = document.querySelector('#replaceDiv');
 
         for (const contentElement of content.children) {
