@@ -20,7 +20,7 @@ class DetailsController {
         label.innerText = object._type + " " + object._id;
         details.appendChild(label);
 
-        this.addInputBasedOnType(object._type,details);
+        this.addInputBasedOnType(object,details);
 
         if (object._type !== "Toilet building") {
             let submit = document.createElement('a');
@@ -33,7 +33,7 @@ class DetailsController {
         gridView.appendChild(details);
     }
 
-    addInputBasedOnType(type,details) {
+    addInputBasedOnType(object,details) {
         let newLabel = document.createElement('label');
         let newInput = document.createElement('input');
         newInput.required = true;
@@ -43,12 +43,18 @@ class DetailsController {
         newInput.setAttribute('placeholder', '0');
         newInput.className= "MaxVisitors";
 
-        switch (type) {
+        switch (object._type) {
             case "Drink stand":
+                if (object._maxVisitors != null) {
+                    newInput.value = object._maxVisitors;
+                }
                 details.appendChild(newLabel);
                 details.appendChild(newInput);
                 break;
             case "Food stand":
+                if (object._maxVisitors != null) {
+                    newInput.value = object._maxVisitors;
+                }
                 let foodLabel = document.createElement('label');
                 let foodInput = document.createElement('input');
                 foodLabel.innerText = "Type of cuisine";
@@ -56,12 +62,18 @@ class DetailsController {
                 foodInput.style.width = "150px";
                 foodInput.setAttribute('placeholder','For example: Kebab');
                 foodInput.id= "FoodType";
+                if (object._foodType != null) {
+                    foodInput.value = object._foodType;
+                }
                 details.appendChild(newLabel);
                 details.appendChild(newInput);
                 details.appendChild(foodLabel);
                 details.appendChild(foodInput);
                 break;
             case "Tent":
+                if (object._maxVisitors != null) {
+                    newInput.value = object._maxVisitors;
+                }
                 let tentLabel = document.createElement('label');
                 let tentInput = document.createElement('input');
                 tentLabel.innerText = "Opening time";
@@ -69,6 +81,9 @@ class DetailsController {
                 tentInput.style.width = "100px";
                 tentInput.setAttribute('placeholder','00:00');
                 tentInput.id ="TentOpeningTime";
+                if (object._openingTime != null) {
+                    tentInput.value = object._openingTime;
+                }
                 details.appendChild(newLabel);
                 details.appendChild(newInput);
                 details.appendChild(tentLabel);
@@ -77,6 +92,9 @@ class DetailsController {
             case "Toilet building":
                 break;
             case "Trashcan":
+                if (object._capacity != null) {
+                    newInput.value = object._capacity;
+                }
                 newLabel.innerText = "Capacity in KG";
                 newInput.className = "TrashCapacity";
                 let trashLabel = document.createElement('label');
@@ -85,6 +103,9 @@ class DetailsController {
                 trashInput.setAttribute('type','number');
                 trashInput.setAttribute('placeholder','0');
                 trashInput.id="TrashEmptyTime";
+                if (object._emptyingTime != null) {
+                    trashInput.value = object._emptyingTime;
+                }
                 details.appendChild(newLabel);
                 details.appendChild(newInput);
                 details.appendChild(trashLabel);
@@ -145,7 +166,7 @@ class DetailsController {
                 break;
             default : return;
         }
-        console.log(object);
         this._storageController.updateRegionObject(this._regionName,object);
+        
     }
 }

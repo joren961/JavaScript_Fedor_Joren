@@ -53,42 +53,42 @@ class StorageController {
                 if (regionObject._type === "Drink stand") {
                     for (let drinkStand of region._drinkstands) {
                         if (regionObject._id === drinkStand._id) {
-                            drinkStand = regionObject;
+                            region._drinkstands[drinkStand._id-1] = regionObject;
                             break;
                         }
                     }
                 } else if (regionObject._type === "Food stand") {
                     for (let foodStand of region._foodstands) {
                         if (regionObject._id === foodStand._id) {
-                            foodStand = regionObject;
+                            region._foodstands[foodStand._id-1] = regionObject;
                             break;
                         }
                     }
                 } else if (regionObject._type === "Tent") {
                     for (let tent of region._tents) {
                         if (regionObject._id === tent._id) {
-                            tent = regionObject;
+                            region._tents[tent._id-1] = regionObject;
                             break;
                         }
                     }
                 } else if (regionObject._type === "Toilet building") {
                     for (let toilet of region._toiletbuildings) {
                         if (regionObject._id === toilet._id) {
-                            toilet = regionObject;
+                            region._toiletbuildings[toilet._id-1] = regionObject;
                             break;
                         }
                     }
                 } else if (regionObject._type === "Trashcan") {
                     for (let trashcan of region._trashcans) {
                         if (regionObject._id === trashcan._id) {
-                            trashcan = regionObject;
+                            region._trashcans[trashcan._id-1] = regionObject;
                             break;
                         }
                     }
                 } else if (regionObject._type === "Tree") {
                     for (let tree of region._trees) {
                         if (regionObject._id === tree._id) {
-                            tree = regionObject;
+                            region._trees[tree._id-1] = regionObject;
                             break;
                         }
                     }
