@@ -131,9 +131,40 @@ class GridController {
 
     renderPlacedObjects(region)
     {
+        //FOODSTAND
+        this.renderPlacedItemsOnType(region._foodstands,"Food stand","Resources/foodStand(1x1).png",region._foodstands.length);
 
+        //DRINKSTAND
+        this.renderPlacedItemsOnType(region._drinkstands,"Drink stand","Resources/drinkStand(1x2).png",region._drinkstands.length);
+
+        //TENTS
+        this.renderPlacedItemsOnType(region._tents,"Tent","Resources/tent(3x3).png", region._tents.length);
+
+        //TOILETBUILDING
+        this.renderPlacedItemsOnType(region._toiletbuildings,"Toilet building","Resources/toiletbuilding(1x3).jpg", region._toiletbuildings.length);
+
+        //TRASHCAN
+        this.renderPlacedItemsOnType(region._trashcans,"Trashcan","Resources/trashcan(1x1).jpg",region._trashcans.length);
+
+        //TREE
 
     }
+    renderPlacedItemsOnType(objectArray,type, imagesrc, amount)
+    {
+        for (const object of objectArray) {
+            if (object!=null) {
+                console.log(object);
+                if(object._x != null || object._y != null)
+                {
+                    let gridCellCord = object._x + " " + object._y;
+                    let parentGridCell = document.getElementById(gridCellCord);
+                    this.renderDragble(parentGridCell, type, object._id, imagesrc, object);
+                }
+
+            }
+        }
+    }
+
 
     renderDragble(parentObject , type, id, imagesrc, object)
     {
