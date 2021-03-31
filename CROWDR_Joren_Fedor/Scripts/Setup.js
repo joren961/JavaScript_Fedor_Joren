@@ -1,8 +1,4 @@
 let storageController = new StorageController();
 let gridController = new GridController(storageController);
-let navigationController = new NavigationController(storageController, gridController);
 let formController = new FormController(storageController, gridController);
-
-
-let regionForm = document.querySelector('.regionForm');
-let squareAmount = document.querySelector(".squaresLeft");
+let navigationController = new NavigationController(storageController, gridController);

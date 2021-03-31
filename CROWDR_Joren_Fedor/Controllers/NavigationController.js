@@ -2,10 +2,12 @@ class NavigationController {
 
     _StorageController;
     _gridController;
+    _formPage;
 
     constructor(storageController, gridController) {
         this._StorageController = storageController;
         this._gridController = gridController;
+        this._formPage = [document.querySelector('.hamburgerLink'),document.querySelector('.navigation'),document.querySelector('#space'),document.querySelector('#header'),document.querySelector('.regionForm'),document.querySelector('.nextInput'),document.querySelector('#reset')];
         document.querySelector('.hamburgerLink').addEventListener('click',()=>navigationController.toggleNav());
     }
 
@@ -38,17 +40,21 @@ class NavigationController {
         for (const regionItem of areaList.querySelectorAll("li")) {
             areaList.removeChild(regionItem);
         }
+        let addRegion = document.createElement('li');
+        addRegion.className="clickbleLi";
+        addRegion.innerText = "Create new region ";
+        let icon = document.createElement('i');
+        icon.className = "fa fa-plus"
+        addRegion.appendChild(icon);
+        addRegion.addEventListener('click',() => this.rebuildForm());
+        areaList.appendChild(addRegion);
         let regions = this._StorageController.getRegions();
         if (regions[0] == null) {
             return;
         } else {
-            let areaList = document.querySelector("#areaList");
-            for (const child of areaList.children) {
-                areaList.removeChild(child);
-            }
             for (const region of regions) {
                 let newArea = document.createElement("li");
-                newArea.innerText = region._name;
+                newArea.innerText = region._name + "  ";
                 newArea.className = "clickbleLi";
 
                 let deleteArea = document.createElement("i");
@@ -58,8 +64,24 @@ class NavigationController {
 
                 //newArea.onclick = viewRegion();
                 newArea.addEventListener('click', (e) => this._gridController.render(region._name));
-                document.querySelector("#areaList").appendChild(newArea);
+                areaList.appendChild(newArea);
             }
+        }
+    }
+
+    rebuildForm() {
+        debugger;
+
+        let content = document.querySelector('#replaceDiv');
+
+        for (const contentElement of content.children) {
+            content.removeChild(contentElement);
+        }
+        document.body.appendChild(this._formPage[0]);
+        document.body.appendChild(this._formPage[1]);
+
+        for (let i = 2;i<this._formPage.length;i++) {
+            content.appendChild(this._formPage[i]);
         }
     }
 }

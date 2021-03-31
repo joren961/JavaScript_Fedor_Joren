@@ -44,7 +44,6 @@ label {
 }
 .menuItems {
     width:100%;
-    cursor: pointer;
 }
 .menuItems li {
     margin-top: 15px;
@@ -54,6 +53,7 @@ label {
     text-align: center;
     list-style-type: none;
     background-color: #357EC7;
+    cursor: pointer;
 }
 .regioninput {
     width: 90px;
