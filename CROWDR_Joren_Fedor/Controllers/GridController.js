@@ -37,7 +37,9 @@ class GridController {
         let region = this._StorageController.getRegion(regionName);
         this.renderGrid(region);
         this.renderMenu(region);
+        this.placeTrees(region._trees, region);
         this.renderPlacedObjects(region);
+
     }
 
     renderGrid(region)
@@ -64,11 +66,9 @@ class GridController {
                     ev.preventDefault();
                     let data = ev.dataTransfer.getData("text/plain");
 
-                    //console.log(data);
                     ev.target.appendChild(document.getElementById(data));
 
-
-                    this.updatePlacedObjects(region._name);
+                    this.updatePlacedObjects(region);
                 });
 
                 //loop through all objects to see if there is any that can be rendered on the grid
@@ -78,7 +78,6 @@ class GridController {
                 newParent.appendChild(newCellGrid);
             }
         }
-        this.updatePlacedObjects();
     }
 
     renderMenu(region)
@@ -117,7 +116,6 @@ class GridController {
 
         for (const object of objectArray) {
             if (object!=null) {
-                console.log(object);
                 if(object._x == null || object._y == null)
                 {
                     this.renderDragble(newSquare, type, object._id, imagesrc, object);
@@ -131,6 +129,8 @@ class GridController {
 
     renderPlacedObjects(region)
     {
+        //TREE
+        this.renderPlacedItemsOnType(region._trees,"Tree","Resources/highTree(1x1).png",region._trees.length);
         //FOODSTAND
         this.renderPlacedItemsOnType(region._foodstands,"Food stand","Resources/foodStand(1x1).png",region._foodstands.length);
 
@@ -146,25 +146,39 @@ class GridController {
         //TRASHCAN
         this.renderPlacedItemsOnType(region._trashcans,"Trashcan","Resources/trashcan(1x1).jpg",region._trashcans.length);
 
-        //TREE
+        this.updatePlacedObjects(region);
 
     }
-    renderPlacedItemsOnType(objectArray,type, imagesrc, amount)
+    renderPlacedItemsOnType(objectArray,type, imagesrc)
     {
         for (const object of objectArray) {
             if (object!=null) {
-                console.log(object);
                 if(object._x != null || object._y != null)
                 {
                     let gridCellCord = object._x + " " + object._y;
                     let parentGridCell = document.getElementById(gridCellCord);
                     this.renderDragble(parentGridCell, type, object._id, imagesrc, object);
                 }
-
             }
         }
     }
 
+    placeTrees(objectArray)
+    {
+        for (const object of objectArray) {
+            if (object!=null) {
+
+                if(object._x == null || object._y == null)
+                {
+                    //random cords
+                    let randomX = Math.floor(Math.random() * 15);
+                    let randomY = Math.floor(Math.random() * 15);
+
+                    this.placeObject(object, randomX, randomY);
+                }
+            }
+        }
+    }
 
     renderDragble(parentObject , type, id, imagesrc, object)
     {
@@ -188,7 +202,7 @@ class GridController {
         object._y = y;
     }
 
-    updatePlacedObjects(regionName)
+    updatePlacedObjects(region)
     {
         for(let x = 0; x < 15; x++)
         {
@@ -198,11 +212,10 @@ class GridController {
                 let cell = document.getElementById(value);
                 if(cell.hasChildNodes())
                 {
-                    //console.log(cell.firstElementChild.id);
-                    let object = this._StorageController.getItemOnId(regionName, cell.firstElementChild.id);
+                    let object = this._StorageController.getItemOnId(region._name, cell.firstElementChild.id);
                     console.log(object);
                     this.placeObject(object, x, y);
-                    this._StorageController.updateRegionObject(regionName,object);
+                    this._StorageController.updateRegionObject(region._name,object);
 
                 }
             }

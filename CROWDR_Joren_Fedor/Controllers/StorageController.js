@@ -108,9 +108,11 @@ class StorageController {
     }
 
     getItemOnId(regionName,itemId) {
+
         let regions = localStorage.getItem("regions");
         regions = JSON.parse(regions);
-        for (const region of regions) {
+        for (const region of regions)
+        {
             if (region._name === regionName){
                 for (let drinkStand of region._drinkstands) {
                    let compareId = drinkStand._type + drinkStand._id;
@@ -147,8 +149,18 @@ class StorageController {
                         return trashcan;
                     }
                 }
+                for (let tree of region._trees) {
+                    let compareId = tree._type + tree._id;
+                    if(itemId == compareId)
+                    {
+                        return tree;
+                    }
+                }
+
             }
         }
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        return;
 
     }
 
