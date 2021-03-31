@@ -35,6 +35,7 @@ class GridController {
         let region = this._StorageController.getRegion(regionName);
         this.renderGrid(region);
         this.renderMenu(region);
+        this.renderPlacedObjects(region);
     }
 
     renderGrid(region)
@@ -61,8 +62,11 @@ class GridController {
                     ev.preventDefault();
                     let data = ev.dataTransfer.getData("text/plain");
 
-                    console.log(data);
+                    //console.log(data);
                     ev.target.appendChild(document.getElementById(data));
+
+
+                    this.updatePlacedObjects(region._name);
                 });
 
                 //loop through all objects to see if there is any that can be rendered on the grid
@@ -86,7 +90,7 @@ class GridController {
         this.renderMenuItem(region._drinkstands,"Drink stand","Resources/drinkStand(1x2).png",region._drinkstands.length);
 
         //TENTS
-        this.renderMenuItem(region._tents,"Toilet building","Resources/tent(3x3).png", region._tents.length);
+        this.renderMenuItem(region._tents,"Tent","Resources/tent(3x3).png", region._tents.length);
 
         //TOILETBUILDING
         this.renderMenuItem(region._toiletbuildings,"Toilet building","Resources/toiletbuilding(1x3).jpg", region._toiletbuildings.length);
@@ -111,11 +115,22 @@ class GridController {
 
         for (const object of objectArray) {
             if (object!=null) {
-                this.renderDragble(newSquare, type, object._id, imagesrc, object);
+                console.log(object);
+                if(object._x == null || object._y == null)
+                {
+                    this.renderDragble(newSquare, type, object._id, imagesrc, object);
+                }
+
             }
         }
         newMenuItem.appendChild(newSquare);
         this._optionView.appendChild(newMenuItem);
+    }
+
+    renderPlacedObjects(region)
+    {
+
+
     }
 
     renderDragble(parentObject , type, id, imagesrc, object)
@@ -138,28 +153,24 @@ class GridController {
         object._y = y;
     }
 
-    updatePlacedObjects()
+    updatePlacedObjects(regionName)
     {
         for(let x = 0; x < 15; x++)
         {
             for(let y = 0; y < 15; y++)
             {
                 let value =  x + " " + y;
-                //let cell = document.querySelector(value);
                 let cell = document.getElementById(value);
                 if(cell.hasChildNodes())
                 {
-                    console.log("ASDASDASDASDASD");
-                    
+                    //console.log(cell.firstElementChild.id);
+                    let object = this._StorageController.getItemOnId(regionName, cell.firstElementChild.id);
+                    console.log(object);
+                    this.placeObject(object, x, y);
+                    this._StorageController.updateRegionObject(regionName,object);
+
                 }
-                //get cell on coordinates
-                //document.querySelector(.2)
-
-                //check if the cell has child
-
-                //if it has children, update that cell
             }
         }
-
     }
 }
