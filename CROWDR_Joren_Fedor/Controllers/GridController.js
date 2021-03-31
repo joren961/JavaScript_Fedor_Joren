@@ -176,6 +176,8 @@ class GridController {
         });
         newDragble.draggable = true;
         newDragble.className = type;
+        newDragble.className = "Dragble";
+
         newDragble.addEventListener('click',(e) => this._DetailsController.openDetails(object,this._gridview));
         parentObject.appendChild(newDragble);
     }
