@@ -46,26 +46,35 @@ class GridController {
         newParent.className = 'gridView';
         this._gridview.appendChild(newParent);
 
-        for(let x = 0; x < 225; x++)
+        for(let x = 0; x < 15; x++)
         {
-            let newCellGrid = document.createElement('div');
-            newCellGrid.className = 'gridCell';
+            for(let y = 0; y < 15; y++)
+            {
+                let newCellGrid = document.createElement('div');
+                newCellGrid.className = 'gridCell';
+                newCellGrid.id = x + " " + y;
+                //on drag over
+                newCellGrid.addEventListener('dragover', ev => {
+                    ev.preventDefault();
+                });
 
-            newCellGrid.addEventListener('dragover', ev => {
-                ev.preventDefault();
-            });
-            newCellGrid.addEventListener("drop", ev => {
-                ev.preventDefault();
-                let data = ev.dataTransfer.getData("text/plain");
+                //on drop
+                newCellGrid.addEventListener("drop", ev => {
+                    ev.preventDefault();
+                    let data = ev.dataTransfer.getData("text/plain");
 
-                console.log(data);
-                ev.target.appendChild(document.getElementById(data));
-                // this.renderMenu();
-            });
+                    console.log(data);
+                    ev.target.appendChild(document.getElementById(data));
+                });
+
+                //loop through all objects to see if there is any that can be rendered on the grid
 
 
-            newParent.appendChild(newCellGrid);
+                //append
+                newParent.appendChild(newCellGrid);
+            }
         }
+        this.updatePlacedObjects();
     }
 
     renderMenu(region)
@@ -104,20 +113,18 @@ class GridController {
 
         for (const object of objectArray) {
             if (object!=null) {
-               // console.log(object._id);
-                this.createnewDragble(newSquare, type, object._id, imagesrc, object);
+                this.renderDragble(newSquare, type, object._id, imagesrc, object);
             }
         }
         newMenuItem.appendChild(newSquare);
         this._optionView.appendChild(newMenuItem);
     }
 
-    createnewDragble(parentObject , type, id, imagesrc, object)
+    renderDragble(parentObject , type, id, imagesrc, object)
     {
         let newDragble = document.createElement('img');
         newDragble.src = imagesrc;
         newDragble.id = type + id;
-        console.log(newDragble.id)
         newDragble.addEventListener("dragstart", e => {
             e.dataTransfer.setData("text/plain", newDragble.id);
         });
@@ -125,5 +132,36 @@ class GridController {
         newDragble.className = type;
         newDragble.addEventListener('click',(e) => this._DetailsController.openDetails(object,this._gridview));
         parentObject.appendChild(newDragble);
+    }
+
+    placeObject(object, x, y)
+    {
+        object._x = x;
+        object._y = y;
+    }
+
+    updatePlacedObjects()
+    {
+        for(let x = 0; x < 15; x++)
+        {
+            for(let y = 0; y < 15; y++)
+            {
+                let value =  x + " " + y;
+                //let cell = document.querySelector(value);
+                let cell = document.getElementById(value);
+                if(cell.hasChildNodes())
+                {
+                    console.log("ASDASDASDASDASD");
+                    
+                }
+                //get cell on coordinates
+                //document.querySelector(.2)
+
+                //check if the cell has child
+
+                //if it has children, update that cell
+            }
+        }
+
     }
 }
