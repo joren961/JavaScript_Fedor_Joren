@@ -258,8 +258,9 @@ class GridController {
             region._locked = true;
             //save in localstorage
             this._StorageController.updateRegion(region);
-
             this._GridView.render(region);
+            let simulation = new SimulationController(this, region);
+            simulation.runSimulation();
         }
         else
         {
