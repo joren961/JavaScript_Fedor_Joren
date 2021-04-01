@@ -3,11 +3,12 @@ class GridController {
     _replaceDiv;
     _container;
     _optionView;
-    _gridview;
+    _gridWrap;
     _StorageController;
     _DetailsController;
     _regionName;
     _selectedRegion;
+    _GridView;
 
     constructor(storageController)
     {
@@ -22,9 +23,11 @@ class GridController {
         this._optionView.className = 'menuWrapper';
         this._container.appendChild(this._optionView);
 
-        this._gridview = document.createElement('div');
-        this._gridview.className = 'gridWrapper';
-        this._container.appendChild(this._gridview);
+        this._gridWrap = document.createElement('div');
+        this._gridWrap.className = 'gridWrapper';
+        this._container.appendChild(this._gridWrap);
+
+        this._GridView = new GridView(this);
 
     }
 
@@ -42,10 +45,10 @@ class GridController {
 
     renderGrid(region)
     {
-        this._gridview.innerHTML = '';
+        this._gridWrap.innerHTML = '';
         let newParent = document.createElement('div');
         newParent.className = 'gridView';
-        this._gridview.appendChild(newParent);
+        this._gridWrap.appendChild(newParent);
 
         for(let x = 0; x < 15; x++)
         {
@@ -176,7 +179,7 @@ class GridController {
         });
         newDragble.draggable = true;
         newDragble.className = type;
-        newDragble.addEventListener('click',(e) => this._DetailsController.openDetails(object,this._gridview));
+        newDragble.addEventListener('click',(e) => this._DetailsController.openDetails(object,this._gridWrap));
         parentObject.appendChild(newDragble);
     }
 
