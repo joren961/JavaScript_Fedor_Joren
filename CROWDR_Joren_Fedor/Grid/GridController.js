@@ -65,7 +65,7 @@ class GridController {
 
     validateObjectPlacement(object , regionName)
     {
-        let object = this._StorageController.getItemOnId(regionName,objectId);
+        object = this._StorageController.getItemOnId(regionName,object._id);
         console.log(object._squares + " validateObjectPlacement");
         switch(object._squares) {
             case 1:
