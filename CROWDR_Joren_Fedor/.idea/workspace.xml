@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="a8d9699a-bd95-488d-b2ce-50f445c6968c" name="Default Changelist" comment="idk if this works please dont kill me if it doesnt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/GridController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Components/GridController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/GridView.js" beforeDir="false" afterPath="$PROJECT_DIR$/Components/GridView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/NavigationView.js" beforeDir="false" afterPath="$PROJECT_DIR$/Components/NavigationView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSS_files/Region.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSS_files/Region.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/StorageController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Components/StorageController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Grid/GridController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Grid/GridController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Grid/GridView.js" beforeDir="false" afterPath="$PROJECT_DIR$/Grid/GridView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Region.js" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Region.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +94,7 @@
       <workItem from="1617183093407" duration="1123000" />
       <workItem from="1617187583055" duration="25525000" />
       <workItem from="1617271358799" duration="3000" />
-      <workItem from="1617271378718" duration="4383000" />
+      <workItem from="1617271378718" duration="10943000" />
     </task>
     <servers />
   </component>
