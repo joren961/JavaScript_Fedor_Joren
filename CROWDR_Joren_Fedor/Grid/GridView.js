@@ -158,6 +158,4 @@ class GridView {
         newDragble.className = "Dragble";
         parentObject.appendChild(newDragble);
     }
-
-
 }
