@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a8d9699a-bd95-488d-b2ce-50f445c6968c" name="Default Changelist" comment="idk if this works please dont kill me if it doesnt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/drinkStand(1x2).png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/drinkStand(1x2).png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/shadowTree(3x3).png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/shadowTree(3x3).png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/tent(3x3).png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/tent(3x3).png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/toiletbuilding(1x3).jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/toiletbuilding(1x3).jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/wideTree(2x1).png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/wideTree(2x1).png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/GridController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Components/GridController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/GridView.js" beforeDir="false" afterPath="$PROJECT_DIR$/Components/GridView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/NavigationView.js" beforeDir="false" afterPath="$PROJECT_DIR$/Components/NavigationView.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +92,7 @@
       <workItem from="1617183093407" duration="1123000" />
       <workItem from="1617187583055" duration="25525000" />
       <workItem from="1617271358799" duration="3000" />
-      <workItem from="1617271378718" duration="3065000" />
+      <workItem from="1617271378718" duration="4383000" />
     </task>
     <servers />
   </component>
