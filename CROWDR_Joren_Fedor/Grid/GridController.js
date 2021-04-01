@@ -214,6 +214,7 @@ class GridController {
 
     validateRegionLocking(region)
     {
+
         return true;
     }
 
