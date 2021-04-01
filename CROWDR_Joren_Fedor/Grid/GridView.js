@@ -56,8 +56,11 @@ class GridView {
                     newCellGrid.addEventListener("drop", ev => {
                         ev.preventDefault();
                         let data = ev.dataTransfer.getData("text/plain");
-
-                        ev.target.appendChild(document.getElementById(data));
+                        console.log(this._gridController.validateObjectPlacement(data, region._name, x, y) + "HIER");
+                        if(this._gridController.validateObjectPlacement(data, region._name, x, y))
+                        {
+                            ev.target.appendChild(document.getElementById(data));
+                        }
 
                         this._gridController.updatePlacedObjects(region);
                     });

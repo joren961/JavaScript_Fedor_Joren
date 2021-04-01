@@ -65,13 +65,155 @@ class GridController {
 
     validateObjectPlacement(object , regionName)
     {
+        let object = this._StorageController.getItemOnId(regionName,objectId);
+        console.log(object._squares + " validateObjectPlacement");
+        switch(object._squares) {
+            case 1:
+                if(this.CheckCell(regionName,xCord,yCord, object) == false)
+                {
+                    return false;
+                }
+                break;
+            case 2:
+                if(this.CheckCell(regionName,xCord,yCord, object) == false || this.CheckCell(regionName,xCord ,yCord + 1, object) == false)
+                {
+                    return false;
+                }
+                break;
+            case 3:
+                if(this.CheckCell(regionName,xCord,yCord, object) == false || this.CheckCell(regionName,xCord ,yCord + 1, object) == false || this.CheckCell(regionName,xCord ,yCord + 2, object) == false)
+                {
+                    return false;
+                }
+                break;
+            case 9:
+                for(let x = 0; x < 3; x++)
+                {
+                    for(let y = 0; y < 3; y++)
+                    {
+                        if(this.CheckCell(regionName,xCord + x,yCord + y, object) == false)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                break;
+            default:
+                if(this.CheckCell(regionName,xCord,yCord, object) == false)
+                {
+                    return false;
+                }
+        }
+        return true;
+    }
+    CheckCell(regionName, xCord, yCord, excludeObject)
+    {
+        if(xCord > 14)
+        {
+            return false;
+        }
+        if(yCord > 14)
+        {
+            return false;
+        }
+        let region = this._StorageController.getRegion(regionName);
+        for (let object of region._drinkstands) {
+            if(object._x == xCord && object._y == yCord )
+            {
+                if(excludeObject._x == object._x && excludeObject._y == object._y && excludeObject._id == object._id && excludeObject._type == object._type)
+                {
+                    console.log("WEEEE");
+                }
+                else
+                {
+                    console.log(excludeObject);
+                    console.log(object);
+                    return false;
+                }
+
+            }
+        }
+        for (let object of region._foodstands) {
+            if(object._x == xCord && object._y == yCord && excludeObject != object)
+            {
+                if(excludeObject._x == object._x && excludeObject._y == object._y && excludeObject._id == object._id && excludeObject._type == object._type)
+                {
+                    console.log("WEEEE");
+                }
+                else
+                {
+                    console.log(excludeObject);
+                    console.log(object);
+                    return false;
+                }
+            }
+        }
+        for (let object of region._tents) {
+            if(object._x == xCord && object._y == yCord)
+            {
+                if(excludeObject._x == object._x && excludeObject._y == object._y && excludeObject._id == object._id && excludeObject._type == object._type)
+                {
+                    console.log("WEEEE");
+                }
+                else
+                {
+                    console.log(excludeObject);
+                    console.log(object);
+                    return false;
+                }
+            }
+        }
+        for (let object of region._toiletbuildings) {
+            if(object._x == xCord && object._y == yCord && excludeObject != object)
+            {
+                if(excludeObject._x == object._x && excludeObject._y == object._y && excludeObject._id == object._id && excludeObject._type == object._type)
+                {
+                    console.log("WEEEE");
+                }
+                else
+                {
+                    console.log(excludeObject);
+                    console.log(object);
+                    return false;
+                }
+            }
+        }
+        for (let object of region._trashcans) {
+            if(object._x == xCord && object._y == yCord && excludeObject != object)
+            {
+                if(excludeObject._x == object._x && excludeObject._y == object._y && excludeObject._id == object._id && excludeObject._type == object._type)
+                {
+                    console.log("WEEEE");
+                }
+                else
+                {
+                    console.log(excludeObject);
+                    console.log(object);
+                    return false;
+                }
+            }
+        }
+        for (let object of region._trees) {
+            if(object._x == xCord && object._y == yCord && excludeObject != object)
+            {
+                if(excludeObject._x == object._x && excludeObject._y == object._y && excludeObject._id == object._id && excludeObject._type == object._type)
+                {
+                    console.log("WEEEE");
+                }
+                else
+                {
+                    console.log(excludeObject);
+                    console.log(object);
+                    return false;
+                }
+            }
+        }
 
         return true;
     }
 
     validateRegionLocking(region)
     {
-
         return true;
     }
 
