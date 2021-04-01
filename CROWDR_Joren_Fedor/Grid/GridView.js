@@ -48,7 +48,6 @@ class GridView {
                 newCellGrid.id = x + " " + y;
 
                 if(region._locked == null) {
-                    //on drag over
                     newCellGrid.addEventListener('dragover', ev => {
                         ev.preventDefault();
                     });
@@ -57,17 +56,13 @@ class GridView {
                     newCellGrid.addEventListener("drop", ev => {
                         ev.preventDefault();
                         let data = ev.dataTransfer.getData("text/plain");
-                        console.log(data);
-                        //validateObjectPlacement(object, regionName, xCord, yCord)
-                        if(this._gridController.validateObjectPlacement(data, region._name, x, y))
-                        {
-                            ev.target.appendChild(document.getElementById(data));
-                        }
+
+                        ev.target.appendChild(document.getElementById(data));
 
                         this._gridController.updatePlacedObjects(region);
                     });
                 }
-
+                //on drag over
 
                 newParent.appendChild(newCellGrid);
             }
@@ -96,13 +91,15 @@ class GridView {
 
             //LOCK REGION BUTTON
             let newLockRegion = document.createElement('div');
-            newLockRegion.className = 'button';
+            newLockRegion.className = 'lockRegion';
             newLockRegion.innerHTML = 'Lock this region';
             newLockRegion.addEventListener('click', () => {this._gridController.lockRegion(region)});
 
             this._optionView.appendChild(newLockRegion);
         }
+        else {
 
+        }
 
     }
 
@@ -171,14 +168,14 @@ class GridView {
         newDragble.src = imagesrc;
         newDragble.id = type + id;
 
-        //if(isLocked == null)
-        //{
+        if(isLocked == null)
+        {
             console.log(isLocked);
             newDragble.addEventListener("dragstart", e => {
                 e.dataTransfer.setData("text/plain", newDragble.id);
 
             });
-        //}
+        }
         newDragble.draggable = true;
         newDragble.className = type;
         newDragble.addEventListener('click',(e) => this._gridController.openDetails(object,this._gridWrap));
