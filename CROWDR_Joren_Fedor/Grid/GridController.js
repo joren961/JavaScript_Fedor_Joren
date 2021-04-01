@@ -69,32 +69,79 @@ class GridController {
         let object = this._StorageController.getItemOnId(regionName,objectId);
         switch(object._squares) {
             case 1:
-                console.log(object._squares);
                 this.CheckCell(regionName,xCord,yCord);
+
                 break;
             case 2:
-                console.log(object._squares);
+                this.CheckCell(regionName,xCord,yCord);
+                this.CheckCell(regionName,xCord + 1,yCord);
+
                 break;
             case 3:
-                console.log(object._squares);
+                this.CheckCell(regionName,xCord,yCord);
+                this.CheckCell(regionName,xCord + 1,yCord);
+                this.CheckCell(regionName,xCord+ 2,yCord);
                 break;
             case 9:
-                console.log(object._squares);
+                for(let x = 0; x < 3; x++)
+                {
+                    for(let y = 0; y < 3; y++)
+                    {
+                        this.CheckCell(regionName,xCord,yCord);
+                    }
+                }
                 break;
             default:
                 console.log('something went wrong');
         }
-
-
         return true;
     }
     CheckCell(regionName, xCord, yCord)
     {
+        if(xCord > 14)
+        {
+            return false;
+        }
+        if(xCord > 14)
+        {
+            return false;
+        }
         let region = this._StorageController.getRegion(regionName);
-        for (let object of region._drinkStands) {
-            if(itemId == compareId)
+        console.log(region);
+        for (let object of region._drinkstands) {
+            if(object._x == xCord)
             {
-                return drinkStand;
+                return false;
+            }
+        }
+        for (let object of region._foodstands) {
+            if(object._x == xCord)
+            {
+                return false;
+            }
+        }
+        for (let object of region._tents) {
+            if(object._x == xCord)
+            {
+                return false;
+            }
+        }
+        for (let object of region._toiletbuildings) {
+            if(object._x == xCord)
+            {
+                return false;
+            }
+        }
+        for (let object of region._trashcans) {
+            if(object._x == xCord)
+            {
+                return false;
+            }
+        }
+        for (let object of region._trees) {
+            if(object._x == xCord)
+            {
+                return false;
             }
         }
 
