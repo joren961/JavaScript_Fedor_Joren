@@ -115,51 +115,48 @@ class StorageController {
             if (region._name === regionName){
                 for (let drinkStand of region._drinkstands) {
                    let compareId = drinkStand._type + drinkStand._id;
-                    if(itemId == compareId)
+                    if(itemId === compareId)
                     {
                         return drinkStand;
                     }
                 }
                 for (let foodstand of region._foodstands) {
                     let compareId = foodstand._type + foodstand._id;
-                    if(itemId == compareId)
+                    if(itemId === compareId)
                     {
                         return foodstand;
                     }
                 }
                 for (let tent of region._tents) {
                     let compareId = tent._type + tent._id;
-                    if(itemId == compareId)
+                    if(itemId === compareId)
                     {
                         return tent;
                     }
                 }
                 for (let toilet of region._toiletbuildings) {
                     let compareId = toilet._type + toilet._id;
-                    if(itemId == compareId)
+                    if(itemId === compareId)
                     {
                         return toilet;
                     }
                 }
                 for (let trashcan of region._trashcans) {
                     let compareId = trashcan._type + trashcan._id;
-                    if(itemId == compareId)
+                    if(itemId === compareId)
                     {
                         return trashcan;
                     }
                 }
                 for (let tree of region._trees) {
                     let compareId = tree._type + tree._id;
-                    if(itemId == compareId)
+                    if(itemId === compareId)
                     {
                         return tree;
                     }
                 }
-
             }
         }
-        return;
-
     }
 
     updateRegion(updatedRegion)
