@@ -118,7 +118,7 @@ class FormController {
             let regionArray = JSON.parse(localStorage.getItem("regions"));
             regionArray.push(region);
             localStorage.setItem("regions", JSON.stringify(regionArray));
-            this._GridController.render(region._name);
+            this._GridController.createGrid(region._name);
         }
     }
 
