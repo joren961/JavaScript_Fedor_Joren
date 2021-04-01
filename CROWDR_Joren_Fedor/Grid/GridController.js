@@ -123,7 +123,6 @@ class GridController {
             {
                 if(excludeObject._x == object._x && excludeObject._y == object._y && excludeObject._id == object._id && excludeObject._type == object._type)
                 {
-                    console.log("WEEEE");
                 }
                 else
                 {
@@ -139,7 +138,6 @@ class GridController {
             {
                 if(excludeObject._x == object._x && excludeObject._y == object._y && excludeObject._id == object._id && excludeObject._type == object._type)
                 {
-                    console.log("WEEEE");
                 }
                 else
                 {
@@ -154,7 +152,6 @@ class GridController {
             {
                 if(excludeObject._x == object._x && excludeObject._y == object._y && excludeObject._id == object._id && excludeObject._type == object._type)
                 {
-                    console.log("WEEEE");
                 }
                 else
                 {
@@ -169,7 +166,6 @@ class GridController {
             {
                 if(excludeObject._x == object._x && excludeObject._y == object._y && excludeObject._id == object._id && excludeObject._type == object._type)
                 {
-                    console.log("WEEEE");
                 }
                 else
                 {
@@ -184,7 +180,6 @@ class GridController {
             {
                 if(excludeObject._x == object._x && excludeObject._y == object._y && excludeObject._id == object._id && excludeObject._type == object._type)
                 {
-                    console.log("WEEEE");
                 }
                 else
                 {
@@ -199,7 +194,6 @@ class GridController {
             {
                 if(excludeObject._x == object._x && excludeObject._y == object._y && excludeObject._id == object._id && excludeObject._type == object._type)
                 {
-                    console.log("WEEEE");
                 }
                 else
                 {
@@ -215,7 +209,44 @@ class GridController {
 
     validateRegionLocking(region)
     {
+        for (let object of region._drinkstands) {
+            if(object._x == null)
+            {
+                return false;
+            }
+        }
+        for (let object of region._foodstands) {
+            if(object._x == null)
+            {
+                return false;
+            }
+        }
+        for (let object of region._tents) {
+            if(object._x == null)
+            {
+                return false;
+            }
+        }
+        for (let object of region._toiletbuildings) {
+            if(object._x == null)
+            {
+                return false;
+            }
+        }
+        for (let object of region._trashcans) {
+            if(object._x == null)
+            {
+                return false;
+            }
+        }
+        for (let object of region._trees) {
+            if(object._x == null)
+            {
+                return false;
+            }
+        }
         return true;
+
     }
 
     lockRegion(regionName)
