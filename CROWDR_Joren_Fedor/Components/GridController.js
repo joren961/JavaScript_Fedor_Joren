@@ -215,10 +215,8 @@ class GridController {
                 if(cell.hasChildNodes())
                 {
                     let object = this._StorageController.getItemOnId(region._name, cell.firstElementChild.id);
-                    console.log(object);
                     this.placeObject(object, x, y);
                     this._StorageController.updateRegionObject(region._name,object);
-
                 }
             }
         }

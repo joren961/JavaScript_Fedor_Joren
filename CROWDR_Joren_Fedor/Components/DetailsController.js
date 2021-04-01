@@ -43,11 +43,24 @@ class DetailsController {
                 object._emptyingTime = trashTime;
                 break;
             case "Tree":
-                //todo
+                for (const treeInput of document.querySelectorAll('.TreeRadio')) {
+                    if (treeInput.checked) {
+                        console.log(treeInput.value);
+                        object._treeType = treeInput.value;
+                        if (treeInput.value === "High Tree") {
+                            object._squares = 1;
+                        } else if (treeInput.value === "Wide Tree") {
+                            object._squares = 2;
+                        } else {
+                            object._squares = 3*3;
+                        }
+                        break;
+                    }
+                }
+                // todo verander img
                 break;
             default : return;
         }
         this._storageController.updateRegionObject(this._regionName,object);
-        
     }
 }
