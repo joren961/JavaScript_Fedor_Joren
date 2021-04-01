@@ -57,8 +57,7 @@ class GridView {
                     newCellGrid.addEventListener("drop", ev => {
                         ev.preventDefault();
                         let data = ev.dataTransfer.getData("text/plain");
-                        console.log(data);
-                        //validateObjectPlacement(object, regionName, xCord, yCord)
+                        console.log(this._gridController.validateObjectPlacement(data, region._name, x, y) + "HIER");
                         if(this._gridController.validateObjectPlacement(data, region._name, x, y))
                         {
                             ev.target.appendChild(document.getElementById(data));
@@ -99,7 +98,6 @@ class GridView {
             newLockRegion.className = 'button';
             newLockRegion.innerHTML = 'Lock this region';
             newLockRegion.addEventListener('click', () => {this._gridController.lockRegion(region._name)});
-
 
             this._optionView.appendChild(newLockRegion);
         }
@@ -173,7 +171,6 @@ class GridView {
 
         //if(isLocked == null)
         //{
-            console.log(isLocked);
             newDragble.addEventListener("dragstart", e => {
                 e.dataTransfer.setData("text/plain", newDragble.id);
 
