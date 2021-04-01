@@ -1,21 +1,34 @@
 class GridView {
 
+    _replaceDiv;
+    _container;
+    _optionView;
+    _gridWrap;
     _gridController;
 
     constructor(gridController) {
         this._gridController = gridController;
+
+        this._replaceDiv = document.getElementById('replaceDiv');
+        this._container = document.createElement('div');
+        this._container.className = 'containerGridView';
+
+        this._optionView = document.createElement('div');
+        this._optionView.className = 'menuWrapper';
+        this._container.appendChild(this._optionView);
+
+        this._gridWrap = document.createElement('div');
+        this._gridWrap.className = 'gridWrapper';
+        this._container.appendChild(this._gridWrap);
     }
 
     render(region)
     {
-        //
-        //this._DetailsController = new DetailsController(this._StorageController,regionName);
-        this._regionName = regionName;
         this._replaceDiv.innerHTML = '';
         this._replaceDiv.appendChild(this._container);
         this.renderGrid(region);
         this.renderMenu(region);
-        this.placeTrees(region._trees, region);
+        this._gridController.placeTrees(region._trees);
         this.renderPlacedObjects(region);
     }
 
@@ -46,7 +59,7 @@ class GridView {
 
                     ev.target.appendChild(document.getElementById(data));
 
-                    this.updatePlacedObjects(region);
+                    this._gridController.updatePlacedObjects(region);
                 });
                 newParent.appendChild(newCellGrid);
             }
@@ -58,26 +71,26 @@ class GridView {
         this._optionView.innerHTML = '';
 
         //FOODSTAND
-        this.renderMenuItem(region._foodstands,"Food stand","Resources/foodStand(1x1).png",region._foodstands.length);
+        this.renderMenuItem(region._foodstands,"Food stand","Resources/foodStand(1x1).png");
 
         //DRINKSTAND
-        this.renderMenuItem(region._drinkstands,"Drink stand","Resources/drinkStand(1x2).png",region._drinkstands.length);
+        this.renderMenuItem(region._drinkstands,"Drink stand","Resources/drinkStand(1x2).png");
 
         //TENTS
-        this.renderMenuItem(region._tents,"Tent","Resources/tent(3x3).png", region._tents.length);
+        this.renderMenuItem(region._tents,"Tent","Resources/tent(3x3).png");
 
         //TOILETBUILDING
-        this.renderMenuItem(region._toiletbuildings,"Toilet building","Resources/toiletbuilding(1x3).jpg", region._toiletbuildings.length);
+        this.renderMenuItem(region._toiletbuildings,"Toilet building","Resources/toiletbuilding(1x3).jpg");
 
         //TRASHCAN
-        this.renderMenuItem(region._trashcans,"Trashcan","Resources/trashcan(1x1).jpg",region._trashcans.length);
+        this.renderMenuItem(region._trashcans,"Trashcan","Resources/trashcan(1x1).jpg");
     }
 
-    renderMenuItem(objectArray,type, imagesrc, amount)
+    renderMenuItem(objectArray,type, imagesrc)
     {
         let newMenuItem = document.createElement('div');
         let newTitle = document.createElement('p');
-        newTitle.innerText = type + ": " + amount + " left";
+        newTitle.innerText = type + ": " + objectArray.length;
         newTitle.className = 'menuItemTitle';
         newMenuItem.appendChild(newTitle);
         newMenuItem.className = 'menuItemWrapper';
@@ -114,7 +127,7 @@ class GridView {
         //TRASHCAN
         this.renderPlacedItemsOnType(region._trashcans,"Trashcan","Resources/trashcan(1x1).jpg",region._trashcans.length);
 
-        this.updatePlacedObjects(region);
+        this._gridController.updatePlacedObjects(region);
     }
 
     renderPlacedItemsOnType(objectArray,type, imagesrc)
@@ -141,7 +154,7 @@ class GridView {
         });
         newDragble.draggable = true;
         newDragble.className = type;
-        newDragble.addEventListener('click',(e) => this._DetailsController.openDetails(object,this._gridWrap));
+        newDragble.addEventListener('click',(e) => this._gridController.openDetails(object,this._gridWrap));
         newDragble.className = "Dragble";
         parentObject.appendChild(newDragble);
     }

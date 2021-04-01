@@ -9,8 +9,8 @@ class DetailsController {
         this._detailsView = new DetailsView(this);
     }
 
-    openDetails(object, gridView) {
-        this._detailsView.openDetails(object,gridView);
+    openDetails(object, gridWrap) {
+        this._detailsView.openDetails(object,gridWrap);
     }
 
     submitDetails(object) {

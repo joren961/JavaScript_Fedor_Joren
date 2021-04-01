@@ -58,7 +58,7 @@ class NavigationView {
                 deleteArea.addEventListener('click', () => {this._navController.deleteRegion(region._name)})
                 newArea.appendChild(deleteArea);
 
-                newArea.addEventListener('click', () => this._navController._gridController.render(region._name));//TODO
+                newArea.addEventListener('click', () => this._navController._gridController.createGrid(region._name));
                 areaList.appendChild(newArea);
             }
         }
