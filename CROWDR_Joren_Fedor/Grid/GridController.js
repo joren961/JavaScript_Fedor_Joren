@@ -75,18 +75,19 @@ class GridController {
         return true;
     }
 
-    lockRegion(regionName)
+    lockRegion(region)
     {
-
-        let region = storageController.getRegion(regionName);
         if (this.validateRegionLocking(region))
         {
+            debugger;
             //set bool true
             region._locked = true;
             //save in localstorage
             this._StorageController.updateRegion(region);
-
             this._GridView.render(region);
+
+            let simulation = new SimulationController(this, region);
+            simulation.runSimulation();
         }
         else
         {

@@ -93,8 +93,7 @@ class GridView {
             let newLockRegion = document.createElement('div');
             newLockRegion.className = 'lockRegion';
             newLockRegion.innerHTML = 'Lock this region';
-            newLockRegion.addEventListener('click', () => {this._gridController.lockRegion(region._name)});
-
+            newLockRegion.addEventListener('click', () => {this._gridController.lockRegion(region)});
 
             this._optionView.appendChild(newLockRegion);
         }
@@ -128,8 +127,9 @@ class GridView {
 
     renderPlacedObjects(region)
     {
-
+        //TREE
         this.renderPlacedItemsOnType(region._trees,"Tree","Resources/highTree(1x1).png",region._trees.length, region._locked, region._locked);
+
         //FOODSTAND
         this.renderPlacedItemsOnType(region._foodstands,"Food stand","Resources/foodStand(1x1).png",region._foodstands.length, region._locked);
 

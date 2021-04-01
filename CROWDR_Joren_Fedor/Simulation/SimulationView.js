@@ -4,6 +4,7 @@ class SimulationView {
 
     constructor(simulationController) {
         this._simulationController = simulationController;
+        this.addScannerInput();
     }
 
     addScannerInput() {

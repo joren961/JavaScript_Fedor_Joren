@@ -22,6 +22,7 @@ class FormView {
         newInput.setAttribute('type', 'number');
         newInput.setAttribute('min','0');
         newInput.setAttribute('placeholder', '0');
+        newInput.setAttribute('value','0');
         let submit;
 
         if (lastInputId === 4) {
