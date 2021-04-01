@@ -6,8 +6,6 @@
       <change beforePath="$PROJECT_DIR$/CSS_files/Region.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSS_files/Region.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Components/StorageController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Components/StorageController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Grid/GridController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Grid/GridController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Grid/GridView.js" beforeDir="false" afterPath="$PROJECT_DIR$/Grid/GridView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Objects/Region.js" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Region.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
