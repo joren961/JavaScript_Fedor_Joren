@@ -116,7 +116,11 @@ class DetailsView {
                     let label = document.createElement('label');
                     label.innerText = tree;
                     let input = document.createElement('input');
-                    if (tree === "High Tree") {
+                    if (object._treeType != null) {
+                        if (tree === object._treeType) {
+                            input.checked = true;
+                        }
+                    } else if (tree === "High Tree"){
                         input.checked = true;
                     }
                     input.setAttribute('value', tree);
