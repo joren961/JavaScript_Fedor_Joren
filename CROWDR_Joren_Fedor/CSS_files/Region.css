@@ -97,3 +97,12 @@ body {
 {
     position: absolute;
 }
+
+.lockRegion
+{
+    width: 100%;
+    border: 1px solid #999;
+    color: white;
+    cursor: pointer;
+
+}

@@ -47,20 +47,23 @@ class GridView {
                 newCellGrid.className = 'gridCell';
                 newCellGrid.id = x + " " + y;
 
+                if(region._locked == null) {
+                    newCellGrid.addEventListener('dragover', ev => {
+                        ev.preventDefault();
+                    });
+
+                    //on drop
+                    newCellGrid.addEventListener("drop", ev => {
+                        ev.preventDefault();
+                        let data = ev.dataTransfer.getData("text/plain");
+
+                        ev.target.appendChild(document.getElementById(data));
+
+                        this._gridController.updatePlacedObjects(region);
+                    });
+                }
                 //on drag over
-                newCellGrid.addEventListener('dragover', ev => {
-                    ev.preventDefault();
-                });
 
-                //on drop
-                newCellGrid.addEventListener("drop", ev => {
-                    ev.preventDefault();
-                    let data = ev.dataTransfer.getData("text/plain");
-
-                    ev.target.appendChild(document.getElementById(data));
-
-                    this._gridController.updatePlacedObjects(region);
-                });
                 newParent.appendChild(newCellGrid);
             }
         }
@@ -69,21 +72,36 @@ class GridView {
     renderMenu(region)
     {
         this._optionView.innerHTML = '';
+        if(region._locked != true)
+        {
+            //FOODSTAND
+            this.renderMenuItem(region._foodstands,"Food stand","Resources/foodStand(1x1).png");
 
-        //FOODSTAND
-        this.renderMenuItem(region._foodstands,"Food stand","Resources/foodStand(1x1).png");
+            //DRINKSTAND
+            this.renderMenuItem(region._drinkstands,"Drink stand","Resources/drinkStand(1x2).png");
 
-        //DRINKSTAND
-        this.renderMenuItem(region._drinkstands,"Drink stand","Resources/drinkStand(1x2).png");
+            //TENTS
+            this.renderMenuItem(region._tents,"Tent","Resources/tent(3x3).png");
 
-        //TENTS
-        this.renderMenuItem(region._tents,"Tent","Resources/tent(3x3).png");
+            //TOILETBUILDING
+            this.renderMenuItem(region._toiletbuildings,"Toilet building","Resources/toiletbuilding(1x3).jpg");
 
-        //TOILETBUILDING
-        this.renderMenuItem(region._toiletbuildings,"Toilet building","Resources/toiletbuilding(1x3).jpg");
+            //TRASHCAN
+            this.renderMenuItem(region._trashcans,"Trashcan","Resources/trashcan(1x1).jpg");
 
-        //TRASHCAN
-        this.renderMenuItem(region._trashcans,"Trashcan","Resources/trashcan(1x1).jpg");
+            //LOCK REGION BUTTON
+            let newLockRegion = document.createElement('div');
+            newLockRegion.className = 'lockRegion';
+            newLockRegion.innerHTML = 'Lock this region';
+            newLockRegion.addEventListener('click', () => {this._gridController.lockRegion(region._name)});
+
+
+            this._optionView.appendChild(newLockRegion);
+        }
+        else {
+
+        }
+
     }
 
     renderMenuItem(objectArray,type, imagesrc)
@@ -110,27 +128,27 @@ class GridView {
 
     renderPlacedObjects(region)
     {
-        //TREE
-        this.renderPlacedItemsOnType(region._trees,"Tree","Resources/highTree(1x1).png",region._trees.length);
+
+        this.renderPlacedItemsOnType(region._trees,"Tree","Resources/highTree(1x1).png",region._trees.length, region._locked, region._locked);
         //FOODSTAND
-        this.renderPlacedItemsOnType(region._foodstands,"Food stand","Resources/foodStand(1x1).png",region._foodstands.length);
+        this.renderPlacedItemsOnType(region._foodstands,"Food stand","Resources/foodStand(1x1).png",region._foodstands.length, region._locked);
 
         //DRINKSTAND
-        this.renderPlacedItemsOnType(region._drinkstands,"Drink stand","Resources/drinkStand(1x2).png",region._drinkstands.length);
+        this.renderPlacedItemsOnType(region._drinkstands,"Drink stand","Resources/drinkStand(1x2).png",region._drinkstands.length, region._locked);
 
         //TENTS
         this.renderPlacedItemsOnType(region._tents,"Tent","Resources/tent(3x3).png", region._tents.length);
 
         //TOILETBUILDING
-        this.renderPlacedItemsOnType(region._toiletbuildings,"Toilet building","Resources/toiletbuilding(1x3).jpg", region._toiletbuildings.length);
+        this.renderPlacedItemsOnType(region._toiletbuildings,"Toilet building","Resources/toiletbuilding(1x3).jpg", region._toiletbuildings.length, region._locked);
 
         //TRASHCAN
-        this.renderPlacedItemsOnType(region._trashcans,"Trashcan","Resources/trashcan(1x1).jpg",region._trashcans.length);
+        this.renderPlacedItemsOnType(region._trashcans,"Trashcan","Resources/trashcan(1x1).jpg",region._trashcans.length, region._locked);
 
         this._gridController.updatePlacedObjects(region);
     }
 
-    renderPlacedItemsOnType(objectArray,type, imagesrc)
+    renderPlacedItemsOnType(objectArray,type, imagesrc, isLocked)
     {
         for (const object of objectArray) {
             if (object!=null) {
@@ -138,20 +156,26 @@ class GridView {
                 {
                     let gridCellCord = object._x + " " + object._y;
                     let parentGridCell = document.getElementById(gridCellCord);
-                    this.renderDragble(parentGridCell, type, object._id, imagesrc, object);
+                    this.renderDragble(parentGridCell, type, object._id, imagesrc, object, isLocked);
                 }
             }
         }
     }
 
-    renderDragble(parentObject , type, id, imagesrc, object)
+    renderDragble(parentObject , type, id, imagesrc, object, isLocked)
     {
         let newDragble = document.createElement('img');
         newDragble.src = imagesrc;
         newDragble.id = type + id;
-        newDragble.addEventListener("dragstart", e => {
-            e.dataTransfer.setData("text/plain", newDragble.id);
-        });
+
+        if(isLocked == null)
+        {
+            console.log(isLocked);
+            newDragble.addEventListener("dragstart", e => {
+                e.dataTransfer.setData("text/plain", newDragble.id);
+
+            });
+        }
         newDragble.draggable = true;
         newDragble.className = type;
         newDragble.addEventListener('click',(e) => this._gridController.openDetails(object,this._gridWrap));

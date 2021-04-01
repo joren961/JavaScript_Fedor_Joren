@@ -108,7 +108,6 @@ class StorageController {
     }
 
     getItemOnId(regionName,itemId) {
-
         let regions = localStorage.getItem("regions");
         regions = JSON.parse(regions);
         for (const region of regions)
@@ -160,6 +159,21 @@ class StorageController {
             }
         }
         return;
+
+    }
+
+    updateRegion(updatedRegion)
+    {
+        let regions = JSON.parse(localStorage.getItem("regions"));
+        for(let i = 0; i < regions.length; i++)
+        {
+            if (regions[i]._name === updatedRegion._name)
+            {
+                regions[i] = updatedRegion;
+                console.log("SUCCESFULLY UPDATED REGION");
+            }
+        }
+        localStorage.setItem('regions',JSON.stringify(regions));
 
     }
 

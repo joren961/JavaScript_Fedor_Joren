@@ -62,4 +62,37 @@ class GridController {
             }
         }
     }
+
+    validateObjectPlacement(object , regionName)
+    {
+
+        return true;
+    }
+
+    validateRegionLocking(region)
+    {
+
+        return true;
+    }
+
+    lockRegion(regionName)
+    {
+
+        let region = storageController.getRegion(regionName);
+        if (this.validateRegionLocking(region))
+        {
+            //set bool true
+            region._locked = true;
+            //save in localstorage
+            this._StorageController.updateRegion(region);
+
+            this._GridView.render(region);
+        }
+        else
+        {
+            alert("Uh oh! you haven't placed all objects in the region!");
+        }
+
+    }
+
 }

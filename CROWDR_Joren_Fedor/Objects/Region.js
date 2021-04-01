@@ -7,6 +7,7 @@ class Region {
     _toiletbuildings;
     _trashcans;
     _trees;
+    _locked;
 
     constructor(name, maxVisitors) {
         this._name = name;
