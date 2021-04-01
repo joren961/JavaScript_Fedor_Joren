@@ -63,8 +63,40 @@ class GridController {
         }
     }
 
-    validateObjectPlacement(object , regionName)
+    validateObjectPlacement(objectId, regionName, xCord, yCord)
     {
+        let object = this._StorageController.getItemOnId(regionName,objectId);
+        switch(object._squares) {
+            case 1:
+                console.log(object._squares);
+                this.CheckCell(regionName,xCord,yCord);
+                break;
+            case 2:
+                console.log(object._squares);
+                break;
+            case 3:
+                console.log(object._squares);
+                break;
+            case 9:
+                console.log(object._squares);
+                break;
+            default:
+                console.log('something went wrong');
+        }
+
+
+        return true;
+    }
+    CheckCell(regionName, xCord, yCord)
+    {
+        let region = this._StorageController.getRegion(regionName);
+        for (let object of region._drinkStands) {
+            if(itemId == compareId)
+            {
+                return drinkStand;
+            }
+        }
+
 
         return true;
     }
