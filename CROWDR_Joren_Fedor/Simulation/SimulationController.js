@@ -33,13 +33,13 @@ class SimulationController {
     updateScanners(scannerAmount) {
         if (this._ticketScanners[0]!=null) {
             for (const ticketScanner of this._ticketScanners) {
-                this._ticketScanners.removeItem(ticketScanner);
+                this._ticketScanners.splice(this._ticketScanners.indexOf(ticketScanner),1);
             }
         }
         for (let i = 0; i<scannerAmount;i++) {
             this._ticketScanners[i] = Math.floor(Math.random()*3)+1;
         }
-        this.scanTickets();
+        this.fetchRandomUser();
     }
 
     scanTickets() {
@@ -48,11 +48,6 @@ class SimulationController {
                     if (this._region._maxVisitors > this._groupsOfVisitors.length) {
                         for (let i = 0; i<Math.floor((Math.random()*4)+1);i++) {
                             let newVisitorJSON = this.fetchRandomUser();
-                            console.log(newVisitorJSON);
-                            newVisitorJSON.map((visitor)=>{
-                                console.log(visitor);
-                                let VisitorObject = new Visitor(visitor.name.first + " " + visitor.name.last, visitor.dob.age);
-                            })
                         }
                     }
                     else {
@@ -64,12 +59,17 @@ class SimulationController {
 
 
     async fetchRandomUser() {
+        debugger;
         const data = await fetch('https://randomuser.me/api/?nat=nl')
             .then((response) => {
                 return response.json();
             })
             .then((data)=>{
                 let newPerson = data.results;
+                newPerson.map((visitor)=>{
+                    console.log(visitor);
+                    let VisitorObject = new Visitor(visitor.name.first + " " + visitor.name.last, visitor.dob.age);
+                })
                 return newPerson;
             })
             .catch(()=>{

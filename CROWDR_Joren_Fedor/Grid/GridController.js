@@ -79,7 +79,6 @@ class GridController {
     {
         if (this.validateRegionLocking(region))
         {
-            debugger;
             //set bool true
             region._locked = true;
             //save in localstorage

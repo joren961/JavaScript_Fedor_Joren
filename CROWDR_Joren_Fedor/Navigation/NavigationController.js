@@ -22,6 +22,6 @@ class NavigationController {
 
     getRegions() {
         let regions = this._StorageController.getRegions();
-        this._navView.getRegions(regions, this._gridController.render);
+        this._navView.getRegions(regions);
     }
 }
