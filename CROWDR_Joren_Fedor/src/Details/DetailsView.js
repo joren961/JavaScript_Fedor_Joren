@@ -29,7 +29,26 @@ export default class DetailsView {
             submit.style.border = "#357EC7 outset 3px";
             details.appendChild(submit);
         }
+        if (object._type === "Trashcan") {
+            let maxCapacity = document.createElement('div');
+            maxCapacity.id = "trashMax";
+            let capacity = document.createElement('div');
+            capacity.id = "trashFill";
+            capacity.appendChild(maxCapacity);
+            details.appendChild(capacity);
+            this.trashAnimate(object, details);
+        }
+
         gridView.appendChild(details);
+    }
+
+    trashAnimate(object, details) {
+            let elem = details.querySelector('#trashFill');
+            let id = setInterval(frame, 1000);
+            function frame() {
+                let height = object._currentCapacity / object._capacity * 100;
+                elem.style.height = height + "%";
+            }
     }
 
     addInputBasedOnType(object,details) {

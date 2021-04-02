@@ -47,6 +47,11 @@ body {
 }
 
 .menuWrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    align-items: center;
+    flex-wrap: nowrap;
     width: 15%;
     height: 800px;
     background: cadetblue;
@@ -105,4 +110,16 @@ body {
     color: white;
     cursor: pointer;
 
+}
+
+#trashMax {
+    width: 20%;
+    height: 100px;
+    background-color: white;
+}
+
+#trashFill {
+    width: 20%;
+    height: 0;
+    background-color: saddlebrown;
 }
