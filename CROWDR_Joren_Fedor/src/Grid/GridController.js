@@ -1,4 +1,8 @@
-class GridController {
+import SimulationController from "../Simulation/SimulationController";
+import DetailsController from "../Details/DetailsController";
+import GridView from "./GridView";
+
+export default class GridController {
 
 
     _StorageController;

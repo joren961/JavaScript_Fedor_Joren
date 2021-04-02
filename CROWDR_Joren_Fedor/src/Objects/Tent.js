@@ -1,4 +1,4 @@
-class Tent {
+export default class Tent {
     _id;
     _type;
     _maxVisitors;

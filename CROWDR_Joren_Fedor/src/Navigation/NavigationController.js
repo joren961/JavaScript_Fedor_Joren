@@ -1,4 +1,6 @@
-class NavigationController {
+import NavigationView from "./NavigationView";
+
+export default class NavigationController {
 
     _StorageController;
     _gridController;

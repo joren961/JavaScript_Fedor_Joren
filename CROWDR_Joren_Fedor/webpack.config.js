@@ -1,4 +1,3 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require('path')
 
 module.exports = {
@@ -33,38 +32,18 @@ module.exports = {
                     loader: 'sass-loader' // compiles Sass to CSS
                 }]
             },
+            {
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                        plugins: ['@babel/plugin-proposal-class-properties']
+                    }
+                }
+            }
 
         ]
     },
-    plugins: [
-        new HtmlWebPackPlugin({
-            template: "./src/index.html",
-            filename: "./homePage.html"
-        }),
-    ]
 }
-
-// const HtmlWebPackPlugin = require("html-webpack-plugin");
-//
-// module.exports = {
-//     module: {
-//         rules: [
-//             {
-//                 test: /\.html$/,
-//                 use: [
-//                     {
-//                         leader: "html-loader",
-//                         options: {minimize: true}
-//                     }
-//                 ]
-//             },
-//         ]
-//     },
-//     plugins: [
-//         new HtmlWebPackPlugin({
-//             template: "./src/index.html",
-//             filename: "index.html"
-//         }),
-//     ]
-//
-// }

@@ -1,4 +1,4 @@
-class GridView {
+export default class GridView {
 
     _replaceDiv;
     _container;

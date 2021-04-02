@@ -1,1 +1,51 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta content="width=device-width,initial-scale=1" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;1,300&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="../CSS_files/HomePage.css"><link rel="stylesheet" href="../CSS_files/Region.css"><title>CROWDR</title><script defer="defer" src="main.js"></script></head><body><a class="hamburgerLink"><i id="hamburgerIcon" class="fa fa-bars"></i></a><nav class="navigation" style="width: 0px"><div class="menuItems"><ul id="areaList"><li></li></ul></div></nav><div class="flex-container" id="replaceDiv"><p id="space">Space left: <span class="squaresLeft">225</span> squares</p><header id="header"><h1>Welcome to CROWDR</h1></header><form name="regionForm" class="regionForm"><label>What is your region's name?</label> <input class="regioninput" required placeholder="Region name.."> <label>How many visitors are allowed?</label> <input class="regionVisitorInput" type="number" required placeholder="0" min="0"></form><a href="#" class="nextInput"><i class="fa fa-check"></i></a> <a href="#" id="reset" class="button">Reset</a></div><script src="main.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../CSS_files/HomePage.css">
+    <link rel="stylesheet" href="../CSS_files/Region.css">
+    <title>CROWDR</title>
+    <script defer="defer" src="main.js"></script>
+</head>
+<body><a class="hamburgerLink"><i id="hamburgerIcon" class="fa fa-bars"></i></a>
+<nav class="navigation" style="width: 0px">
+    <div class="menuItems">
+        <ul id="areaList">
+            <li></li>
+        </ul>
+    </div>
+</nav>
+<div class="flex-container" id="replaceDiv"><p id="space">Space left: <span class="squaresLeft">225</span> squares</p>
+    <header id="header"><h1>Welcome to CROWDR</h1></header>
+    <form name="regionForm" class="regionForm"><label>What is your region's name?</label> <input class="regioninput"
+                                                                                                 required
+                                                                                                 placeholder="Region name..">
+        <label>How many visitors are allowed?</label> <input class="regionVisitorInput" type="number" required
+                                                             placeholder="0" min="0"></form>
+    <a href="#" class="nextInput"><i class="fa fa-check"></i></a> <a href="#" id="reset" class="button">Reset</a></div>
+<script src="Components/StorageController.js"></script>
+<script src="Details/DetailsView.js"></script>
+<script src="Details/DetailsController.js"></script>
+<script src="RegionForm/FormView.js"></script>
+<script src="RegionForm/FormController.js"></script>
+<script src="Navigation/NavigationView.js"></script>
+<script src="Navigation/NavigationController.js"></script>
+<script src="Grid/GridView.js"></script>
+<script src="Grid/GridController.js"></script>
+<script src="Simulation/SimulationController.js"></script>
+<script src="Simulation/SimulationView.js"></script>
+<script src="Objects/FoodStand.js"></script>
+<script src="Objects/Tent.js"></script>
+<script src="Objects/DrinkStand.js"></script>
+<script src="Objects/ToiletBuilding.js"></script>
+<script src="Objects/Trashcan.js"></script>
+<script src="Objects/Tree.js"></script>
+<script src="Objects/Region.js"></script>
+<script src="Objects/Visitor.js"></script>
+<script src="Scripts/Setup.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

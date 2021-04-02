@@ -1,4 +1,13 @@
-class FormController {
+import Trashcan from "../Objects/Trashcan";
+import ToiletBuilding from "../Objects/ToiletBuilding";
+import Tree from "../Objects/Tree";
+import DrinkStand from "../Objects/DrinkStand";
+import FoodStand from "../Objects/FoodStand";
+import Tent from "../Objects/Tent";
+import Region from "../Objects/Region";
+import FormView from "./FormView";
+
+export default class FormController {
 
     _StorageController;
     _GridController;

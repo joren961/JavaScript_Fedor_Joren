@@ -1,4 +1,4 @@
-class StorageController {
+export default class StorageController {
 
     //returnt regio object
     getRegion(regionName) {

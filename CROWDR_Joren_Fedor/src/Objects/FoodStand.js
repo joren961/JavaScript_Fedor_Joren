@@ -1,4 +1,4 @@
-class FoodStand {
+export default class FoodStand {
     _id;
     _type;
     _squares;

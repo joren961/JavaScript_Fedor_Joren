@@ -1,4 +1,4 @@
-class Visitor {
+export default class Visitor {
     _fullName;
     _age;
 

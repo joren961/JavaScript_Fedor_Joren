@@ -1,4 +1,4 @@
-class Region {
+export default class Region {
     _name;
     _maxVisitors;
     _foodstands;

@@ -1,4 +1,4 @@
-class SimulationView {
+export default class SimulationView {
 
     _simulationController;
 

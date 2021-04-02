@@ -1,4 +1,4 @@
-class DrinkStand {
+export default class DrinkStand {
     _id;
     _type;
     _maxVisitors;

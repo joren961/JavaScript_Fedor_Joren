@@ -1,4 +1,4 @@
-class NavigationView {
+export default class NavigationView {
 
     _formPage;
     _navController;

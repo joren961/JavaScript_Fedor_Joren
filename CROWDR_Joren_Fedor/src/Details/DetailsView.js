@@ -1,4 +1,4 @@
-class DetailsView {
+export default class DetailsView {
 
     _detailsController;
 

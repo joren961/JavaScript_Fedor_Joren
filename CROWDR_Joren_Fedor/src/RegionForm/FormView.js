@@ -1,4 +1,4 @@
-class FormView {
+export default class FormView {
     _regionForm;
     _squaresLeft;
     _nextInputButton;

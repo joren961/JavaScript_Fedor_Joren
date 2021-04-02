@@ -1,4 +1,4 @@
-class ToiletBuilding {
+export default class ToiletBuilding {
     _id;
     _type;
     _squares;

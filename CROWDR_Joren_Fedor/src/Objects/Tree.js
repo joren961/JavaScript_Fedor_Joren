@@ -1,4 +1,4 @@
-class Tree {
+export default class Tree {
     _id;
     _type;
     _squares;

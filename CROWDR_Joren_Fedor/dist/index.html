@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>CROWDR</title>
+</head>
+<body>
+<a class="hamburgerLink">
+  <i id="hamburgerIcon" class="fa fa-bars"></i>
+</a>
+<nav class="navigation" style="width: 0px">
+  <div class="menuItems">
+    <ul id="areaList">
+      <li>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="flex-container" id="replaceDiv">
+  <p id="space">Space left: <span class="squaresLeft">225</span> squares</p>
+  <header id="header">
+    <h1>Welcome to CROWDR</h1>
+  </header>
+  <form name="regionForm" class="regionForm">
+    <label>What is your region's name?</label>
+    <input class="regioninput" type="text" required placeholder="Region name..">
+    <label>How many visitors are allowed?</label>
+    <input class="regionVisitorInput" type="number" required placeholder="0" min="0">
+  </form>
+  <a href="#" class="nextInput"><i class="fa fa-check"></i></a>
+  <a href="#" id="reset" class="button">Reset</a>
+</div>
+<script src="main.js"></script>
+</body>
+</html>

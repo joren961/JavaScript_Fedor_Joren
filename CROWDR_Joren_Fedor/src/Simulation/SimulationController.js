@@ -1,4 +1,7 @@
-class SimulationController {
+import Visitor from "../Objects/Visitor";
+import SimulationView from "./SimulationView";
+
+export default class SimulationController {
 
     _ticketScanners;
     _weatherAPIResponse;

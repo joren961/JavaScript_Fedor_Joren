@@ -1,4 +1,6 @@
-class DetailsController {
+import DetailsView from "./DetailsView";
+
+export default class DetailsController {
     _storageController;
     _regionName;
     _detailsView;

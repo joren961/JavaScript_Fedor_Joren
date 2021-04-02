@@ -1,4 +1,4 @@
-class Trashcan {
+export default class Trashcan {
     _id;
     _type;
     _squares;
