@@ -264,7 +264,6 @@ class GridController {
             //save in localstorage
             this._StorageController.updateRegion(region);
             this.createGrid();
-            this._SimulationController.runSimulation();
         }
         else
         {

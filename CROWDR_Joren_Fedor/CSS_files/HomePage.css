@@ -105,7 +105,8 @@ label {
     color: ghostwhite;
 }
 .button {
-    width: 60px;
+    width: 75px;
+    padding: 2px;
     margin: 8px;
     text-decoration: none;
     height:25px;
