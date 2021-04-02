@@ -21,7 +21,7 @@ export default class GridController {
     createGrid(regionName)
     {
         this._DetailsController = new DetailsController(this._StorageController,regionName);
-        let region = storageController.getRegion(regionName);
+        let region = this._StorageController.getRegion(regionName);
         this._GridView.render(region);
         if (region._locked) {
             this._SimulationController = new SimulationController(this,region);
