@@ -39,16 +39,19 @@ class SimulationController {
         for (let i = 0; i<scannerAmount;i++) {
             this._ticketScanners[i] = Math.floor(Math.random()*3)+1;
         }
-        this.fetchRandomUser();
+
+        this.scanTickets();
     }
 
     scanTickets() {
         for (const ticketScannerTime of this._ticketScanners) {
-            let interval = window.setInterval(()=>{
-                if (this._region._maxVisitors > this._groupsOfVisitors.length) {
+            let interval = window.setInterval( ()=>{
+                if (this._region._maxVisitors > this.countVisitors()) {
+                    let group = [];
                     for (let i = 0; i<Math.floor((Math.random()*4)+1);i++) {
-                        let newVisitorJSON = this.fetchRandomUser();
+                        let result = this.fetchRandomUser(group, i);
                     }
+                    this._groupsOfVisitors[this._groupsOfVisitors.length] = group;
                 }
                 else {
                     return false;
@@ -57,24 +60,33 @@ class SimulationController {
         }
     }
 
+    countVisitors() {
+        let count = 0;
+        for (const groupOfVisitors of this._groupsOfVisitors) {
+            count = count + groupOfVisitors.length;
+        }
+        return count;
+    }
 
-    async fetchRandomUser() {
-        debugger;
-        const data = await fetch('https://randomuser.me/api/?nat=nl')
+
+    async fetchRandomUser(group, index) {
+        fetch('https://randomuser.me/api/?nat=nl')
             .then((response) => {
                 return response.json();
             })
             .then((data)=>{
-                let newPerson = data.results;
-                newPerson.map((visitor)=>{
-                    console.log(visitor);
-                    let VisitorObject = new Visitor(visitor.name.first + " " + visitor.name.last, visitor.dob.age);
-                })
-                return newPerson;
+                this.setUser(data, group, index);
             })
             .catch(()=>{
-                alert("The random user generator does not work");
+                let VisitorObject = new Visitor("API error",404);
+                this.setUser(VisitorObject, group, index);
             });
     }
 
+    setUser(result, group, index) {
+        console.log(result);
+        let visitor = new Visitor(result.results[0].name.first + " " + result.results[0].name.last, result.results[0].dob.age);
+        console.log(visitor);
+        group[index] = visitor;
+    }
 }

@@ -110,7 +110,12 @@ class FormView {
     }
 
     addTrashInput(newTag, newInput) {
-        let maxValue = Math.floor(0.05*parseInt(this._squaresLeft.innerText));
+        let maxValue;
+        if(parseInt(this._squaresLeft.innerText) >= 0) {
+            maxValue = Math.floor(0.05*parseInt(this._squaresLeft.innerText));
+        } else {
+            maxValue = 0;
+        }
         let field = this._regionForm.querySelector(".toilets");
         field.readOnly = true;
         field.style.border = "solid white 1.5px";
