@@ -12,7 +12,7 @@ class SimulationView {
     }
 
     addCityInput() {
-        let values = ['Alkmaar','Amsterdam','Den Bosch','Groningen','Maastricht','Utrecht'];
+        let values = ['2759899','2759794','2755251','2751283','2745912'];
         let label = document.createElement('label');
         label.innerText = "Select city:";
         let input = document.createElement('select');
@@ -21,13 +21,41 @@ class SimulationView {
         for (const value of values) {
             let option = document.createElement("option");
             option.value = value;
-            option.text = value.charAt(0).toUpperCase() + value.slice(1);
+            switch (value) {
+                case '2759899':
+                    option.text = "Alkmaar";
+                    break;
+                case '2759794':
+                    option.text = "Amsterdam";
+                    break;
+                case '2755251':
+                    option.text = "Groningen";
+                    break;
+                case '2751283':
+                    option.text = "Maastricht";
+                    break;
+                case '2745912':
+                    option.text = "Utrecht";
+                    break;
+            }
             input.appendChild(option);
         }
         input.style.width = '80%';
         input.addEventListener('change',()=>this._simulationController.fetchWeather(input.value));
         this._menu.appendChild(label);
         this._menu.appendChild(input);
+    }
+
+    showWeather(icon) {
+        let weatherIcon = this._menu.querySelector('#weatherIcon');
+        let placement = this._menu.querySelector('#scannerLabel');
+        if (weatherIcon!=null) {
+            weatherIcon.parentElement.removeChild(weatherIcon);
+        }
+        let iconImg = document.createElement('img');
+        iconImg.id="weatherIcon";
+        iconImg.src = icon;
+        this._menu.insertBefore(iconImg,placement);
     }
 
     weatherError(errorMessage) {
@@ -40,12 +68,13 @@ class SimulationView {
         let error = document.createElement('label');
         error.innerText = errorMessage;
         error.className = "validationMessage";
-        this._menu.querySelector('#cityInput').appendChild(error);
+        this._menu.insertBefore(error,this._menu.querySelector('#cityInput'));
     }
 
     addScannerInput() {
         let label = document.createElement('label');
         label.innerText = "Amount of ticketscanners: ";
+        label.id="scannerLabel";
         let input = document.createElement('input');
         input.setAttribute('type','number');
         input.setAttribute('min','0');

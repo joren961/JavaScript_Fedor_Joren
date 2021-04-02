@@ -114,12 +114,12 @@ class SimulationController {
     }
 
     async fetchWeather(cityName) {
-        fetch('api.openweathermap.org/data/2.5/weather?q={'+cityName+'}&appid={41c01a322b746bc2a2f64b04573cfa9b}')
+        fetch('https://api.openweathermap.org/data/2.5/weather?id='+cityName+'&appid=41c01a322b746bc2a2f64b04573cfa9b')
             .then((response)=>{
                 return response.json();
             })
             .then((data)=>{
-                this.setWeather(data);
+                this.setWeather(data.weather[0]);
             }).catch(()=>{
                 this._SimulationView.weatherError("Weather API error");
         });
@@ -128,5 +128,7 @@ class SimulationController {
     setWeather(result) {
         console.log(result);
         this._weather = result;
+        let icon = `https://openweathermap.org/img/wn/${result.icon}@2x.png`
+        this._SimulationView.showWeather(icon);
     }
 }
