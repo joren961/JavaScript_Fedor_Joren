@@ -119,10 +119,10 @@ class DetailsView {
                 newLabel.innerText = "Capacity in KG";
                 newInput.className = "TrashCapacity";
                 let trashLabel = document.createElement('label');
-                trashLabel.innerText = "Emptying time in hours";
+                trashLabel.innerText = "Emptying time";
                 let trashInput = document.createElement('input');
-                trashInput.setAttribute('type','number');
-                trashInput.setAttribute('placeholder','0');
+                trashInput.setAttribute('type','time');
+                trashInput.style.width = "100px";
                 trashInput.id="TrashEmptyTime";
                 if (object._emptyingTime != null) {
                     trashInput.value = object._emptyingTime;
