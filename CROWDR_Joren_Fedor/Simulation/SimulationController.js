@@ -22,12 +22,26 @@ class SimulationController {
 
         // over vakje hoveren geeft info over bezoekers
 
-        let intervalId = window.setInterval(function(){
-            // maak vuilnisbakken leeg
-
-            // verplaats mensen naar nieuwe vakken
-
+        let intervalId = window.setInterval(()=>{
+            this.fillTrashcans();
+            this.emptyTrashcans();
         }, 1000);
+    }
+
+    fillTrashcans() {
+        for (const trashcan of this._region._trashcans) {
+            trashcan._currentCapacity++;
+        }
+        //update view
+    }
+
+    emptyTrashcans() {
+        for (const trashcan of this._region._trashcans) {
+            if (trashcan._currentCapacity >= trashcan._capacity) {
+                trashcan._currentCapacity = 0;
+            }
+        }
+        //update view
     }
 
     updateScanners(scannerAmount) {
