@@ -29,11 +29,41 @@ class SimulationController {
 
         let interval = window.setInterval(()=>{
             this.fillAndEmptyTrashcans();
-            //beweeg mensen
+            this.moveCrowd();
             if (!this._simulating) {
                 clearInterval(interval)
             }
-        }, 1000);
+        }, 2000);
+    }
+
+    moveCrowd() {
+        for (const groupOfVisitors of this._groupsOfVisitors) {
+            let newX = Math.floor(Math.random() * 15);
+            let newY = Math.floor(Math.random() * 15);
+            while (!this.checkEmptyTile(newX,newY)){
+                newX = Math.floor(Math.random() * 15);
+                newY = Math.floor(Math.random() * 15);
+            }
+            groupOfVisitors._x = newX;
+            groupOfVisitors._y = newY;
+            console.log("new x: " + newX + "--- new y: " + newY);
+        }
+    }
+
+    checkEmptyTile(x,y) {
+        let totalPeopleOnTile = 0;
+        for (const groupOfVisitors of this._groupsOfVisitors) {
+            if (groupOfVisitors._x === x && groupOfVisitors._y === y) {
+                totalPeopleOnTile += groupOfVisitors.length;
+            }
+        }
+        if (totalPeopleOnTile >= 7) {
+            return false;
+        }
+        // else if (totalPeopleOnTile >= ) {
+        //     //TODO hoeveel mensen mogen in het festivalobject op coordinaten
+        // }
+        return true;
     }
 
     stopSimulation() {
