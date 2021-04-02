@@ -1,13 +1,13 @@
 class SimulationController {
 
     _ticketScanners;
-    _weatherAPIResponse;
     _gridController;
     _groupsOfVisitors;
     _visitorAmount;
     _SimulationView;
     _region;
     _simulating;
+    _weather;
 
     constructor(gridController, region) {
         this._gridController = gridController;
@@ -28,14 +28,12 @@ class SimulationController {
         }
 
         let interval = window.setInterval(()=>{
-            this.fillTrashcans();
+            this.fillAndEmptyTrashcans();
             //beweeg mensen
             if (!this._simulating) {
                 clearInterval(interval)
             }
         }, 1000);
-
-        this.emptyTrashcans();
     }
 
     stopSimulation() {
@@ -43,20 +41,14 @@ class SimulationController {
         this._SimulationView.removeStopButton();
     }
 
-    fillTrashcans() {
+    fillAndEmptyTrashcans() {
         for (const trashcan of this._region._trashcans) {
-            trashcan._currentCapacity++;
-            console.log(trashcan._currentCapacity);
-        }
-    }
-
-    emptyTrashcans() {
-        for (const trashcan of this._region._trashcans) {
-            let interval = window.setInterval(()=>{
-                if (trashcan._currentCapacity >= trashcan._capacity) {
-                    trashcan._currentCapacity = 0;
-                }
-            }, trashcan._emptyingTime*1000);
+            if (trashcan._currentCapacity < trashcan._capacity) {
+                trashcan._currentCapacity++;
+            }
+            if (trashcan._currentCapacity >= trashcan._capacity) {
+                trashcan._currentCapacity = 0;
+            }
         }
     }
 
@@ -119,5 +111,22 @@ class SimulationController {
     setUser(result, group, index) {
         let visitor = new Visitor(result.results[0].name.first + " " + result.results[0].name.last, result.results[0].dob.age);
         group._visitors[index] = visitor;
+    }
+
+    async fetchWeather(cityName) {
+        fetch('api.openweathermap.org/data/2.5/weather?q={'+cityName+'}&appid={41c01a322b746bc2a2f64b04573cfa9b}')
+            .then((response)=>{
+                return response.json();
+            })
+            .then((data)=>{
+                this.setWeather(data);
+            }).catch(()=>{
+                this._SimulationView.weatherError("Weather API error");
+        });
+    }
+
+    setWeather(result) {
+        console.log(result);
+        this._weather = result;
     }
 }

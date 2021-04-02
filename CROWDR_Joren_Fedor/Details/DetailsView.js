@@ -34,20 +34,23 @@ class DetailsView {
             maxCapacity.id = "trashMax";
             let capacity = document.createElement('div');
             capacity.id = "trashFill";
+            let capacityLabel = document.createElement('label');
+            capacityLabel.innerText = " KG";
+            details.appendChild(capacityLabel);
             capacity.appendChild(maxCapacity);
             details.appendChild(capacity);
-            this.trashAnimate(object, details);
+            this.trashAnimate(object, capacity, capacityLabel);
         }
 
         gridView.appendChild(details);
     }
 
-    trashAnimate(object, details) {
-            let elem = details.querySelector('#trashFill');
+    trashAnimate(object, capacity, capacityLabel) {
             let id = setInterval(frame, 1000);
             function frame() {
+                capacityLabel.innerText = object._currentCapacity+ " KG";
                 let height = object._currentCapacity / object._capacity * 100;
-                elem.style.height = height + "%";
+                capacity.style.height = height + "px";
             }
     }
 

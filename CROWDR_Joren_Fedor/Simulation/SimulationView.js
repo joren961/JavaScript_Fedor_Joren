@@ -6,8 +6,41 @@ class SimulationView {
     constructor(simulationController) {
         this._simulationController = simulationController;
         this._menu = document.querySelector('.menuWrapper');
+        this.addCityInput();
         this.addScannerInput();
         this.addStartButton();
+    }
+
+    addCityInput() {
+        let values = ['Alkmaar','Amsterdam','Den Bosch','Groningen','Maastricht','Utrecht'];
+        let label = document.createElement('label');
+        label.innerText = "Select city:";
+        let input = document.createElement('select');
+        input.id = "cityInput";
+        input.name = "cities";
+        for (const value of values) {
+            let option = document.createElement("option");
+            option.value = value;
+            option.text = value.charAt(0).toUpperCase() + value.slice(1);
+            input.appendChild(option);
+        }
+        input.style.width = '80%';
+        input.addEventListener('change',()=>this._simulationController.fetchWeather(input.value));
+        this._menu.appendChild(label);
+        this._menu.appendChild(input);
+    }
+
+    weatherError(errorMessage) {
+        let errors = this._menu.querySelectorAll('.validationMessage');
+        if (errors!=null) {
+            for (const errorElement of errors) {
+                errorElement.parentElement.removeChild(errorElement);
+            }
+        }
+        let error = document.createElement('label');
+        error.innerText = errorMessage;
+        error.className = "validationMessage";
+        this._menu.querySelector('#cityInput').appendChild(error);
     }
 
     addScannerInput() {
