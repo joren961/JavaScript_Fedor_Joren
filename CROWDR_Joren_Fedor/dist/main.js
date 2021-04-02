@@ -1,0 +1,1 @@
+(()=>{let r=new StorageController,e=new GridController(r);new NavigationController(r,e),new FormController(r,e),alert("WEE")})();

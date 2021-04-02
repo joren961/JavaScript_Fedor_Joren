@@ -2,8 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8d9699a-bd95-488d-b2ce-50f445c6968c" name="Default Changelist" comment="idk if this works please dont kill me if it doesnt">
+      <change afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Grid/GridView.js" beforeDir="false" afterPath="$PROJECT_DIR$/Grid/GridView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/StorageController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/StorageController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Details/DetailsController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Details/DetailsController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Details/DetailsView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Details/DetailsView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Grid/GridController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Grid/GridController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Grid/GridView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Grid/GridView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HomePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Navigation/NavigationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Navigation/NavigationController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Navigation/NavigationView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Navigation/NavigationView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/DrinkStand.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/DrinkStand.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/FoodStand.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/FoodStand.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Region.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Region.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Tent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Tent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/ToiletBuilding.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/ToiletBuilding.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Trashcan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Trashcan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Tree.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Tree.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Visitor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Visitor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RegionForm/FormController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/RegionForm/FormController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RegionForm/FormView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/RegionForm/FormView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Setup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scripts/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simulation/SimulationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Simulation/SimulationController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simulation/SimulationView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Simulation/SimulationView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +69,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/dist" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -58,12 +82,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Fedor\Documents\GitHub\JavaScript_Fedor_Joren\CROWDR_Joren_Fedor\src" />
       <recent name="C:\Users\Fedor\Documents\GitHub\JavaScript_Fedor_Joren\CROWDR_Joren_Fedor\dist" />
       <recent name="C:\Users\Fedor\Documents\GitHub\JavaScript_Fedor_Joren\CROWDR_Joren_Fedor\MergeFiles(to be deleted)" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Fedor\Documents\GitHub\JavaScript_Fedor_Joren\CROWDR_Joren_Fedor\Resources" />
+      <recent name="C:\Users\Fedor\Documents\GitHub\JavaScript_Fedor_Joren\CROWDR_Joren_Fedor\src" />
       <recent name="C:\Users\Fedor\Documents\GitHub\JavaScript_Fedor_Joren\CROWDR_Joren_Fedor" />
+      <recent name="C:\Users\Fedor\Documents\GitHub\JavaScript_Fedor_Joren\CROWDR_Joren_Fedor\Resources" />
       <recent name="C:\Users\Fonteijn\Documents\GitHub\JavaScript_Fedor_Joren\CROWDR_Joren_Fedor\FestivalObjects" />
     </key>
   </component>
@@ -92,7 +118,7 @@
       <workItem from="1617187583055" duration="25525000" />
       <workItem from="1617271358799" duration="3000" />
       <workItem from="1617271378718" duration="17271000" />
-      <workItem from="1617355725621" duration="1212000" />
+      <workItem from="1617355725621" duration="7290000" />
     </task>
     <servers />
   </component>
