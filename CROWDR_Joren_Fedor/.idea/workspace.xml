@@ -2,35 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8d9699a-bd95-488d-b2ce-50f445c6968c" name="Default Changelist" comment="idk if this works please dont kill me if it doesnt">
-      <change afterPath="$PROJECT_DIR$/resources/App.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSS_files/HomePage.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/HomePage.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSS_files/Region.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/Region.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/homePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/homePage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/StorageController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/StorageController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Details/DetailsController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Details/DetailsController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Details/DetailsView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Details/DetailsView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Grid/GridController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Grid/GridController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Grid/GridView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Grid/GridView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Navigation/NavigationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Navigation/NavigationController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Navigation/NavigationView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Navigation/NavigationView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/DrinkStand.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/DrinkStand.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/FoodStand.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/FoodStand.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Region.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Region.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Tent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Tent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/ToiletBuilding.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/ToiletBuilding.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Trashcan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Trashcan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Tree.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Tree.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Visitor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Visitor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RegionForm/FormController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/RegionForm/FormController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RegionForm/FormView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/RegionForm/FormView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Simulation/SimulationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Simulation/SimulationController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Simulation/SimulationView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Simulation/SimulationView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/homePage.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
