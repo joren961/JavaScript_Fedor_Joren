@@ -3,12 +3,14 @@ class GridController {
 
     _StorageController;
     _DetailsController;
+    _SimulationController;
     _regionName;
     _GridView;
 
     constructor(storageController)
     {
         this._StorageController = storageController;
+
         this._GridView = new GridView(this);
     }
 
@@ -17,6 +19,9 @@ class GridController {
         this._DetailsController = new DetailsController(this._StorageController,regionName);
         let region = storageController.getRegion(regionName);
         this._GridView.render(region);
+        if (region._locked) {
+            this._SimulationController = new SimulationController(this,region);
+        }
     }
 
     placeTrees(objectArray)
@@ -258,9 +263,8 @@ class GridController {
             region._locked = true;
             //save in localstorage
             this._StorageController.updateRegion(region);
-            this._GridView.render(region);
-            let simulation = new SimulationController(this, region);
-            simulation.runSimulation();
+            this.createGrid();
+            this._SimulationController.runSimulation();
         }
         else
         {
