@@ -138,6 +138,7 @@ class FormView {
     addMinError(input) {
         let error = document.createElement("label");
         error.className = "validationMessage";
+        error.id = "validationMessageMin";
         error.innerText = "Minimum: " + input.getAttribute("min");
         input.parentNode.insertBefore(error,input);
     }
@@ -145,6 +146,7 @@ class FormView {
     addMaxError(input) {
         let error = document.createElement("label");
         error.className = "validationMessage";
+        error.id = "validationMessageMax";
         error.innerText = "Maximum: " + input.getAttribute("max");
         input.parentNode.insertBefore(error,input);
     }
@@ -153,12 +155,14 @@ class FormView {
         if (!allAreFilled) {
             let error = document.createElement("label");
             error.className = "validationMessage";
+            error.id = "validationMessageFilled";
             error.innerHTML = "Please fill in all of the required fields.";
             this._regionForm.prepend(error);
         }
         if (!enoughSpace) {
             let error = document.createElement("label");
             error.className = "validationMessage";
+            error.id = "validationMessageSpace";
             error.innerHTML = "There is not enough space for the chosen festival objects.";
             this._regionForm.prepend(error);
         }
