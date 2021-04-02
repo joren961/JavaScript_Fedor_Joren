@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a8d9699a-bd95-488d-b2ce-50f445c6968c" name="Default Changelist" comment="idk if this works please dont kill me if it doesnt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Grid/GridController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Grid/GridController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Grid/GridView.js" beforeDir="false" afterPath="$PROJECT_DIR$/Grid/GridView.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +45,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/MergeFiles(to be deleted)" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/dist" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -58,6 +58,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Fedor\Documents\GitHub\JavaScript_Fedor_Joren\CROWDR_Joren_Fedor\dist" />
       <recent name="C:\Users\Fedor\Documents\GitHub\JavaScript_Fedor_Joren\CROWDR_Joren_Fedor\MergeFiles(to be deleted)" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -91,6 +92,7 @@
       <workItem from="1617187583055" duration="25525000" />
       <workItem from="1617271358799" duration="3000" />
       <workItem from="1617271378718" duration="17271000" />
+      <workItem from="1617355725621" duration="1212000" />
     </task>
     <servers />
   </component>

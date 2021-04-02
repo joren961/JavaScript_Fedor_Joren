@@ -79,19 +79,19 @@ class GridView {
         if(region._locked != true)
         {
             //FOODSTAND
-            this.renderMenuItem(region._foodstands,"Food stand","Resources/foodStand(1x1).png");
+            this.renderMenuItem(region._foodstands,"Food stand","dist/Resources/foodStand(1x1).png");
 
             //DRINKSTAND
-            this.renderMenuItem(region._drinkstands,"Drink stand","Resources/drinkStand(1x2).png");
+            this.renderMenuItem(region._drinkstands,"Drink stand","dist/Resources/drinkStand(1x2).png");
 
             //TENTS
-            this.renderMenuItem(region._tents,"Tent","Resources/tent(3x3).png");
+            this.renderMenuItem(region._tents,"Tent","dist/Resources/tent(3x3).png");
 
             //TOILETBUILDING
-            this.renderMenuItem(region._toiletbuildings,"Toilet building","Resources/toiletbuilding(1x3).jpg");
+            this.renderMenuItem(region._toiletbuildings,"Toilet building","dist/Resources/toiletbuilding(1x3).jpg");
 
             //TRASHCAN
-            this.renderMenuItem(region._trashcans,"Trashcan","Resources/trashcan(1x1).jpg");
+            this.renderMenuItem(region._trashcans,"Trashcan","dist/Resources/trashcan(1x1).jpg");
 
             //LOCK REGION BUTTON
             let newLockRegion = document.createElement('div');
@@ -130,21 +130,21 @@ class GridView {
     renderPlacedObjects(region)
     {
 
-        this.renderPlacedItemsOnType(region._trees,"Tree","Resources/highTree(1x1).png",region._trees.length, region._locked, region._locked);
+        this.renderPlacedItemsOnType(region._trees,"Tree","dist/Resources/highTree(1x1).png",region._trees.length, region._locked, region._locked);
         //FOODSTAND
-        this.renderPlacedItemsOnType(region._foodstands,"Food stand","Resources/foodStand(1x1).png",region._foodstands.length, region._locked);
+        this.renderPlacedItemsOnType(region._foodstands,"Food stand","dist/Resources/foodStand(1x1).png",region._foodstands.length, region._locked);
 
         //DRINKSTAND
-        this.renderPlacedItemsOnType(region._drinkstands,"Drink stand","Resources/drinkStand(1x2).png",region._drinkstands.length, region._locked);
+        this.renderPlacedItemsOnType(region._drinkstands,"Drink stand","dist/Resources/drinkStand(1x2).png",region._drinkstands.length, region._locked);
 
         //TENTS
-        this.renderPlacedItemsOnType(region._tents,"Tent","Resources/tent(3x3).png", region._tents.length);
+        this.renderPlacedItemsOnType(region._tents,"Tent","dist/Resources/tent(3x3).png", region._tents.length);
 
         //TOILETBUILDING
-        this.renderPlacedItemsOnType(region._toiletbuildings,"Toilet building","Resources/toiletbuilding(1x3).jpg", region._toiletbuildings.length, region._locked);
+        this.renderPlacedItemsOnType(region._toiletbuildings,"Toilet building","dist/Resources/toiletbuilding(1x3).jpg", region._toiletbuildings.length, region._locked);
 
         //TRASHCAN
-        this.renderPlacedItemsOnType(region._trashcans,"Trashcan","Resources/trashcan(1x1).jpg",region._trashcans.length, region._locked);
+        this.renderPlacedItemsOnType(region._trashcans,"Trashcan","dist/Resources/trashcan(1x1).jpg",region._trashcans.length, region._locked);
 
         this._gridController.updatePlacedObjects(region);
     }
