@@ -129,16 +129,4 @@ class FormController {
             this._formView.updateSquaresLeft(squares);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }
