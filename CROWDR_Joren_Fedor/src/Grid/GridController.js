@@ -260,7 +260,7 @@ export default class GridController {
 
     lockRegion(regionName)
     {
-        let region = storageController.getRegion(regionName);
+        let region = this._StorageController.getRegion(regionName);
         if (this.validateRegionLocking(region))
         {
             //set bool true
