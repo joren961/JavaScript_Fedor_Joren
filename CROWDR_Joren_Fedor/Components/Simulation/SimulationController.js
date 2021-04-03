@@ -41,7 +41,19 @@ class SimulationController {
             }
         }, 3500);
     }
+    moveCrowd(weather) {
+        for (const groupOfVisitors of this._groupsOfVisitors) {
+            let newX = Math.floor(Math.random() * 15);
+            let newY = Math.floor(Math.random() * 15);
+            while (!this.checkEmptyTile(newX,newY)){
+                newX = Math.floor(Math.random() * 15);
+                newY = Math.floor(Math.random() * 15);
+            }
 
+            groupOfVisitors._x = newX;
+            groupOfVisitors._y = newY;
+        }
+    }
     tileOnHover(gridCell) {
         if (this._simulating) {
             let coordinates = gridCell.id.split(" ");
@@ -55,19 +67,6 @@ class SimulationController {
                 }
             }
             this._SimulationView.tileOnHoverMenu(crowdsOnTile);
-        }
-    }
-
-    moveCrowd() {
-        for (const groupOfVisitors of this._groupsOfVisitors) {
-            let newX = Math.floor(Math.random() * 15);
-            let newY = Math.floor(Math.random() * 15);
-            while (!this.checkEmptyTile(newX,newY)){
-                newX = Math.floor(Math.random() * 15);
-                newY = Math.floor(Math.random() * 15);
-            }
-            groupOfVisitors._x = newX;
-            groupOfVisitors._y = newY;
         }
     }
 

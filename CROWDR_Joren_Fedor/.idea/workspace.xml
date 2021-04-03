@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a8d9699a-bd95-488d-b2ce-50f445c6968c" name="Default Changelist" comment="idk if this works please dont kill me if it doesnt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Details/DetailsController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Details/DetailsController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Details/DetailsView.js" beforeDir="false" afterPath="$PROJECT_DIR$/Details/DetailsView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Grid/GridController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Grid/GridController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Grid/GridView.js" beforeDir="false" afterPath="$PROJECT_DIR$/Grid/GridView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simulation/SimulationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Simulation/SimulationController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simulation/SimulationView.js" beforeDir="false" afterPath="$PROJECT_DIR$/Simulation/SimulationView.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
