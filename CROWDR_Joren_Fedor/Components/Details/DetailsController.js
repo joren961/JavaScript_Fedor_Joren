@@ -38,7 +38,7 @@ class DetailsController {
                 break;
             case "Trashcan":
                 trashCapacity = parseInt(document.querySelector('.TrashCapacity').value);
-                trashTime = parseInt(document.querySelector('#TrashEmptyTime').value);
+                trashTime = document.querySelector('#TrashEmptyTime').value;
                 object._capacity = trashCapacity;
                 object._emptyingTime = trashTime;
                 break;

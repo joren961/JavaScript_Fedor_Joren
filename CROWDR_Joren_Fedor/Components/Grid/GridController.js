@@ -4,13 +4,11 @@ class GridController {
     _StorageController;
     _DetailsController;
     _SimulationController;
-    _regionName;
     _GridView;
 
     constructor(storageController)
     {
         this._StorageController = storageController;
-
         this._GridView = new GridView(this);
     }
 

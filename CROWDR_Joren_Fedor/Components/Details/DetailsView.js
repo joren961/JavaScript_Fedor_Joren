@@ -25,6 +25,7 @@ class DetailsView {
             let submit = document.createElement('a');
             submit.addEventListener('click',()=>this._detailsController.submitDetails(object));
             submit.className="button";
+            submit.id="apply";
             submit.innerHTML = "Apply";
             submit.style.border = "#357EC7 outset 3px";
             details.appendChild(submit);
