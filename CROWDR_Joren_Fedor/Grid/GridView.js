@@ -114,7 +114,9 @@ class GridView {
         newMenuItem.appendChild(newTitle);
         newMenuItem.className = 'menuItemWrapper';
         let newSquare = document.createElement('div');
-
+        if (objectArray[0]._type === "Toilet building") {
+            newMenuItem.id="ToiletItemWrapper";
+        }
         for (const object of objectArray) {
             if (object!=null) {
                 if(object._x == null || object._y == null)

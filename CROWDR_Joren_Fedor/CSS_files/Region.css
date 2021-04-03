@@ -40,7 +40,7 @@ body {
 }
 .containerGridView {
     width: 90%;
-    height: 940px;
+    height: 968px;
     background-color: cadetblue;
     margin: auto;
     padding: 0px;
@@ -60,9 +60,11 @@ body {
 }
 
 .menuItemWrapper {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
+    margin-bottom: 100px;
+}
+
+#ToiletItemWrapper {
+    margin-top: 70px;
 }
 
 .gridWrapper {

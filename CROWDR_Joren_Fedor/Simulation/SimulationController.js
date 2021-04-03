@@ -36,7 +36,7 @@ class SimulationController {
             if (!this._simulating) {
                 clearInterval(interval)
             }
-        }, 2000);
+        }, 2500);
     }
 
     tileOnHover(gridCell) {
