@@ -57,7 +57,6 @@ class GridView {
                     newCellGrid.addEventListener("drop", ev => {
                         ev.preventDefault();
                         let data = ev.dataTransfer.getData("text/plain");
-                        console.log(this._gridController.validateObjectPlacement(data, region._name, x, y) + "HIER");
                         if(this._gridController.validateObjectPlacement(data, region._name, x, y))
                         {
                             ev.target.appendChild(document.getElementById(data));
@@ -164,6 +163,7 @@ class GridView {
             }
         }
     }
+
     renderPlacedTrees(objectArray,type, srcTall, srcWide, srcShadow, isLocked)
     {
         for (const object of objectArray) {
@@ -172,7 +172,8 @@ class GridView {
                 {
                     let gridCellCord = object._x + " " + object._y;
                     let parentGridCell = document.getElementById(gridCellCord);
-
+                    console.log(object._squares);
+                    console.log(object);
                     switch(object._squares) {
                         case 1:
                             this.renderDragble(parentGridCell, type, object._id, srcTall, object, isLocked);
@@ -184,6 +185,8 @@ class GridView {
                             this.renderDragble(parentGridCell, type, object._id, srcShadow, object, isLocked);
                             break;
                         default:
+                            this.renderDragble(parentGridCell, type, object._id, srcTall, object, isLocked);
+                            break;
                         // code block
                     }
                 }
@@ -200,7 +203,6 @@ class GridView {
         newDragble.addEventListener("dragstart", e => {
             e.dataTransfer.setData("text/plain", newDragble.id);
         });
-
         newDragble.draggable = true;
         newDragble.className = type;
         newDragble.addEventListener('click',(e) => this._gridController.openDetails(object,this._gridWrap));

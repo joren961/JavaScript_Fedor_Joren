@@ -27,6 +27,7 @@ class GridController {
     placeTrees(objectArray)
     {
         for (const object of objectArray) {
+            console.log(objectArray);
             if (object!=null) {
 
                 if(object._x == null || object._y == null)

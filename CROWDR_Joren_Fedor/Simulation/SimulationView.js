@@ -154,13 +154,9 @@ class SimulationView {
                 let parentCellCords = x + " " + y;
                 for(let i = 0; i < groupsOfVisitors.length; i++)
                 {
-
-                    // this.renderCrowd(parentCellCords, groupsOfVisitors[i])
-
                     if(groupsOfVisitors[i]._x == x && groupsOfVisitors[i]._y == y)
                     {
                         peopleCounter += groupsOfVisitors[i]._visitors.length;
-
                     }
                     if(i == groupsOfVisitors.length -1)
                     {
@@ -208,8 +204,6 @@ class SimulationView {
                 this.renderCrowdedTile( parentCell, "dist/Resources/7person.png");
                 break;
         }
-
-
     }
     renderCrowdedTile(parentCell, src)
     {
