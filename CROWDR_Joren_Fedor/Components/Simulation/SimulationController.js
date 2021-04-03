@@ -32,6 +32,8 @@ class SimulationController {
             this.scanTickets();
         }
 
+        console.log(this._weather)
+        console.log(this._region)
         let interval = window.setInterval(()=>{
             this.fillAndEmptyTrashcans();
             this.moveCrowd();
@@ -41,19 +43,64 @@ class SimulationController {
             }
         }, 3500);
     }
-    moveCrowd(weather) {
+    moveCrowd() {
         for (const groupOfVisitors of this._groupsOfVisitors) {
-            let newX = Math.floor(Math.random() * 15);
-            let newY = Math.floor(Math.random() * 15);
-            while (!this.checkEmptyTile(newX,newY)){
-                newX = Math.floor(Math.random() * 15);
-                newY = Math.floor(Math.random() * 15);
+            //console.log(this._groupsOfVisitors);
+            if(this._weather == null)
+            {
+                let newX = Math.floor(Math.random() * 15);
+                let newY = Math.floor(Math.random() * 15);
+                while (!this.checkEmptyTile(newX, newY)) {
+                    newX = Math.floor(Math.random() * 15);
+                    newY = Math.floor(Math.random() * 15);
+                }
+                groupOfVisitors._x = newX;
+                groupOfVisitors._y = newY;
             }
-
-            groupOfVisitors._x = newX;
-            groupOfVisitors._y = newY;
+            else
+            {
+                switch (this._weather.main) {
+                    case 'Clouds':
+                        for(const tent of this._region._tents)
+                        {
+                            //console.log(tent);
+                           if(this.enterTent(tent, groupOfVisitors))
+                           {
+                               continue;
+                           }
+                        }
+                    case 'Sunni':
+                        //todo add logic for scortching hot weather
+                        break;
+                    default:
+                }
+            }
         }
+
     }
+    enterTent(tent, crowd)
+    {
+        //loop through all tiles and return cords
+        for(let x = 0; x < 3; x++)
+        {
+            for(let y = 0; y < 3; y++)
+            {
+                if(this.checkEmptyTile(tent._x + x,tent._y + y))
+                {
+                    crowd._x = tent._x + x;
+                    crowd._y = tent._y + y;
+                    //console.log(crowd._x);
+                    //console.log(crowd._y);
+                    //console.log(tent._x);
+                    //console.log(tent._y);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
     tileOnHover(gridCell) {
         if (this._simulating) {
             let coordinates = gridCell.id.split(" ");
@@ -72,6 +119,7 @@ class SimulationController {
 
     checkEmptyTile(x,y) {
         let totalPeopleOnTile = 0;
+        console.log(x + " " + y );
         for (const groupOfVisitors of this._groupsOfVisitors) {
             if (groupOfVisitors._x === x && groupOfVisitors._y === y) {
                 totalPeopleOnTile += groupOfVisitors.length;
@@ -156,7 +204,12 @@ class SimulationController {
 
     setWeather(result) {
         this._weather = result;
-        let icon = `https://openweathermap.org/img/wn/${result.icon}@2x.png`
+        let icon = `https://openweathermap.org/img/wn/${result.icon}@2x.png`;
+        console.log("WEATHER:");
+        console.log(result);
+        console.log(this._weather.main);
+
+
         this._SimulationView.showWeather(icon);
     }
 

@@ -221,7 +221,6 @@ class SimulationView {
     clearCrowdedTiles()
     {
         let wholeCrowd = document.querySelectorAll('[class=crowd]');
-        console.log(wholeCrowd);
         for(let i = 0; i < wholeCrowd.length; i++)
         {
             wholeCrowd[i].parentNode.removeChild(wholeCrowd[i]);
