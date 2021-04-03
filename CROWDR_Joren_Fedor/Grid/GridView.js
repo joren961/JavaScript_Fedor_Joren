@@ -129,8 +129,10 @@ class GridView {
 
     renderPlacedObjects(region)
     {
+        this.renderPlacedTrees(region._trees,"Tree", "dist/Resources/highTree(1x1).png", "dist/Resources/wideTree(2x1).png", "dist/Resources/shadowTree(3x3).png", region._locked);
+        //TREES
+        //this.renderPlacedItemsOnType(region._trees,"Tree","dist/Resources/highTree(1x1).png",region._trees.length, region._locked, region._locked);
 
-        this.renderPlacedItemsOnType(region._trees,"Tree","dist/Resources/highTree(1x1).png",region._trees.length, region._locked, region._locked);
         //FOODSTAND
         this.renderPlacedItemsOnType(region._foodstands,"Food stand","dist/Resources/foodStand(1x1).png",region._foodstands.length, region._locked);
 
@@ -162,6 +164,32 @@ class GridView {
             }
         }
     }
+    renderPlacedTrees(objectArray,type, srcTall, srcWide, srcShadow, isLocked)
+    {
+        for (const object of objectArray) {
+            if (object!=null) {
+                if(object._x != null || object._y != null)
+                {
+                    let gridCellCord = object._x + " " + object._y;
+                    let parentGridCell = document.getElementById(gridCellCord);
+
+                    switch(object._squares) {
+                        case 1:
+                            this.renderDragble(parentGridCell, type, object._id, srcTall, object, isLocked);
+                            break;
+                        case 2:
+                            this.renderDragble(parentGridCell, type, object._id, srcWide, object, isLocked);
+                            break;
+                        case 9:
+                            this.renderDragble(parentGridCell, type, object._id, srcShadow, object, isLocked);
+                            break;
+                        default:
+                        // code block
+                    }
+                }
+            }
+        }
+    }
 
     renderDragble(parentObject , type, id, imagesrc, object, isLocked)
     {
@@ -169,13 +197,10 @@ class GridView {
         newDragble.src = imagesrc;
         newDragble.id = type + id;
 
-        //if(isLocked == null)
-        //{
-            newDragble.addEventListener("dragstart", e => {
-                e.dataTransfer.setData("text/plain", newDragble.id);
+        newDragble.addEventListener("dragstart", e => {
+            e.dataTransfer.setData("text/plain", newDragble.id);
+        });
 
-            });
-        //}
         newDragble.draggable = true;
         newDragble.className = type;
         newDragble.addEventListener('click',(e) => this._gridController.openDetails(object,this._gridWrap));

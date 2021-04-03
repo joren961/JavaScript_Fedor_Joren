@@ -54,6 +54,26 @@ class DetailsView {
             }
     }
 
+    updateTreeImage(treeObject)
+    {
+        console.log(treeObject)
+        let getImg = document.getElementById(treeObject._type + treeObject._id)
+        switch (treeObject._squares) {
+            case 1:
+                getImg.src = "dist/Resources/highTree(1x1).png";
+
+                break;
+            case 2:
+                getImg.src = "dist/Resources/wideTree(2x1).png";
+
+                break;
+            case 9:
+                getImg.src = "dist/Resources/shadowTree(3x3).png";
+                break;
+        }
+
+    }
+
     addInputBasedOnType(object,details) {
         let newLabel = document.createElement('label');
         let newInput = document.createElement('input');
