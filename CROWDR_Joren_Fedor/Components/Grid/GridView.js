@@ -97,6 +97,7 @@ class GridView {
             let newLockRegion = document.createElement('div');
             newLockRegion.className = 'button';
             newLockRegion.innerHTML = 'Lock';
+            newLockRegion.id = "lockButton";
             newLockRegion.addEventListener('click', () => {this._gridController.lockRegion(region._name)});
 
             this._optionView.appendChild(newLockRegion);

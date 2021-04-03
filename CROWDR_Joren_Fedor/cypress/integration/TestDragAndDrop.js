@@ -21,6 +21,8 @@ describe('test form failed', () => {
         cy.get('#Trashcan1').should('be.visible').drag('#4 4');
         cy.get('#Tree1').should('be.visible').drag('#2 2');
 
-        cy.get();
+        cy.get('#lockButton').should('be.visible').click();
+
+        cy.get('#startSimulation').should('be.visible');
     })
 })
