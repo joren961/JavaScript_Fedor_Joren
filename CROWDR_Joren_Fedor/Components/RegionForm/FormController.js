@@ -2,13 +2,15 @@ class FormController {
 
     _StorageController;
     _GridController;
+    _NavigationController;
     _regionForm;
     _squaresLeft;
     _formView;
 
-    constructor(storageController, gridController) {
+    constructor(storageController, gridController,navigationController) {
         this._StorageController = storageController;
         this._GridController = gridController;
+        this._NavigationController = navigationController;
         this._regionForm = document.querySelector('.regionForm');
         this._squaresLeft = document.querySelector(".squaresLeft");
         this._formView = new FormView(this, this._regionForm, this._squaresLeft);
@@ -118,6 +120,7 @@ class FormController {
             let regionArray = JSON.parse(localStorage.getItem("regions"));
             regionArray.push(region);
             localStorage.setItem("regions", JSON.stringify(regionArray));
+            this._NavigationController.getRegions();
             this._GridController.createGrid(region._name);
         }
     }
