@@ -26,6 +26,7 @@ class NavigationView {
         for (const regionItem of areaList.querySelectorAll("li")) {
             if (regionItem.innerText === regionName + " ") {
                 areaList.removeChild(regionItem);
+                this.rebuildForm();
                 return;
             }
         }
@@ -55,10 +56,11 @@ class NavigationView {
 
                 let deleteArea = document.createElement("i");
                 deleteArea.className = "fa fa-trash";
+                deleteArea.id="deleteIcon";
                 deleteArea.addEventListener('click', () => {this._navController.deleteRegion(region._name)})
                 newArea.appendChild(deleteArea);
 
-                newArea.addEventListener('click', () => this._navController._gridController.createGrid(region._name));
+                newArea.addEventListener('click', () => {this._navController._gridController.createGrid(region._name)});
                 areaList.appendChild(newArea);
             }
         }

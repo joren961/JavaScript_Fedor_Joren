@@ -109,19 +109,26 @@ class GridView {
     {
         let newMenuItem = document.createElement('div');
         let newTitle = document.createElement('p');
-        newTitle.innerText = type + ": " + objectArray.length;
+        if (objectArray!=null) {
+            if (objectArray[0]!=null) {
+                newTitle.innerText = type + ": " + objectArray.length;
+                if (objectArray[0]._type === "Toilet building") {
+                    newMenuItem.id="ToiletItemWrapper";
+                }
+            }
+        }
         newTitle.className = 'menuItemTitle';
         newMenuItem.appendChild(newTitle);
         newMenuItem.className = 'menuItemWrapper';
         let newSquare = document.createElement('div');
-        if (objectArray[0]._type === "Toilet building") {
-            newMenuItem.id="ToiletItemWrapper";
-        }
-        for (const object of objectArray) {
-            if (object!=null) {
-                if(object._x == null || object._y == null)
-                {
-                    this.renderDragble(newSquare, type, object._id, imagesrc, object);
+
+        if (objectArray!=null) {
+            for (const object of objectArray) {
+                if (object!=null) {
+                    if(object._x == null || object._y == null)
+                    {
+                        this.renderDragble(newSquare, type, object._id, imagesrc, object);
+                    }
                 }
             }
         }
@@ -131,24 +138,34 @@ class GridView {
 
     renderPlacedObjects(region)
     {
-        this.renderPlacedTrees(region._trees,"Tree", "dist/Resources/highTree(1x1).png", "dist/Resources/wideTree(2x1).png", "dist/Resources/shadowTree(3x3).png", region._locked);
-        //TREES
-        //this.renderPlacedItemsOnType(region._trees,"Tree","dist/Resources/highTree(1x1).png",region._trees.length, region._locked, region._locked);
+        if (region._trees!=null) {
+            this.renderPlacedTrees(region._trees,"Tree", "dist/Resources/highTree(1x1).png", "dist/Resources/wideTree(2x1).png", "dist/Resources/shadowTree(3x3).png", region._locked);
+        }
 
         //FOODSTAND
-        this.renderPlacedItemsOnType(region._foodstands,"Food stand","dist/Resources/foodStand(1x1).png",region._foodstands.length, region._locked);
+        if (region._foodstands!=null) {
+            this.renderPlacedItemsOnType(region._foodstands,"Food stand","dist/Resources/foodStand(1x1).png",region._foodstands.length, region._locked);
+        }
 
         //DRINKSTAND
-        this.renderPlacedItemsOnType(region._drinkstands,"Drink stand","dist/Resources/drinkStand(1x2).png",region._drinkstands.length, region._locked);
+        if (region._drinkstands!=null) {
+            this.renderPlacedItemsOnType(region._drinkstands,"Drink stand","dist/Resources/drinkStand(1x2).png",region._drinkstands.length, region._locked);
+        }
 
         //TENTS
-        this.renderPlacedItemsOnType(region._tents,"Tent","dist/Resources/tent(3x3).png", region._tents.length);
+        if (region._tents!=null) {
+            this.renderPlacedItemsOnType(region._tents,"Tent","dist/Resources/tent(3x3).png", region._tents.length);
+        }
 
         //TOILETBUILDING
-        this.renderPlacedItemsOnType(region._toiletbuildings,"Toilet building","dist/Resources/toiletbuilding(1x3).jpg", region._toiletbuildings.length, region._locked);
+        if (region._toiletbuildings!=null) {
+            this.renderPlacedItemsOnType(region._toiletbuildings,"Toilet building","dist/Resources/toiletbuilding(1x3).jpg", region._toiletbuildings.length, region._locked);
+        }
 
         //TRASHCAN
-        this.renderPlacedItemsOnType(region._trashcans,"Trashcan","dist/Resources/trashcan(1x1).jpg",region._trashcans.length, region._locked);
+        if (region._trashcans!=null) {
+            this.renderPlacedItemsOnType(region._trashcans,"Trashcan","dist/Resources/trashcan(1x1).jpg",region._trashcans.length, region._locked);
+        }
 
         this._gridController.updatePlacedObjects(region);
     }
@@ -168,25 +185,27 @@ class GridView {
     }
     renderPlacedTrees(objectArray,type, srcTall, srcWide, srcShadow, isLocked)
     {
-        for (const object of objectArray) {
-            if (object!=null) {
-                if(object._x != null || object._y != null)
-                {
-                    let gridCellCord = object._x + " " + object._y;
-                    let parentGridCell = document.getElementById(gridCellCord);
+        if (objectArray!=null) {
+            for (const object of objectArray) {
+                if (object!=null) {
+                    if(object._x != null || object._y != null)
+                    {
+                        let gridCellCord = object._x + " " + object._y;
+                        let parentGridCell = document.getElementById(gridCellCord);
 
-                    switch(object._squares) {
-                        case 1:
-                            this.renderDragble(parentGridCell, type, object._id, srcTall, object, isLocked);
-                            break;
-                        case 2:
-                            this.renderDragble(parentGridCell, type, object._id, srcWide, object, isLocked);
-                            break;
-                        case 9:
-                            this.renderDragble(parentGridCell, type, object._id, srcShadow, object, isLocked);
-                            break;
-                        default:
-                        // code block
+                        switch(object._squares) {
+                            case 1:
+                                this.renderDragble(parentGridCell, type, object._id, srcTall, object, isLocked);
+                                break;
+                            case 2:
+                                this.renderDragble(parentGridCell, type, object._id, srcWide, object, isLocked);
+                                break;
+                            case 9:
+                                this.renderDragble(parentGridCell, type, object._id, srcShadow, object, isLocked);
+                                break;
+                            default:
+                            // code block
+                        }
                     }
                 }
             }

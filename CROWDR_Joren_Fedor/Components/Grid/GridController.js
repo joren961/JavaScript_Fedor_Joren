@@ -24,16 +24,18 @@ class GridController {
 
     placeTrees(objectArray)
     {
-        for (const object of objectArray) {
-            if (object!=null) {
+        if (objectArray!=null) {
+            for (const object of objectArray) {
+                if (object!=null) {
 
-                if(object._x == null || object._y == null)
-                {
-                    //random cords
-                    let randomX = Math.floor(Math.random() * 15);
-                    let randomY = Math.floor(Math.random() * 15);
+                    if(object._x == null || object._y == null)
+                    {
+                        //random cords
+                        let randomX = Math.floor(Math.random() * 15);
+                        let randomY = Math.floor(Math.random() * 15);
 
-                    this.placeObject(object, randomX, randomY);
+                        this.placeObject(object, randomX, randomY);
+                    }
                 }
             }
         }

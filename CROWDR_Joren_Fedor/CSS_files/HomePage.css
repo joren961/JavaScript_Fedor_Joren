@@ -148,3 +148,9 @@ label {
     width: 500px;
     border: 1px solid black;
 }
+
+#deleteIcon {
+    font-size: 30px;
+    cursor: default;
+    z-index: 10;
+}
