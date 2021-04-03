@@ -90,6 +90,9 @@ class SimulationController {
         this._simulating = false;
         this._SimulationView.removeStopButton();
         this._SimulationView.removeOldCrowdDetails();
+        if (document.querySelector('#scannerLabel')!=null) {
+            this._SimulationView.addStartButton();
+        }
     }
 
     fillAndEmptyTrashcans() {
