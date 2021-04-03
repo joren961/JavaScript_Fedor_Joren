@@ -263,7 +263,7 @@ class GridController {
             region._locked = true;
             //save in localstorage
             this._StorageController.updateRegion(region);
-            this.createGrid();
+            this.createGrid(regionName);
         }
         else
         {
