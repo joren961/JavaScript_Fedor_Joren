@@ -40,28 +40,31 @@ class NavigationView {
         let addRegion = document.createElement('li');
         addRegion.className="clickbleLi";
         addRegion.innerText = "Create new region ";
+        addRegion.id="createRegionLink";
         let icon = document.createElement('i');
         icon.className = "fa fa-plus"
         addRegion.appendChild(icon);
         addRegion.addEventListener('click',() => this.rebuildForm());
         areaList.appendChild(addRegion);
 
-        if (regions[0] == null) {
-            return;
-        } else {
-            for (const region of regions) {
-                let newArea = document.createElement("li");
-                newArea.innerText = region._name + "  ";
-                newArea.className = "clickbleLi";
+        if (regions!=null) {
+            if (regions[0] == null) {
+                return;
+            } else {
+                for (const region of regions) {
+                    let newArea = document.createElement("li");
+                    newArea.innerText = region._name + "  ";
+                    newArea.className = "clickbleLi";
+                    newArea.id=region._name;
+                    let deleteArea = document.createElement("i");
+                    deleteArea.className = "fa fa-trash";
+                    deleteArea.id="deleteIcon";
+                    deleteArea.addEventListener('click', () => {this._navController.deleteRegion(region._name)})
+                    newArea.appendChild(deleteArea);
 
-                let deleteArea = document.createElement("i");
-                deleteArea.className = "fa fa-trash";
-                deleteArea.id="deleteIcon";
-                deleteArea.addEventListener('click', () => {this._navController.deleteRegion(region._name)})
-                newArea.appendChild(deleteArea);
-
-                newArea.addEventListener('click', () => {this._navController._gridController.createGrid(region._name)});
-                areaList.appendChild(newArea);
+                    newArea.addEventListener('click', () => {this._navController._gridController.createGrid(region._name)});
+                    areaList.appendChild(newArea);
+                }
             }
         }
     }
