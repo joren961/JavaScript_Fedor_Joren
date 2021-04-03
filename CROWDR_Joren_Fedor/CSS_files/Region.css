@@ -132,3 +132,7 @@ body {
     z-index: 2;
     background-color: saddlebrown;
 }
+.crowd
+{
+    position: absolute;
+}

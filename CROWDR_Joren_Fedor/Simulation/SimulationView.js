@@ -146,17 +146,35 @@ class SimulationView {
 
     renderAllCrowds(groupsOfVisitors) {
         this.clearCrowdedTiles();
-        for(let i = 0; i < groupsOfVisitors.length; i++)
+        for(let x =0; x < 15; x++)
         {
-            let parentCellCords = groupsOfVisitors[i]._x + " " + groupsOfVisitors[i]._y;
+            for(let y =0; y < 15; y++)
+            {
+                let peopleCounter = 0;
+                let parentCellCords = x + " " + y;
+                for(let i = 0; i < groupsOfVisitors.length; i++)
+                {
 
-           this.renderCrowd(parentCellCords, groupsOfVisitors[i])
+                    // this.renderCrowd(parentCellCords, groupsOfVisitors[i])
+
+                    if(groupsOfVisitors[i]._x == x && groupsOfVisitors[i]._y == y)
+                    {
+                        peopleCounter += groupsOfVisitors[i]._visitors.length;
+
+                    }
+                    if(i == groupsOfVisitors.length -1)
+                    {
+                        this.renderCrowd(parentCellCords, peopleCounter)
+                    }
+                }
+            }
         }
     }
 
-    renderCrowd(parentCellCords, visitorGroup) {
+
+    renderCrowd(parentCellCords, peopleCounter) {
         let parentCell = document.getElementById(parentCellCords);
-        switch (visitorGroup._visitors.length) {
+        switch (peopleCounter) {
             case 0:
                 break;
             case 1:
@@ -187,6 +205,8 @@ class SimulationView {
 
                 break;
             default:
+                this.renderCrowdedTile( parentCell, "dist/Resources/7person.png");
+                break;
         }
 
 
@@ -206,9 +226,5 @@ class SimulationView {
         {
             wholeCrowd[i].parentNode.removeChild(wholeCrowd[i]);
         }
-    }
-    viewCrowdData()
-    {
-
     }
 }
