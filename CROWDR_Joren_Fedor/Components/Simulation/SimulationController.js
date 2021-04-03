@@ -24,6 +24,7 @@ class SimulationController {
     runSimulation() {
         this._simulating = true;
         this._SimulationView.addHoverListener();
+        this._SimulationView.removeStartButton();
         if (this._SimulationView._menu.querySelector('#stopButton') == null) {
             this._SimulationView.addStopButton();
         }

@@ -125,9 +125,15 @@ class SimulationView {
     addStartButton() {
         let link = document.createElement('a');
         link.className = "button";
+        link.id = "startSimulation";
         link.innerText = "Start"
         link.addEventListener('click', () => this._simulationController.runSimulation());
         this._menu.appendChild(link);
+    }
+
+    removeStartButton() {
+        let start = this._menu.querySelector('#startSimulation');
+        start.parentNode.removeChild(start);
     }
 
     addStopButton() {

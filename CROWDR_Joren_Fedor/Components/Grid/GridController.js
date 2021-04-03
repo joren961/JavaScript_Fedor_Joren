@@ -14,6 +14,11 @@ class GridController {
 
     createGrid(regionName)
     {
+        if (this._SimulationController!=null) {
+            if (this._SimulationController._simulating) {
+                this._SimulationController.stopSimulation();
+            }
+        }
         this._DetailsController = new DetailsController(this._StorageController,regionName);
         let region = storageController.getRegion(regionName);
         this._GridView.render(region);
