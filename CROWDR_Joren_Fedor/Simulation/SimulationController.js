@@ -32,6 +32,7 @@ class SimulationController {
         let interval = window.setInterval(()=>{
             this.fillAndEmptyTrashcans();
             this.moveCrowd();
+            this._SimulationView.renderAllCrowds(this._groupsOfVisitors);
             if (!this._simulating) {
                 clearInterval(interval)
             }
