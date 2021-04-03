@@ -8,10 +8,12 @@ class SimulationController {
     _region;
     _simulating;
     _weather;
+    _APICaller;
 
     constructor(gridController, region) {
         this._gridController = gridController;
         this._SimulationView = new SimulationView(this);
+        this._APICaller = new APICaller(this);
         this._region = region;
         this._ticketScanners = [];
         this._groupsOfVisitors = [];
@@ -124,7 +126,7 @@ class SimulationController {
                     }
                     let group = new VisitorGroup(Math.floor(Math.random() * 15), Math.floor(Math.random()*15));
                     for (let i = 0; i<Math.floor((Math.random()*4)+1);i++) {
-                        let result = this.fetchRandomUser(group, i);
+                        let result = this._APICaller.fetchRandomUser(group, i);
                     }
                     this._groupsOfVisitors[this._groupsOfVisitors.length] = group;
                 }
@@ -143,40 +145,22 @@ class SimulationController {
         return count;
     }
 
-    async fetchRandomUser(group, index) {
-        fetch('https://randomuser.me/api/?nat=nl')
-            .then((response) => {
-                return response.json();
-            })
-            .then((data)=>{
-                this.setUser(data, group, index);
-            })
-            .catch(()=>{
-                let VisitorObject = new Visitor("API error",404);
-                this.setUser(VisitorObject, group, index);
-            });
-    }
-
     setUser(result, group, index) {
         let visitor = new Visitor(result.results[0].name.first + " " + result.results[0].name.last, result.results[0].dob.age);
         group._visitors[index] = visitor;
     }
 
-    async fetchWeather(cityName) {
-        fetch('https://api.openweathermap.org/data/2.5/weather?id='+cityName+'&appid=41c01a322b746bc2a2f64b04573cfa9b')
-            .then((response)=>{
-                return response.json();
-            })
-            .then((data)=>{
-                this.setWeather(data.weather[0]);
-            }).catch(()=>{
-                this._SimulationView.weatherError("Weather API error");
-        });
+    fetchWeather(input) {
+        this._APICaller.fetchWeather(input);
     }
 
     setWeather(result) {
         this._weather = result;
         let icon = `https://openweathermap.org/img/wn/${result.icon}@2x.png`
         this._SimulationView.showWeather(icon);
+    }
+
+    weatherError(errormessage) {
+        this._SimulationView.weatherError(errormessage);
     }
 }
