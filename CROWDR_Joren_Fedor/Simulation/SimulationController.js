@@ -16,10 +16,12 @@ class SimulationController {
         this._ticketScanners = [];
         this._groupsOfVisitors = [];
         this._visitorAmount = 0;
+        this._simulating = false;
     }
 
     runSimulation() {
         this._simulating = true;
+        this._SimulationView.addHoverListener();
         if (this._SimulationView._menu.querySelector('#stopButton') == null) {
             this._SimulationView.addStopButton();
         }
@@ -36,6 +38,22 @@ class SimulationController {
         }, 2000);
     }
 
+    tileOnHover(gridCell) {
+        if (this._simulating) {
+            let coordinates = gridCell.id.split(" ");
+            let x = coordinates[0];
+            let y = coordinates[1];
+            let crowdsOnTile = [];
+            this._SimulationView.removeOldCrowdDetails();
+            for (const groupOfVisitors of this._groupsOfVisitors) {
+                if (groupOfVisitors._x === parseInt(x) && groupOfVisitors._y === parseInt(y)) {
+                    crowdsOnTile[crowdsOnTile.length] = groupOfVisitors;
+                }
+            }
+            this._SimulationView.tileOnHoverMenu(crowdsOnTile);
+        }
+    }
+
     moveCrowd() {
         for (const groupOfVisitors of this._groupsOfVisitors) {
             let newX = Math.floor(Math.random() * 15);
@@ -46,7 +64,6 @@ class SimulationController {
             }
             groupOfVisitors._x = newX;
             groupOfVisitors._y = newY;
-            console.log("new x: " + newX + "--- new y: " + newY);
         }
     }
 
@@ -69,6 +86,7 @@ class SimulationController {
     stopSimulation() {
         this._simulating = false;
         this._SimulationView.removeStopButton();
+        this._SimulationView.removeOldCrowdDetails();
     }
 
     fillAndEmptyTrashcans() {
@@ -156,7 +174,6 @@ class SimulationController {
     }
 
     setWeather(result) {
-        console.log(result);
         this._weather = result;
         let icon = `https://openweathermap.org/img/wn/${result.icon}@2x.png`
         this._SimulationView.showWeather(icon);

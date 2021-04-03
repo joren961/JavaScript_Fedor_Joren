@@ -6,6 +6,7 @@ class SimulationView {
     constructor(simulationController) {
         this._simulationController = simulationController;
         this._menu = document.querySelector('.menuWrapper');
+
         this.addCityInput();
         this.addScannerInput();
         this.addStartButton();
@@ -69,6 +70,43 @@ class SimulationView {
         error.innerText = errorMessage;
         error.className = "validationMessage";
         this._menu.insertBefore(error,this._menu.querySelector('#cityInput'));
+    }
+
+    addHoverListener() {
+        let grid = document.querySelector('.gridView');
+        for (const gridCell of grid.querySelectorAll('.gridCell')) {
+            gridCell.addEventListener('mouseenter',(e)=>{this._simulationController.tileOnHover(gridCell)});
+        }
+    }
+
+
+    tileOnHoverMenu(crowds) {
+        if (crowds[0]!=null) {
+            this.removeOldCrowdDetails();
+                let details = document.createElement('div');
+                details.style.width = '90%';
+                details.className = "detailsBox";
+                let counter = 1;
+                for (const crowd of crowds) {
+                    let label = document.createElement('label');
+                    label.innerText = "Group: " + counter;
+                    counter++;
+                    details.appendChild(label);
+                    for (const visitor of crowd._visitors) {
+                        let p = document.createElement('p');
+                        p.innerText = visitor._fullName+", " + visitor._age;
+                        details.appendChild(p);
+                    }
+                }
+                this._menu.appendChild(details);
+        }
+    }
+
+    removeOldCrowdDetails() {
+        let oldDetails = this._menu.querySelector('.detailsBox');
+        if (oldDetails!=null) {
+            this._menu.removeChild(oldDetails);
+        }
     }
 
     addScannerInput() {
