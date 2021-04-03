@@ -30,6 +30,7 @@ class SimulationController {
         let interval = window.setInterval(()=>{
             this.fillAndEmptyTrashcans();
             this.moveCrowd();
+            this._SimulationView.renderAllCrowds(this._groupsOfVisitors);
             if (!this._simulating) {
                 clearInterval(interval)
             }
@@ -46,7 +47,7 @@ class SimulationController {
             }
             groupOfVisitors._x = newX;
             groupOfVisitors._y = newY;
-            console.log("new x: " + newX + "--- new y: " + newY);
+            //console.log("new x: " + newX + "--- new y: " + newY);
         }
     }
 
