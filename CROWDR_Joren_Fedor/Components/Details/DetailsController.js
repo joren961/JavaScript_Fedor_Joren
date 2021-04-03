@@ -61,6 +61,7 @@ class DetailsController {
                 break;
             default : return;
         }
+        this._detailsView.addConfirmation();
         this._storageController.updateRegionObject(this._regionName,object);
     }
 

@@ -55,6 +55,19 @@ class DetailsView {
             }
     }
 
+    addConfirmation() {
+        if (document.querySelector('#confirmation')==null) {
+            let check = document.createElement('i')
+            check.className = "fa fa-check";
+            check.id= "confirmation";
+            check.style.color = "green";
+            check.style.fontSize = "25px";
+            check.style.marginTop = "5px";
+            let submit = document.querySelector('#apply');
+            submit.parentNode.insertBefore(check,submit);
+        }
+    }
+
     updateTreeImage(treeObject)
     {
         console.log(treeObject)
