@@ -60,7 +60,7 @@ class GridView {
                         if(this._gridController.validateObjectPlacement(data, region._name, x, y))
                         {
                             ev.target.appendChild(document.getElementById(data));
-                            //todo hier
+                            this._gridController.playPopSound();
                         }
 
                         this._gridController.updatePlacedObjects(region);

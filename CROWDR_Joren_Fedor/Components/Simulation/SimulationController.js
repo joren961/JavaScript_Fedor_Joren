@@ -220,7 +220,7 @@ class SimulationController {
                 totalPeopleOnTile += groupOfVisitors._visitors.length;
             }
         }
-        if (totalPeopleOnTile > 7) {
+        if (totalPeopleOnTile >= 7) {
             return false;
         }
         if(this.getObjectOnCords(x, y) != -1) {
@@ -264,6 +264,9 @@ class SimulationController {
         this._simulating = false;
         this._SimulationView.removeStopButton();
         this._SimulationView.removeOldCrowdDetails();
+        if (this._groupsOfVisitors[0]!=null) {
+            this._groupsOfVisitors = [];
+        }
         if (document.querySelector('#scannerLabel')!=null) {
             this._SimulationView.addStartButton();
         }
@@ -323,8 +326,13 @@ class SimulationController {
     }
 
     setUser(result, group, index) {
-        let visitor = new Visitor(result.results[0].name.first + " " + result.results[0].name.last, result.results[0].dob.age);
-        group._visitors[index] = visitor;
+        try {
+            let visitor = new Visitor(result.results[0].name.first + " " + result.results[0].name.last, result.results[0].dob.age);
+            group._visitors[index] = visitor;
+        } catch (e) {
+            let visitor = new Visitor("API error", 404);
+            group._visitors[index] = visitor;
+        }
     }
 
     fetchWeather(input) {
@@ -332,9 +340,13 @@ class SimulationController {
     }
 
     setWeather(result) {
-        this._weather = result;
-        let icon = `https://openweathermap.org/img/wn/${result.icon}@2x.png`;
-        this._SimulationView.showWeather(icon);
+        try {
+            this._weather = result;
+            let icon = `https://openweathermap.org/img/wn/${result.icon}@2x.png`;
+            this._SimulationView.showWeather(icon);
+        } catch (e) {
+            this.weatherError("Weather API error");
+        }
     }
 
     weatherError(errormessage) {

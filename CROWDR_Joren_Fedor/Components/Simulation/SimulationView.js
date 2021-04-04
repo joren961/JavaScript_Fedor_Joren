@@ -96,18 +96,20 @@ class SimulationView {
         if (crowds[0]!=null) {
             this.removeOldCrowdDetails();
                 let details = document.createElement('div');
-                details.style.width = '90%';
+                details.style.width = '95%';
                 details.className = "detailsBox";
                 let counter = 1;
                 for (const crowd of crowds) {
-                    let label = document.createElement('label');
-                    label.innerText = "Group: " + counter;
-                    counter++;
-                    details.appendChild(label);
-                    for (const visitor of crowd._visitors) {
-                        let p = document.createElement('p');
-                        p.innerText = visitor._fullName+", " + visitor._age;
-                        details.appendChild(p);
+                    if (crowd._visitors[0]!=null) {
+                        let label = document.createElement('label');
+                        label.innerText = "Group: " + counter;
+                        counter++;
+                        details.appendChild(label);
+                        for (const visitor of crowd._visitors) {
+                            let p = document.createElement('p');
+                            p.innerText = visitor._fullName+", " + visitor._age;
+                            details.appendChild(p);
+                        }
                     }
                 }
                 this._menu.appendChild(details);
@@ -117,6 +119,11 @@ class SimulationView {
     removeOldCrowdDetails() {
         let oldDetails = this._menu.querySelector('.detailsBox');
         if (oldDetails!=null) {
+            if (oldDetails.querySelectorAll('label')[0]!=null) {
+                for (const label of oldDetails.querySelectorAll('label')) {
+                    oldDetails.removeChild(label);
+                }
+            }
             this._menu.removeChild(oldDetails);
         }
     }
@@ -161,7 +168,6 @@ class SimulationView {
         this._menu.removeChild(this._menu.querySelector('#stopButton'));
     }
 
-
     renderAllCrowds(groupsOfVisitors) {
         this.clearCrowdedTiles();
         for(let x =0; x < 15; x++)
@@ -172,11 +178,11 @@ class SimulationView {
                 let parentCellCords = x + " " + y;
                 for(let i = 0; i < groupsOfVisitors.length; i++)
                 {
-                    if(groupsOfVisitors[i]._x == x && groupsOfVisitors[i]._y == y)
+                    if(groupsOfVisitors[i]._x === x && groupsOfVisitors[i]._y === y)
                     {
                         peopleCounter += groupsOfVisitors[i]._visitors.length;
                     }
-                    if(i == groupsOfVisitors.length -1)
+                    if(i === groupsOfVisitors.length -1)
                     {
                         this.renderCrowd(parentCellCords, peopleCounter)
                     }
@@ -184,7 +190,6 @@ class SimulationView {
             }
         }
     }
-
 
     renderCrowd(parentCellCords, peopleCounter) {
         let parentCell = document.getElementById(parentCellCords);

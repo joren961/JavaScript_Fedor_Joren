@@ -6,6 +6,7 @@ class FormController {
     _regionForm;
     _squaresLeft;
     _formView;
+    _audio;
 
     constructor(storageController, gridController,navigationController) {
         this._StorageController = storageController;
@@ -14,6 +15,12 @@ class FormController {
         this._regionForm = document.querySelector('.regionForm');
         this._squaresLeft = document.querySelector(".squaresLeft");
         this._formView = new FormView(this, this._regionForm, this._squaresLeft);
+        this.setupAudio();
+    }
+
+    setupAudio() {
+        this._audio = new Audio('dist/Resources/buttonclick.wav');
+        this._audio.volume = 0.4;
     }
 
     getNextInput() {
@@ -66,62 +73,67 @@ class FormController {
 
     submitForm() {
         if (this.validateForm() === true) {
+            this._audio.play();
             if (localStorage.getItem("regions") === null) {
                 let regions = [];
                 localStorage.setItem("regions",JSON.stringify(regions));
             }
-            let region = new Region(this._regionForm.querySelector(".regioninput").value, parseInt(this._regionForm.querySelector(".regionVisitorInput").value));
-            this._regionForm.querySelectorAll("input").forEach(function (input) {
-                switch (input.className) {
-                    case "tents":
-                        let tents = [];
-                        for (let i = 0; i<input.value; i++) {
-                            tents[i] = new Tent(i+1);
-                        }
-                        region._tents = tents;
-                        break;
-                    case "foodStands":
-                        let foodStands = [];
-                        for (let i = 0; i<input.value; i++) {
-                            foodStands[i] = new FoodStand(i+1);
-                        }
-                        region._foodstands = foodStands;
-                        break;
-                    case "drinkStands":
-                        let drinkStands = [];
-                        for (let i = 0; i<input.value; i++) {
-                            drinkStands[i] = new DrinkStand(i+1);
-                        }
-                        region._drinkstands = drinkStands;
-                        break;
-                    case "trees":
-                        let trees = [];
-                        for (let i = 0; i<input.value; i++) {
-                            trees[i] = new Tree(i+1);
-                        }
-                        region._trees = trees;
-                        break;
-                    case "toilets":
-                        let toilets = [];
-                        for (let i = 0; i<input.value; i++) {
-                            toilets[i] = new ToiletBuilding(i+1);
-                        }
-                        region._toiletbuildings = toilets;
-                        break;
-                    case "trash":
-                        let trashCans = [];
-                        for (let i = 0; i<input.value; i++) {
-                            trashCans[i] = new Trashcan(i+1);
-                        }
-                        region._trashcans = trashCans;
-                        break;
-                }
-            })
-            let regionArray = JSON.parse(localStorage.getItem("regions"));
-            regionArray.push(region);
-            localStorage.setItem("regions", JSON.stringify(regionArray));
-            this._NavigationController.getRegions();
-            this._GridController.createGrid(region._name);
+            try {
+                let region = new Region(this._regionForm.querySelector(".regioninput").value, parseInt(this._regionForm.querySelector(".regionVisitorInput").value));
+                this._regionForm.querySelectorAll("input").forEach(function (input) {
+                    switch (input.className) {
+                        case "tents":
+                            let tents = [];
+                            for (let i = 0; i<input.value; i++) {
+                                tents[i] = new Tent(i+1);
+                            }
+                            region._tents = tents;
+                            break;
+                        case "foodStands":
+                            let foodStands = [];
+                            for (let i = 0; i<input.value; i++) {
+                                foodStands[i] = new FoodStand(i+1);
+                            }
+                            region._foodstands = foodStands;
+                            break;
+                        case "drinkStands":
+                            let drinkStands = [];
+                            for (let i = 0; i<input.value; i++) {
+                                drinkStands[i] = new DrinkStand(i+1);
+                            }
+                            region._drinkstands = drinkStands;
+                            break;
+                        case "trees":
+                            let trees = [];
+                            for (let i = 0; i<input.value; i++) {
+                                trees[i] = new Tree(i+1);
+                            }
+                            region._trees = trees;
+                            break;
+                        case "toilets":
+                            let toilets = [];
+                            for (let i = 0; i<input.value; i++) {
+                                toilets[i] = new ToiletBuilding(i+1);
+                            }
+                            region._toiletbuildings = toilets;
+                            break;
+                        case "trash":
+                            let trashCans = [];
+                            for (let i = 0; i<input.value; i++) {
+                                trashCans[i] = new Trashcan(i+1);
+                            }
+                            region._trashcans = trashCans;
+                            break;
+                    }
+                })
+                let regionArray = JSON.parse(localStorage.getItem("regions"));
+                regionArray.push(region);
+                localStorage.setItem("regions", JSON.stringify(regionArray));
+                this._NavigationController.getRegions();
+                this._GridController.createGrid(region._name);
+            } catch (e) {
+                this._formView.addCustomError("Rare error occurred, please refresh the page");
+            }
         }
     }
 

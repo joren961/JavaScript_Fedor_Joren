@@ -6,6 +6,7 @@ class NavigationView {
     constructor(navigationController) {
         this._formPage = [document.querySelector('.hamburgerLink'), document.querySelector('.navigation'), document.querySelector('#space'), document.querySelector('#header'), document.querySelector('.regionForm'), document.querySelector('.nextInput'), document.querySelector('#reset')];
         this._navController = navigationController;
+        document.querySelector('.hamburgerLink').addEventListener('click',()=>this._navController.toggleNav());
     }
 
     toggleNav() {
