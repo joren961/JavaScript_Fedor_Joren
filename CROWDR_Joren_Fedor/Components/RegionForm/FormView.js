@@ -163,6 +163,13 @@ class FormView {
         input.parentNode.insertBefore(error,input);
     }
 
+    addCustomError(message) {
+        let error = document.createElement("label");
+        error.className = "validationMessage";
+        error.innerText = message;
+        this._regionForm.prepend(error);
+    }
+
     checkAndAddErrors(allAreFilled,enoughSpace,nameIsAvailable) {
         if (!allAreFilled) {
             let error = document.createElement("label");
