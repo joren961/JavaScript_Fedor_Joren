@@ -194,21 +194,24 @@ class FormView {
     }
 
     resetForm() {
-        if (this._nextInputButton.style.display == "none") {
+        if (this._nextInputButton.style.display === "none") {
             this._nextInputButton.style.display = "block";
         }
         this._regionForm.innerHTML = "";
         let tagName = document.createElement("label");
-        tagName.innerHTML="What is your region's name?";
+        tagName.innerHTML = "What is your region's name?";
         let inputName = document.createElement("input");
         inputName.setAttribute("type", "text");
-        inputName.setAttribute("placeholder","Region name..");
+        inputName.setAttribute("placeholder", "Region name..");
         inputName.className = "regioninput";
+        inputName.required = true;
         let tagVisitors = document.createElement("label");
-        tagVisitors.innerHTML="How many visitors are allowed?";
+        tagVisitors.innerHTML = "How many visitors are allowed?";
+        tagVisitors.className = "regionVisitorInput";
         let inputVisitors = document.createElement("input");
-        inputVisitors.setAttribute("type","number");
-        inputVisitors.setAttribute("placeholder","0");
+        inputVisitors.setAttribute("type", "number");
+        inputVisitors.setAttribute("placeholder", "0");
+        inputVisitors.required = true;
         this._squaresLeft.innerText = "225";
 
         this._regionForm.append(tagName);

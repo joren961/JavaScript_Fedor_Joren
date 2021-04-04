@@ -8,7 +8,7 @@ class FormController {
     _formView;
     _audio;
 
-    constructor(storageController, gridController,navigationController) {
+    constructor(storageController, gridController, navigationController) {
         this._StorageController = storageController;
         this._GridController = gridController;
         this._NavigationController = navigationController;
@@ -25,7 +25,7 @@ class FormController {
 
     getNextInput() {
         let lastInputId = 0;
-        for (let i = 0;i<=this._regionForm.childElementCount;i++) {
+        for (let i = 0; i <= this._regionForm.childElementCount; i++) {
             if (i > lastInputId) {
                 lastInputId = i;
             }
@@ -42,13 +42,11 @@ class FormController {
         this._regionForm.querySelectorAll("[required]").forEach((i) => {
             if (i.value == null || i.value.trim() === "") {
                 allAreFilled = false;
-            }
-            else if (i.getAttribute("type") === "number") {
-                if(parseInt(i.value) < parseInt(i.getAttribute("min"))) {
+            } else if (i.getAttribute("type") === "number") {
+                if (parseInt(i.value) < parseInt(i.getAttribute("min"))) {
                     inputCorrect = false;
                     this._formView.addMinError(i);
-                }
-                else if (i.getAttribute("max") != null) {
+                } else if (i.getAttribute("max") != null) {
                     if (parseInt(i.value) > parseInt(i.getAttribute("max"))) {
                         inputCorrect = false;
                         this._formView.addMaxError(i);
@@ -64,9 +62,8 @@ class FormController {
         }
         if (allAreFilled && inputCorrect && enoughSpace && nameIsAvailable === true) {
             return true;
-        }
-        else {
-            this._formView.checkAndAddErrors(allAreFilled,enoughSpace,nameIsAvailable);
+        } else {
+            this._formView.checkAndAddErrors(allAreFilled, enoughSpace, nameIsAvailable);
         }
     }
 
@@ -76,70 +73,66 @@ class FormController {
             this._audio.play();
             if (localStorage.getItem("regions") === null) {
                 let regions = [];
-                localStorage.setItem("regions",JSON.stringify(regions));
+                localStorage.setItem("regions", JSON.stringify(regions));
             }
-            try {
-                let region = new Region(this._regionForm.querySelector(".regioninput").value, parseInt(this._regionForm.querySelector(".regionVisitorInput").value));
-                this._regionForm.querySelectorAll("input").forEach(function (input) {
-                    switch (input.className) {
-                        case "tents":
-                            let tents = [];
-                            for (let i = 0; i<input.value; i++) {
-                                tents[i] = new Tent(i+1);
-                            }
-                            region._tents = tents;
-                            break;
-                        case "foodStands":
-                            let foodStands = [];
-                            for (let i = 0; i<input.value; i++) {
-                                foodStands[i] = new FoodStand(i+1);
-                            }
-                            region._foodstands = foodStands;
-                            break;
-                        case "drinkStands":
-                            let drinkStands = [];
-                            for (let i = 0; i<input.value; i++) {
-                                drinkStands[i] = new DrinkStand(i+1);
-                            }
-                            region._drinkstands = drinkStands;
-                            break;
-                        case "trees":
-                            let trees = [];
-                            for (let i = 0; i<input.value; i++) {
-                                trees[i] = new Tree(i+1);
-                            }
-                            region._trees = trees;
-                            break;
-                        case "toilets":
-                            let toilets = [];
-                            for (let i = 0; i<input.value; i++) {
-                                toilets[i] = new ToiletBuilding(i+1);
-                            }
-                            region._toiletbuildings = toilets;
-                            break;
-                        case "trash":
-                            let trashCans = [];
-                            for (let i = 0; i<input.value; i++) {
-                                trashCans[i] = new Trashcan(i+1);
-                            }
-                            region._trashcans = trashCans;
-                            break;
-                    }
-                })
-                let regionArray = JSON.parse(localStorage.getItem("regions"));
-                regionArray.push(region);
-                localStorage.setItem("regions", JSON.stringify(regionArray));
-                this._NavigationController.getRegions();
-                this._GridController.createGrid(region._name);
-            } catch (e) {
-                this._formView.addCustomError("Rare error occurred, please refresh the page");
-            }
+            let region = new Region(this._regionForm.querySelector(".regioninput").value, parseInt(this._regionForm.querySelector(".regionVisitorInput").value));
+            this._regionForm.querySelectorAll("input").forEach(function (input) {
+                switch (input.className) {
+                    case "tents":
+                        let tents = [];
+                        for (let i = 0; i < input.value; i++) {
+                            tents[i] = new Tent(i + 1);
+                        }
+                        region._tents = tents;
+                        break;
+                    case "foodStands":
+                        let foodStands = [];
+                        for (let i = 0; i < input.value; i++) {
+                            foodStands[i] = new FoodStand(i + 1);
+                        }
+                        region._foodstands = foodStands;
+                        break;
+                    case "drinkStands":
+                        let drinkStands = [];
+                        for (let i = 0; i < input.value; i++) {
+                            drinkStands[i] = new DrinkStand(i + 1);
+                        }
+                        region._drinkstands = drinkStands;
+                        break;
+                    case "trees":
+                        let trees = [];
+                        for (let i = 0; i < input.value; i++) {
+                            trees[i] = new Tree(i + 1);
+                        }
+                        region._trees = trees;
+                        break;
+                    case "toilets":
+                        let toilets = [];
+                        for (let i = 0; i < input.value; i++) {
+                            toilets[i] = new ToiletBuilding(i + 1);
+                        }
+                        region._toiletbuildings = toilets;
+                        break;
+                    case "trash":
+                        let trashCans = [];
+                        for (let i = 0; i < input.value; i++) {
+                            trashCans[i] = new Trashcan(i + 1);
+                        }
+                        region._trashcans = trashCans;
+                        break;
+                }
+            })
+            let regionArray = JSON.parse(localStorage.getItem("regions"));
+            regionArray.push(region);
+            localStorage.setItem("regions", JSON.stringify(regionArray));
+            this._NavigationController.getRegions();
+            this._GridController.createGrid(region._name);
         }
     }
 
     calculateSquaresLeft(squares) {
         if (isNaN(squares)) {
-            return;
+
         } else {
             this._formView.updateSquaresLeft(squares);
         }
