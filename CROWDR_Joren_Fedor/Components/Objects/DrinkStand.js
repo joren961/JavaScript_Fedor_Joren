@@ -8,7 +8,7 @@ class DrinkStand {
 
     constructor(id) {
         this._id = id;
-        this._squares = 1*2;
+        this._squares = 1 * 2;
         this._type = "Drink stand";
     }
 

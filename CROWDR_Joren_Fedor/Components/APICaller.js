@@ -11,23 +11,23 @@ class APICaller {
             .then((response) => {
                 return response.json();
             })
-            .then((data)=>{
+            .then((data) => {
                 this._simulationController.setUser(data, group, index);
             })
-            .catch(()=>{
-                let VisitorObject = new Visitor("API error",404);
+            .catch(() => {
+                let VisitorObject = new Visitor("API error", 404);
                 this._simulationController.setUser(VisitorObject, group, index);
             });
     }
 
     async fetchWeather(cityName) {
-        fetch('https://api.openweathermap.org/data/2.5/weather?id='+cityName+'&appid=41c01a322b746bc2a2f64b04573cfa9b')
-            .then((response)=>{
+        fetch('https://api.openweathermap.org/data/2.5/weather?id=' + cityName + '&appid=41c01a322b746bc2a2f64b04573cfa9b')
+            .then((response) => {
                 return response.json();
             })
-            .then((data)=>{
+            .then((data) => {
                 this._simulationController.setWeather(data.weather[0]);
-            }).catch(()=>{
+            }).catch(() => {
             this._simulationController.weatherError("Weather API error");
         });
     }

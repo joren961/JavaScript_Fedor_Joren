@@ -11,9 +11,9 @@ class FormView {
         this._squaresLeft = squares;
         this._nextInputButton = document.querySelector(".nextInput");
         this._resetButton = document.querySelector("#reset");
-        this._nextInputButton.addEventListener("click",()=>formController.getNextInput());
+        this._nextInputButton.addEventListener("click", () => formController.getNextInput());
         this.animateNextInputButton();
-        this._resetButton.addEventListener("click",()=>this.resetForm());
+        this._resetButton.addEventListener("click", () => this.resetForm());
     }
 
     createNewInput(lastInputId) {
@@ -21,38 +21,38 @@ class FormView {
         let newInput = document.createElement("input");
         newInput.required = true;
         newInput.setAttribute('type', 'number');
-        newInput.setAttribute('min','0');
+        newInput.setAttribute('min', '0');
         newInput.setAttribute('placeholder', '0');
-        newInput.setAttribute('value','0');
+        newInput.setAttribute('value', '0');
         let submit;
 
         if (lastInputId === 4) {
-            this.addTentInput(newTag,newInput);
+            this.addTentInput(newTag, newInput);
         } else if (lastInputId === 6) {
             this._formController.calculateSquaresLeft(parseInt(document.querySelector(".tents").value) * 9);
-            this.addFoodInput(newTag,newInput);
+            this.addFoodInput(newTag, newInput);
         } else if (lastInputId === 8) {
             this._formController.calculateSquaresLeft(parseInt(document.querySelector(".foodStands").value));
-            this.addDrinkInput(newTag,newInput);
+            this.addDrinkInput(newTag, newInput);
         } else if (lastInputId === 10) {
             this._formController.calculateSquaresLeft(parseInt(document.querySelector(".drinkStands").value) * 2);
-            this.addTreeInput(newTag,newInput);
+            this.addTreeInput(newTag, newInput);
         } else if (lastInputId === 12) {
             this._formController.calculateSquaresLeft(parseInt(document.querySelector(".trees").value));
-            this.addToiletInput(newTag,newInput);
+            this.addToiletInput(newTag, newInput);
         } else if (lastInputId === 14) {
             this._formController.calculateSquaresLeft(parseInt(document.querySelector(".toilets").value) * 3);
-            this.addTrashInput(newTag,newInput);
+            this.addTrashInput(newTag, newInput);
             submit = document.createElement("a");
             submit.innerText = "Submit";
             submit.className = "button";
-            submit.id="submit";
-            submit.addEventListener("click",()=>this._formController.submitForm());
+            submit.id = "submit";
+            submit.addEventListener("click", () => this._formController.submitForm());
             this._nextInputButton.style.display = "none";
         }
         this._regionForm.append(newTag);
         this._regionForm.append(newInput);
-        if (submit!=null) {
+        if (submit != null) {
             this._regionForm.append(submit);
         }
     }
@@ -60,10 +60,10 @@ class FormView {
     animateNextInputButton() {
         let icon = this._nextInputButton.querySelector('i');
         icon.style.transition = "all 0.3s linear";
-        this._nextInputButton.addEventListener('mouseenter',()=>{
+        this._nextInputButton.addEventListener('mouseenter', () => {
             icon.style.color = "lightgreen";
         });
-        this._nextInputButton.addEventListener('mouseleave',()=>{
+        this._nextInputButton.addEventListener('mouseleave', () => {
             icon.style.color = "white";
         });
     }
@@ -84,7 +84,7 @@ class FormView {
             maxValue = 6;
         }
         newTag.innerHTML = "How many food-stands does your region have? Maximum: " + maxValue;
-        newInput.setAttribute('max',maxValue);
+        newInput.setAttribute('max', maxValue);
         newInput.className = "foodStands";
     }
 
@@ -99,7 +99,7 @@ class FormView {
             maxValue = 4;
         }
         newTag.innerHTML = "How many drinking stands does your region have? Maximum: " + maxValue;
-        newInput.setAttribute('max',maxValue);
+        newInput.setAttribute('max', maxValue);
 
         newInput.className = "drinkStands";
     }
@@ -117,14 +117,14 @@ class FormView {
         field.readOnly = true;
         field.style.border = "solid white 1.5px";
         newTag.innerHTML = "How many toilet-buildings does your region have? Maximum: 5"
-        newInput.setAttribute('max','5');
+        newInput.setAttribute('max', '5');
         newInput.className = "toilets";
     }
 
     addTrashInput(newTag, newInput) {
         let maxValue;
-        if(parseInt(this._squaresLeft.innerText) >= 0) {
-            maxValue = Math.floor(0.05*parseInt(this._squaresLeft.innerText));
+        if (parseInt(this._squaresLeft.innerText) >= 0) {
+            maxValue = Math.floor(0.05 * parseInt(this._squaresLeft.innerText));
         } else {
             maxValue = 0;
         }
@@ -132,7 +132,7 @@ class FormView {
         field.readOnly = true;
         field.style.border = "solid white 1.5px";
         newTag.innerHTML = "How many trashcans does your region have? Max: " + maxValue;
-        newInput.setAttribute('max',maxValue);
+        newInput.setAttribute('max', maxValue);
         newInput.className = "trash";
     }
 
@@ -152,7 +152,7 @@ class FormView {
         error.className = "validationMessage";
         error.id = "validationMessageMin";
         error.innerText = "Minimum: " + input.getAttribute("min");
-        input.parentNode.insertBefore(error,input);
+        input.parentNode.insertBefore(error, input);
     }
 
     addMaxError(input) {
@@ -160,7 +160,7 @@ class FormView {
         error.className = "validationMessage";
         error.id = "validationMessageMax";
         error.innerText = "Maximum: " + input.getAttribute("max");
-        input.parentNode.insertBefore(error,input);
+        input.parentNode.insertBefore(error, input);
     }
 
     addCustomError(message) {
@@ -170,7 +170,7 @@ class FormView {
         this._regionForm.prepend(error);
     }
 
-    checkAndAddErrors(allAreFilled,enoughSpace,nameIsAvailable) {
+    checkAndAddErrors(allAreFilled, enoughSpace, nameIsAvailable) {
         if (!allAreFilled) {
             let error = document.createElement("label");
             error.className = "validationMessage";
@@ -194,21 +194,24 @@ class FormView {
     }
 
     resetForm() {
-        if (this._nextInputButton.style.display == "none") {
+        if (this._nextInputButton.style.display === "none") {
             this._nextInputButton.style.display = "block";
         }
         this._regionForm.innerHTML = "";
         let tagName = document.createElement("label");
-        tagName.innerHTML="What is your region's name?";
+        tagName.innerHTML = "What is your region's name?";
         let inputName = document.createElement("input");
         inputName.setAttribute("type", "text");
-        inputName.setAttribute("placeholder","Region name..");
+        inputName.setAttribute("placeholder", "Region name..");
         inputName.className = "regioninput";
+        inputName.required = true;
         let tagVisitors = document.createElement("label");
-        tagVisitors.innerHTML="How many visitors are allowed?";
+        tagVisitors.innerHTML = "How many visitors are allowed?";
+        tagVisitors.className = "regionVisitorInput";
         let inputVisitors = document.createElement("input");
-        inputVisitors.setAttribute("type","number");
-        inputVisitors.setAttribute("placeholder","0");
+        inputVisitors.setAttribute("type", "number");
+        inputVisitors.setAttribute("placeholder", "0");
+        inputVisitors.required = true;
         this._squaresLeft.innerText = "225";
 
         this._regionForm.append(tagName);

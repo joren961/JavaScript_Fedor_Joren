@@ -19,13 +19,13 @@ class DetailsView {
         label.innerText = object._type + " " + object._id;
         details.appendChild(label);
 
-        this.addInputBasedOnType(object,details);
+        this.addInputBasedOnType(object, details);
 
         if (object._type !== "Toilet building") {
             let submit = document.createElement('a');
-            submit.addEventListener('click',()=>this._detailsController.submitDetails(object));
-            submit.className="button";
-            submit.id="apply";
+            submit.addEventListener('click', () => this._detailsController.submitDetails(object));
+            submit.className = "button";
+            submit.id = "apply";
             submit.innerHTML = "Apply";
             submit.style.border = "#357EC7 outset 3px";
             details.appendChild(submit);
@@ -47,30 +47,29 @@ class DetailsView {
     }
 
     trashAnimate(object, capacity, capacityLabel) {
-            let id = setInterval(frame, 1000);
-            function frame() {
-                capacityLabel.innerText = object._currentCapacity+ " KG";
-                let height = object._currentCapacity / object._capacity * 100;
-                capacity.style.height = height + "px";
-            }
+        let id = setInterval(frame, 1000);
+
+        function frame() {
+            capacityLabel.innerText = object._currentCapacity + " KG";
+            let height = object._currentCapacity / object._capacity * 100;
+            capacity.style.height = height + "px";
+        }
     }
 
     addConfirmation() {
-        if (document.querySelector('#confirmation')==null) {
+        if (document.querySelector('#confirmation') == null) {
             let check = document.createElement('i')
             check.className = "fa fa-check";
-            check.id= "confirmation";
+            check.id = "confirmation";
             check.style.color = "green";
             check.style.fontSize = "25px";
             check.style.marginTop = "5px";
             let submit = document.querySelector('#apply');
-            submit.parentNode.insertBefore(check,submit);
+            submit.parentNode.insertBefore(check, submit);
         }
     }
 
-    updateTreeImage(treeObject)
-    {
-        console.log(treeObject)
+    updateTreeImage(treeObject) {
         let getImg = document.getElementById(treeObject._type + treeObject._id)
         switch (treeObject._squares) {
             case 1:
@@ -88,7 +87,7 @@ class DetailsView {
 
     }
 
-    addInputBasedOnType(object,details) {
+    addInputBasedOnType(object, details) {
         let newLabel = document.createElement('label');
         let newInput = document.createElement('input');
         newInput.required = true;
@@ -96,7 +95,7 @@ class DetailsView {
         newInput.setAttribute('type', 'number');
         newInput.setAttribute('min', '0');
         newInput.setAttribute('placeholder', '0');
-        newInput.className= "MaxVisitors";
+        newInput.className = "MaxVisitors";
 
         switch (object._type) {
             case "Drink stand":
@@ -113,10 +112,10 @@ class DetailsView {
                 let foodLabel = document.createElement('label');
                 let foodInput = document.createElement('input');
                 foodLabel.innerText = "Type of cuisine";
-                foodInput.setAttribute("type","text");
+                foodInput.setAttribute("type", "text");
                 foodInput.style.width = "150px";
-                foodInput.setAttribute('placeholder','For example: Kebab');
-                foodInput.id= "FoodType";
+                foodInput.setAttribute('placeholder', 'For example: Kebab');
+                foodInput.id = "FoodType";
                 if (object._foodType != null) {
                     foodInput.value = object._foodType;
                 }
@@ -132,10 +131,10 @@ class DetailsView {
                 let tentLabel = document.createElement('label');
                 let tentInput = document.createElement('input');
                 tentLabel.innerText = "Opening time";
-                tentInput.setAttribute('type','time');
+                tentInput.setAttribute('type', 'time');
                 tentInput.style.width = "100px";
-                tentInput.setAttribute('placeholder','00:00');
-                tentInput.id ="TentOpeningTime";
+                tentInput.setAttribute('placeholder', '00:00');
+                tentInput.id = "TentOpeningTime";
                 if (object._openingTime != null) {
                     tentInput.value = object._openingTime;
                 }
@@ -155,9 +154,9 @@ class DetailsView {
                 let trashLabel = document.createElement('label');
                 trashLabel.innerText = "Emptying time";
                 let trashInput = document.createElement('input');
-                trashInput.setAttribute('type','time');
+                trashInput.setAttribute('type', 'time');
                 trashInput.style.width = "100px";
-                trashInput.id="TrashEmptyTime";
+                trashInput.id = "TrashEmptyTime";
                 if (object._emptyingTime != null) {
                     trashInput.value = object._emptyingTime;
                 }
@@ -176,7 +175,7 @@ class DetailsView {
                         if (tree === object._treeType) {
                             input.checked = true;
                         }
-                    } else if (tree === "High Tree"){
+                    } else if (tree === "High Tree") {
                         input.checked = true;
                     }
                     input.setAttribute('value', tree);
@@ -187,7 +186,8 @@ class DetailsView {
                     details.appendChild(input);
                 }
                 break;
-            default: break;
+            default:
+                break;
         }
     }
 }

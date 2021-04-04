@@ -6,7 +6,7 @@ class NavigationView {
     constructor(navigationController) {
         this._formPage = [document.querySelector('.hamburgerLink'), document.querySelector('.navigation'), document.querySelector('#space'), document.querySelector('#header'), document.querySelector('.regionForm'), document.querySelector('.nextInput'), document.querySelector('#reset')];
         this._navController = navigationController;
-        document.querySelector('.hamburgerLink').addEventListener('click',()=>this._navController.toggleNav());
+        document.querySelector('.hamburgerLink').addEventListener('click', () => this._navController.toggleNav());
     }
 
     toggleNav() {
@@ -97,12 +97,12 @@ class NavigationView {
         for (const link of links) {
             let linkIcon = link.querySelector('i');
             linkIcon.style.transition = "all 0.3s linear";
-            if (linkIcon.className==="fa fa-trash") {
-                linkIcon.addEventListener('mouseenter',()=>{
+            if (linkIcon.className === "fa fa-trash") {
+                linkIcon.addEventListener('mouseenter', () => {
                     linkIcon.style.fontSize = "33px";
                     linkIcon.style.color = "red";
                 });
-                linkIcon.addEventListener('mouseleave',()=>{
+                linkIcon.addEventListener('mouseleave', () => {
                     linkIcon.style.fontSize = "28px";
                     linkIcon.style.color = "white";
                 });

@@ -28,11 +28,11 @@ class SimulationController {
         if (this._SimulationView._menu.querySelector('#stopButton') == null) {
             this._SimulationView.addStopButton();
         }
-        if (this._ticketScanners.length!==0) {
+        if (this._ticketScanners.length !== 0) {
             this.scanTickets();
         }
 
-        let interval = window.setInterval(()=>{
+        let interval = window.setInterval(() => {
             this.fillAndEmptyTrashcans();
             this.moveCrowd();
             this._SimulationView.renderAllCrowds(this._groupsOfVisitors);
@@ -41,10 +41,10 @@ class SimulationController {
             }
         }, 3500);
     }
+
     moveCrowd() {
         for (const groupOfVisitors of this._groupsOfVisitors) {
-            if(this._weather == null)
-            {
+            if (this._weather == null) {
                 let newX = Math.floor(Math.random() * 15);
                 let newY = Math.floor(Math.random() * 15);
                 while (!this.checkEmptyTile(newX, newY)) {
@@ -53,45 +53,43 @@ class SimulationController {
                 }
                 groupOfVisitors._x = newX;
                 groupOfVisitors._y = newY;
-            }
-            else
-            {
+            } else {
                 switch (this._weather.main) {
                     case 'Clouds':
-                        for(const tent of this._region._tents)
-                        {
-                           if(this.enterTent(tent, groupOfVisitors))
-                           {
-                               break;
-                           }
-                           else
-                           {
-                               continue;
-                           }
+                        for (const tent of this._region._tents) {
+                            if (this.enterTent(tent, groupOfVisitors)) {
+                                break;
+                            } else {
+
+                            }
+                        }
+                        groupOfVisitors._x = Math.floor(Math.random() * 15);
+                        groupOfVisitors._y = Math.floor(Math.random() * 15);
+                        while (!this.checkEmptyTile(groupOfVisitors._x, groupOfVisitors._y)) {
+                            groupOfVisitors._x = Math.floor(Math.random() * 15);
+                            groupOfVisitors._y = Math.floor(Math.random() * 15);
                         }
                         break;
                     case 'Clear':
-                        for(const drinkstand of this._region._drinkstands)
-                        {
-                            if(this.enterDrinkStand(drinkstand, groupOfVisitors))
-                            {
+                        for (const drinkstand of this._region._drinkstands) {
+                            if (this.enterDrinkStand(drinkstand, groupOfVisitors)) {
                                 break;
-                            }
-                            else
-                            {
-                                continue;
+                            } else {
+
                             }
                         }
-                        for(const tree of this._region._trees)
-                        {
-                            if(this.enterTree(tree, groupOfVisitors))
-                            {
+                        for (const tree of this._region._trees) {
+                            if (this.enterTree(tree, groupOfVisitors)) {
                                 break;
+                            } else {
+
                             }
-                            else
-                            {
-                                continue;
-                            }
+                        }
+                        groupOfVisitors._x = Math.floor(Math.random() * 15);
+                        groupOfVisitors._y = Math.floor(Math.random() * 15);
+                        while (!this.checkEmptyTile(groupOfVisitors._x, groupOfVisitors._y)) {
+                            groupOfVisitors._x = Math.floor(Math.random() * 15);
+                            groupOfVisitors._y = Math.floor(Math.random() * 15);
                         }
                         break;
                     default:
@@ -109,14 +107,11 @@ class SimulationController {
         }
 
     }
-    enterTent(tent, crowd)
-    {
-        for(let x = 0; x < 3; x++)
-        {
-            for(let y = 0; y < 3; y++)
-            {
-                if(this.checkEmptyTile(tent._x + x,tent._y + y))
-                {
+
+    enterTent(tent, crowd) {
+        for (let x = 0; x < 3; x++) {
+            for (let y = 0; y < 3; y++) {
+                if (this.checkEmptyTile(tent._x + x, tent._y + y)) {
                     crowd._x = tent._x + x;
                     crowd._y = tent._y + y;
 
@@ -126,13 +121,11 @@ class SimulationController {
         }
         return false;
     }
-    enterDrinkStand(drinkstand, crowd)
-    {
-        for(let y = 0; y < 2; y++)
-        {
-            if(this.checkEmptyTile(drinkstand._x ,drinkstand._y + y))
-            {
-                crowd._x = drinkstand._x ;
+
+    enterDrinkStand(drinkstand, crowd) {
+        for (let y = 0; y < 2; y++) {
+            if (this.checkEmptyTile(drinkstand._x, drinkstand._y + y)) {
+                crowd._x = drinkstand._x;
                 crowd._y = drinkstand._y + y;
 
                 return true;
@@ -140,35 +133,27 @@ class SimulationController {
         }
         return false;
     }
-    enterTree(tree, crowd)
-    {
-        if(tree._squares == null)
-        {
-            if(this.checkEmptyTile(tree._x ,tree._y))
-            {
-                crowd._x = tree._x ;
+
+    enterTree(tree, crowd) {
+        if (tree._squares == null) {
+            if (this.checkEmptyTile(tree._x, tree._y)) {
+                crowd._x = tree._x;
                 crowd._y = tree._y;
                 return true;
             }
-        }
-        else
-        {
-            switch(tree._squares)
-            {
+        } else {
+            switch (tree._squares) {
                 case 1:
-                    if(this.checkEmptyTile(tree._x ,tree._y))
-                    {
-                        crowd._x = tree._x ;
+                    if (this.checkEmptyTile(tree._x, tree._y)) {
+                        crowd._x = tree._x;
                         crowd._y = tree._y;
                         return true;
                     }
                     break;
                 case 2:
-                    for(let y = 0; y < 3; y++)
-                    {
-                        if(this.checkEmptyTile(tree._x ,tree._y + y))
-                        {
-                            crowd._x = tree._x ;
+                    for (let y = 0; y < 3; y++) {
+                        if (this.checkEmptyTile(tree._x, tree._y + y)) {
+                            crowd._x = tree._x;
                             crowd._y = tree._y + y;
 
                             return true;
@@ -176,12 +161,9 @@ class SimulationController {
                     }
                     break;
                 case 9:
-                    for(let x = 0; x < 3; x++)
-                    {
-                        for(let y = 0; y < 3; y++)
-                        {
-                            if(this.checkEmptyTile(tree._x + x,tree._y + y))
-                            {
+                    for (let x = 0; x < 3; x++) {
+                        for (let y = 0; y < 3; y++) {
+                            if (this.checkEmptyTile(tree._x + x, tree._y + y)) {
                                 crowd._x = tree._x + x;
                                 crowd._y = tree._y + y;
 
@@ -194,7 +176,6 @@ class SimulationController {
 
         return false;
     }
-
 
 
     tileOnHover(gridCell) {
@@ -213,7 +194,7 @@ class SimulationController {
         }
     }
 
-    checkEmptyTile(x,y) {
+    checkEmptyTile(x, y) {
         let totalPeopleOnTile = 0;
         for (const groupOfVisitors of this._groupsOfVisitors) {
             if (groupOfVisitors._x === x && groupOfVisitors._y === y) {
@@ -223,7 +204,7 @@ class SimulationController {
         if (totalPeopleOnTile >= 7) {
             return false;
         }
-        if(this.getObjectOnCords(x, y) != -1) {
+        if (this.getObjectOnCords(x, y) != -1) {
             if (this.getObjectOnCords(x, y)._maxVisitors > totalPeopleOnTile) {
                 return false;
             }
@@ -232,27 +213,19 @@ class SimulationController {
     }
 
     //returns object based on coordinates
-    getObjectOnCords(xCord, yCord)
-    {
-        for(const object of this._region._tents)
-        {
-            for(let x = 0; x < 3; x++)
-            {
-                for(let y = 0; y < 3; y++)
-                {
-                    if(object._x + x == xCord && object._y + y == yCord)
-                    {
-                       return object;
+    getObjectOnCords(xCord, yCord) {
+        for (const object of this._region._tents) {
+            for (let x = 0; x < 3; x++) {
+                for (let y = 0; y < 3; y++) {
+                    if (object._x + x == xCord && object._y + y == yCord) {
+                        return object;
                     }
                 }
             }
         }
-        for(const drinkstands of this._region._drinkstands)
-        {
-            for(let x = 0; x < 3; x++)
-            {
-                if(drinkstands._x + x == xCord && drinkstands._y == yCord)
-                {
+        for (const drinkstands of this._region._drinkstands) {
+            for (let x = 0; x < 3; x++) {
+                if (drinkstands._x + x == xCord && drinkstands._y == yCord) {
                     return drinkstands;
                 }
             }
@@ -264,10 +237,10 @@ class SimulationController {
         this._simulating = false;
         this._SimulationView.removeStopButton();
         this._SimulationView.removeOldCrowdDetails();
-        if (this._groupsOfVisitors[0]!=null) {
+        if (this._groupsOfVisitors[0] != null) {
             this._groupsOfVisitors = [];
         }
-        if (document.querySelector('#scannerLabel')!=null) {
+        if (document.querySelector('#scannerLabel') != null) {
             this._SimulationView.addStartButton();
         }
     }
@@ -284,13 +257,13 @@ class SimulationController {
     }
 
     updateScanners(scannerAmount) {
-        if (this._ticketScanners[0]!=null) {
+        if (this._ticketScanners[0] != null) {
             for (const ticketScanner of this._ticketScanners) {
-                this._ticketScanners.splice(this._ticketScanners.indexOf(ticketScanner),1);
+                this._ticketScanners.splice(this._ticketScanners.indexOf(ticketScanner), 1);
             }
         }
-        for (let i = 0; i<scannerAmount;i++) {
-            this._ticketScanners[i] = Math.floor(Math.random()*3)+1;
+        for (let i = 0; i < scannerAmount; i++) {
+            this._ticketScanners[i] = Math.floor(Math.random() * 3) + 1;
         }
         if (this._simulating) {
             this.scanTickets();
@@ -299,21 +272,23 @@ class SimulationController {
 
     scanTickets() {
         for (const ticketScannerTime of this._ticketScanners) {
-            let interval = window.setInterval( ()=>{
+            let interval = window.setInterval(() => {
                 if (this._region._maxVisitors > this.countVisitors()) {
                     if (!this._simulating) {
                         clearInterval(interval);
                     }
-                    let group = new VisitorGroup(Math.floor(Math.random() * 15), Math.floor(Math.random()*15));
-                    for (let i = 0; i<Math.floor((Math.random()*4)+1);i++) {
+                    let group = new VisitorGroup(Math.floor(Math.random() * 15), Math.floor(Math.random() * 15));
+                    for (let i = 0; i < Math.floor((Math.random() * 4) + 1); i++) {
                         let result = this._APICaller.fetchRandomUser(group, i);
                     }
                     this._groupsOfVisitors[this._groupsOfVisitors.length] = group;
-                }
-                else {
+                    if (this._region._maxVisitors > this.countVisitors()) {
+                        clearInterval(interval);
+                    }
+                } else {
                     clearInterval(interval);
                 }
-            }, ticketScannerTime*1000);
+            }, ticketScannerTime * 1000);
         }
     }
 

@@ -18,8 +18,8 @@ class NavigationController {
 
     toggleNav() {
         this._navView.toggleNav();
-        this._audio.play().catch(()=>{
-            return;
+        this._audio.play().catch(() => {
+
         });
     }
 

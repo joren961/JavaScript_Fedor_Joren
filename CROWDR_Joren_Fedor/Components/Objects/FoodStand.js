@@ -10,7 +10,7 @@ class FoodStand {
     constructor(id) {
         this._id = id;
         this._type = "Food stand";
-        this._squares = 1*1;
+        this._squares = 1 * 1;
 
     }
 }

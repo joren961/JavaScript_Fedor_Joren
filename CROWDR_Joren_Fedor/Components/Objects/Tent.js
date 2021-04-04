@@ -10,11 +10,10 @@ class Tent {
     constructor(id) {
         this._id = id;
         this._type = "Tent";
-        this._squares = 3*3;
+        this._squares = 3 * 3;
     }
 
-    getCoordinates()
-    {
+    getCoordinates() {
         return [this.getX(), this.getY()]
     }
 
@@ -35,7 +34,6 @@ class Tent {
         this._x = null;
         this._y = null;
     }
-
 
 
 }

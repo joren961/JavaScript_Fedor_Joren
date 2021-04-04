@@ -7,10 +7,11 @@ class Trashcan {
     _currentCapacity;
     _x;
     _y;
+
     constructor(id) {
         this._id = id;
         this._type = "Trashcan";
         this._currentCapacity = 0;
-        this._squares = 1*1;
+        this._squares = 1 * 1;
     }
 }

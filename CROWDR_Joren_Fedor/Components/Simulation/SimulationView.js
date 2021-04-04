@@ -13,7 +13,7 @@ class SimulationView {
     }
 
     addCityInput() {
-        let values = ['2759899', '2759794', '2755251', '2751283', '2745912','3530597','715429','1261481','357994'];
+        let values = ['2759899', '2759794', '2755251', '2751283', '2745912', '3530597', '715429', '1261481', '357994'];
         let label = document.createElement('label');
         label.innerText = "Select city:";
         let input = document.createElement('select');
@@ -87,39 +87,41 @@ class SimulationView {
     addHoverListener() {
         let grid = document.querySelector('.gridView');
         for (const gridCell of grid.querySelectorAll('.gridCell')) {
-            gridCell.addEventListener('mouseenter',(e)=>{this._simulationController.tileOnHover(gridCell)});
+            gridCell.addEventListener('mouseenter', (e) => {
+                this._simulationController.tileOnHover(gridCell)
+            });
         }
     }
 
 
     tileOnHoverMenu(crowds) {
-        if (crowds[0]!=null) {
+        if (crowds[0] != null) {
             this.removeOldCrowdDetails();
-                let details = document.createElement('div');
-                details.style.width = '95%';
-                details.className = "detailsBox";
-                let counter = 1;
-                for (const crowd of crowds) {
-                    if (crowd._visitors[0]!=null) {
-                        let label = document.createElement('label');
-                        label.innerText = "Group: " + counter;
-                        counter++;
-                        details.appendChild(label);
-                        for (const visitor of crowd._visitors) {
-                            let p = document.createElement('p');
-                            p.innerText = visitor._fullName+", " + visitor._age;
-                            details.appendChild(p);
-                        }
+            let details = document.createElement('div');
+            details.style.width = '95%';
+            details.className = "detailsBox";
+            let counter = 1;
+            for (const crowd of crowds) {
+                if (crowd._visitors[0] != null) {
+                    let label = document.createElement('label');
+                    label.innerText = "Group: " + counter;
+                    counter++;
+                    details.appendChild(label);
+                    for (const visitor of crowd._visitors) {
+                        let p = document.createElement('p');
+                        p.innerText = visitor._fullName + ", " + visitor._age;
+                        details.appendChild(p);
                     }
                 }
-                this._menu.appendChild(details);
+            }
+            this._menu.appendChild(details);
         }
     }
 
     removeOldCrowdDetails() {
         let oldDetails = this._menu.querySelector('.detailsBox');
-        if (oldDetails!=null) {
-            if (oldDetails.querySelectorAll('label')[0]!=null) {
+        if (oldDetails != null) {
+            if (oldDetails.querySelectorAll('label')[0] != null) {
                 for (const label of oldDetails.querySelectorAll('label')) {
                     oldDetails.removeChild(label);
                 }
@@ -170,20 +172,15 @@ class SimulationView {
 
     renderAllCrowds(groupsOfVisitors) {
         this.clearCrowdedTiles();
-        for(let x =0; x < 15; x++)
-        {
-            for(let y =0; y < 15; y++)
-            {
+        for (let x = 0; x < 15; x++) {
+            for (let y = 0; y < 15; y++) {
                 let peopleCounter = 0;
                 let parentCellCords = x + " " + y;
-                for(let i = 0; i < groupsOfVisitors.length; i++)
-                {
-                    if(groupsOfVisitors[i]._x === x && groupsOfVisitors[i]._y === y)
-                    {
+                for (let i = 0; i < groupsOfVisitors.length; i++) {
+                    if (groupsOfVisitors[i]._x === x && groupsOfVisitors[i]._y === y) {
                         peopleCounter += groupsOfVisitors[i]._visitors.length;
                     }
-                    if(i === groupsOfVisitors.length -1)
-                    {
+                    if (i === groupsOfVisitors.length - 1) {
                         this.renderCrowd(parentCellCords, peopleCounter)
                     }
                 }
@@ -197,49 +194,48 @@ class SimulationView {
             case 0:
                 break;
             case 1:
-                this.renderCrowdedTile( parentCell, "dist/Resources/1person.png");
+                this.renderCrowdedTile(parentCell, "dist/Resources/1person.png");
                 break;
             case 2:
-                this.renderCrowdedTile( parentCell, "dist/Resources/2person.png");
+                this.renderCrowdedTile(parentCell, "dist/Resources/2person.png");
 
                 break;
             case 3:
-                this.renderCrowdedTile( parentCell, "dist/Resources/3person.png");
+                this.renderCrowdedTile(parentCell, "dist/Resources/3person.png");
 
                 break;
             case 4:
-                this.renderCrowdedTile( parentCell, "dist/Resources/4person.png");
+                this.renderCrowdedTile(parentCell, "dist/Resources/4person.png");
 
                 break;
             case 5:
-                this.renderCrowdedTile( parentCell, "dist/Resources/5person.png");
+                this.renderCrowdedTile(parentCell, "dist/Resources/5person.png");
 
                 break;
             case 6:
-                this.renderCrowdedTile( parentCell, "dist/Resources/6person.png");
+                this.renderCrowdedTile(parentCell, "dist/Resources/6person.png");
 
                 break;
             case 7:
-                this.renderCrowdedTile( parentCell, "dist/Resources/7person.png");
+                this.renderCrowdedTile(parentCell, "dist/Resources/7person.png");
 
                 break;
             default:
-                this.renderCrowdedTile( parentCell, "dist/Resources/7person.png");
+                this.renderCrowdedTile(parentCell, "dist/Resources/7person.png");
                 break;
         }
     }
-    renderCrowdedTile(parentCell, src)
-    {
+
+    renderCrowdedTile(parentCell, src) {
         let newCrowd = document.createElement('img');
         newCrowd.src = src;
         newCrowd.className = "crowd";
         parentCell.appendChild(newCrowd);
     }
-    clearCrowdedTiles()
-    {
+
+    clearCrowdedTiles() {
         let wholeCrowd = document.querySelectorAll('[class=crowd]');
-        for(let i = 0; i < wholeCrowd.length; i++)
-        {
+        for (let i = 0; i < wholeCrowd.length; i++) {
             wholeCrowd[i].parentNode.removeChild(wholeCrowd[i]);
         }
     }

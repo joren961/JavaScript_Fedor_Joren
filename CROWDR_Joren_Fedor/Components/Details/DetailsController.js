@@ -10,7 +10,7 @@ class DetailsController {
     }
 
     openDetails(object, gridWrap) {
-        this._detailsView.openDetails(object,gridWrap);
+        this._detailsView.openDetails(object, gridWrap);
     }
 
     submitDetails(object) {
@@ -52,17 +52,18 @@ class DetailsController {
                         } else if (treeInput.value === "Wide Tree") {
                             object._squares = 2;
                         } else {
-                            object._squares = 3*3;
+                            object._squares = 3 * 3;
                         }
                         this._detailsView.updateTreeImage(object);
                         break;
                     }
                 }
                 break;
-            default : return;
+            default :
+                return;
         }
         this._detailsView.addConfirmation();
-        this._storageController.updateRegionObject(this._regionName,object);
+        this._storageController.updateRegionObject(this._regionName, object);
     }
 
 }

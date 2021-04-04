@@ -8,6 +8,6 @@ class ToiletBuilding {
     constructor(id) {
         this._id = id;
         this._type = "Toilet building";
-        this._squares = 1*3;
+        this._squares = 1 * 3;
     }
 }

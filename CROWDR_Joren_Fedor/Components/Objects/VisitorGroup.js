@@ -3,9 +3,9 @@ class VisitorGroup {
     _y;
     _visitors;
 
-    constructor(x,y) {
+    constructor(x, y) {
         this._x = x;
         this._y = y;
-        this._visitors =[];
+        this._visitors = [];
     }
 }

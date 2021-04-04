@@ -194,8 +194,6 @@ class GridView {
                 {
                     let gridCellCord = object._x + " " + object._y;
                     let parentGridCell = document.getElementById(gridCellCord);
-                    console.log(object._squares);
-                    console.log(object);
                     switch(object._squares) {
                         case 1:
                             this.renderDragble(parentGridCell, type, object._id, srcTall, object, isLocked);
