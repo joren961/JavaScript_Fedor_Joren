@@ -12,6 +12,7 @@ class FormView {
         this._nextInputButton = document.querySelector(".nextInput");
         this._resetButton = document.querySelector("#reset");
         this._nextInputButton.addEventListener("click",()=>formController.getNextInput());
+        this.animateNextInputButton();
         this._resetButton.addEventListener("click",()=>this.resetForm());
     }
 
@@ -54,6 +55,17 @@ class FormView {
         if (submit!=null) {
             this._regionForm.append(submit);
         }
+    }
+
+    animateNextInputButton() {
+        let icon = this._nextInputButton.querySelector('i');
+        icon.style.transition = "all 0.3s linear";
+        this._nextInputButton.addEventListener('mouseenter',()=>{
+            icon.style.color = "lightgreen";
+        });
+        this._nextInputButton.addEventListener('mouseleave',()=>{
+            icon.style.color = "white";
+        });
     }
 
     addTentInput(newTag, newInput) {
