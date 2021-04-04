@@ -66,9 +66,16 @@ class SimulationController {
                             //console.log(tent);
                            if(this.enterTent(tent, groupOfVisitors))
                            {
+                               break;
+                           }
+                           else
+                           {
                                continue;
                            }
+
                         }
+
+
                     case 'Sunni':
                         //todo add logic for scortching hot weather
                         break;
@@ -94,9 +101,9 @@ class SimulationController {
         {
             for(let y = 0; y < 3; y++)
             {
+                //console.log(this.checkEmptyTile(tent._x + x,tent._y + y) +"   "+ tent._x + x + "  " + tent._y + y);
                 if(this.checkEmptyTile(tent._x + x,tent._y + y))
                 {
-                    console.log(this.checkEmptyTile(tent._x + x,tent._y + y));
                     crowd._x = tent._x + x;
                     crowd._y = tent._y + y;
                     //console.log(crowd._x);
@@ -129,12 +136,13 @@ class SimulationController {
 
     checkEmptyTile(x,y) {
         let totalPeopleOnTile = 0;
-        console.log(x + " " + y );
+        //console.log(x + " " + y );
         for (const groupOfVisitors of this._groupsOfVisitors) {
             if (groupOfVisitors._x === x && groupOfVisitors._y === y) {
-                totalPeopleOnTile += groupOfVisitors.length;
+                totalPeopleOnTile += groupOfVisitors._visitors.length;
             }
         }
+        console.log(totalPeopleOnTile);
         if (totalPeopleOnTile >= 7) {
             return false;
         }
@@ -142,7 +150,7 @@ class SimulationController {
         //     //TODO hoeveel mensen mogen in het festivalobject op coordinaten
         // }
         if(this.getObjectOnCords(x, y) != -1) {
-            if (this.getObjectOnCords(x, y)._maxVisitors >= totalPeopleOnTile) {
+            if (this.getObjectOnCords(x, y)._maxVisitors > totalPeopleOnTile) {
                 return false;
             }
         }
@@ -160,7 +168,6 @@ class SimulationController {
                 {
                     if(object._x + x == xCord && object._y + y == yCord)
                     {
-                       console.log("OBJECT MATCHED: TENT at" + xCord + yCord);
                        return object;
                     }
                 }
