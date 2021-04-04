@@ -13,7 +13,7 @@ class SimulationView {
     }
 
     addCityInput() {
-        let values = ['2759899', '2759794', '2755251', '2751283', '2745912','3530597','715429','1261481'];
+        let values = ['2759899', '2759794', '2755251', '2751283', '2745912','3530597','715429','1261481','357994'];
         let label = document.createElement('label');
         label.innerText = "Select city:";
         let input = document.createElement('select');
@@ -46,6 +46,9 @@ class SimulationView {
                     break;
                 case '1261481':
                     option.text = "New Delhi";
+                    break;
+                case '357994':
+                    option.text = "Egypt";
                     break;
             }
             input.appendChild(option);
