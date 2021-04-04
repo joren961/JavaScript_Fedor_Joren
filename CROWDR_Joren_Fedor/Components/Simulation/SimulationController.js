@@ -66,15 +66,22 @@ class SimulationController {
                            }
                            else
                            {
-                               continue;
+                               groupOfVisitors._x = Math.floor(Math.random() * 15);
+                               groupOfVisitors._y = Math.floor(Math.random() * 15);
+                               while (!this.checkEmptyTile(groupOfVisitors._x, groupOfVisitors._y)) {
+                                   groupOfVisitors._x = Math.floor(Math.random() * 15);
+                                   groupOfVisitors._y = Math.floor(Math.random() * 15);
+                               }
+                               break;
                            }
+
                         }
-                        groupOfVisitors._x = Math.floor(Math.random() * 15);
-                        groupOfVisitors._y = Math.floor(Math.random() * 15);
-                        while (!this.checkEmptyTile(groupOfVisitors._x, groupOfVisitors._y)) {
-                            groupOfVisitors._x = Math.floor(Math.random() * 15);
-                            groupOfVisitors._y = Math.floor(Math.random() * 15);
-                        }
+                        // groupOfVisitors._x = Math.floor(Math.random() * 15);
+                        // groupOfVisitors._y = Math.floor(Math.random() * 15);
+                        // while (!this.checkEmptyTile(groupOfVisitors._x, groupOfVisitors._y)) {
+                        //     groupOfVisitors._x = Math.floor(Math.random() * 15);
+                        //     groupOfVisitors._y = Math.floor(Math.random() * 15);
+                        // }
                         break;
                     case 'Clear':
                         for(const drinkstand of this._region._drinkstands)
@@ -85,7 +92,12 @@ class SimulationController {
                             }
                             else
                             {
-                                continue;
+                                groupOfVisitors._x = Math.floor(Math.random() * 15);
+                                groupOfVisitors._y = Math.floor(Math.random() * 15);
+                                while (!this.checkEmptyTile(groupOfVisitors._x, groupOfVisitors._y)) {
+                                    groupOfVisitors._x = Math.floor(Math.random() * 15);
+                                    groupOfVisitors._y = Math.floor(Math.random() * 15);
+                                }
                             }
                         }
                         for(const tree of this._region._trees)
@@ -96,15 +108,22 @@ class SimulationController {
                             }
                             else
                             {
-                                continue;
+                                groupOfVisitors._x = Math.floor(Math.random() * 15);
+                                groupOfVisitors._y = Math.floor(Math.random() * 15);
+                                while (!this.checkEmptyTile(groupOfVisitors._x, groupOfVisitors._y)) {
+                                    groupOfVisitors._x = Math.floor(Math.random() * 15);
+                                    groupOfVisitors._y = Math.floor(Math.random() * 15);
+                                }
+                                break;
                             }
+
                         }
-                        groupOfVisitors._x = Math.floor(Math.random() * 15);
-                        groupOfVisitors._y = Math.floor(Math.random() * 15);
-                        while (!this.checkEmptyTile(groupOfVisitors._x, groupOfVisitors._y)) {
-                            groupOfVisitors._x = Math.floor(Math.random() * 15);
-                            groupOfVisitors._y = Math.floor(Math.random() * 15);
-                        }
+                        // groupOfVisitors._x = Math.floor(Math.random() * 15);
+                        // groupOfVisitors._y = Math.floor(Math.random() * 15);
+                        // while (!this.checkEmptyTile(groupOfVisitors._x, groupOfVisitors._y)) {
+                        //     groupOfVisitors._x = Math.floor(Math.random() * 15);
+                        //     groupOfVisitors._y = Math.floor(Math.random() * 15);
+                        // }
                         break;
                     default:
                         let newX = Math.floor(Math.random() * 15);
@@ -176,7 +195,7 @@ class SimulationController {
                     }
                     break;
                 case 2:
-                    for(let y = 0; y < 3; y++)
+                    for(let y = 0; y < 2; y++)
                     {
                         if(this.checkEmptyTile(tree._x ,tree._y + y))
                         {
