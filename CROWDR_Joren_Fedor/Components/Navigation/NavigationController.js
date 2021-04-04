@@ -8,11 +8,19 @@ class NavigationController {
         this._StorageController = storageController;
         this._gridController = gridController;
         this._navView = new NavigationView(this);
-        document.querySelector('.hamburgerLink').addEventListener('click',()=>this.toggleNav());
+        this.setupAudio();
+    }
+
+    setupAudio() {
+        this._audio = new Audio('dist/Resources/buttonclick.wav');
+        this._audio.volume = 0.3;
     }
 
     toggleNav() {
         this._navView.toggleNav();
+        this._audio.play().catch(()=>{
+            return;
+        });
     }
 
     deleteRegion(regionName) {

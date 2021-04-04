@@ -6,6 +6,7 @@ class FormController {
     _regionForm;
     _squaresLeft;
     _formView;
+    _audio;
 
     constructor(storageController, gridController,navigationController) {
         this._StorageController = storageController;
@@ -14,6 +15,12 @@ class FormController {
         this._regionForm = document.querySelector('.regionForm');
         this._squaresLeft = document.querySelector(".squaresLeft");
         this._formView = new FormView(this, this._regionForm, this._squaresLeft);
+        this.setupAudio();
+    }
+
+    setupAudio() {
+        this._audio = new Audio('dist/Resources/buttonclick.wav');
+        this._audio.volume = 0.4;
     }
 
     getNextInput() {
@@ -66,6 +73,7 @@ class FormController {
 
     submitForm() {
         if (this.validateForm() === true) {
+            this._audio.play();
             if (localStorage.getItem("regions") === null) {
                 let regions = [];
                 localStorage.setItem("regions",JSON.stringify(regions));

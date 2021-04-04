@@ -5,11 +5,14 @@ class GridController {
     _DetailsController;
     _SimulationController;
     _GridView;
+    _audio;
 
     constructor(storageController)
     {
         this._StorageController = storageController;
         this._GridView = new GridView(this);
+        this._audio = new Audio("dist/Resources/pop.wav");
+        this._audio.volume = 0.4;
     }
 
     createGrid(regionName)
@@ -25,6 +28,10 @@ class GridController {
         if (region._locked) {
             this._SimulationController = new SimulationController(this,region);
         }
+    }
+
+    playPopSound() {
+        this._audio.play();
     }
 
     placeTrees(objectArray)
