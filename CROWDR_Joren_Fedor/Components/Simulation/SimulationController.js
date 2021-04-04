@@ -76,30 +76,8 @@ class SimulationController {
                            }
 
                         }
-                        // groupOfVisitors._x = Math.floor(Math.random() * 15);
-                        // groupOfVisitors._y = Math.floor(Math.random() * 15);
-                        // while (!this.checkEmptyTile(groupOfVisitors._x, groupOfVisitors._y)) {
-                        //     groupOfVisitors._x = Math.floor(Math.random() * 15);
-                        //     groupOfVisitors._y = Math.floor(Math.random() * 15);
-                        // }
                         break;
                     case 'Clear':
-                        for(const drinkstand of this._region._drinkstands)
-                        {
-                            if(this.enterDrinkStand(drinkstand, groupOfVisitors))
-                            {
-                                break;
-                            }
-                            else
-                            {
-                                groupOfVisitors._x = Math.floor(Math.random() * 15);
-                                groupOfVisitors._y = Math.floor(Math.random() * 15);
-                                while (!this.checkEmptyTile(groupOfVisitors._x, groupOfVisitors._y)) {
-                                    groupOfVisitors._x = Math.floor(Math.random() * 15);
-                                    groupOfVisitors._y = Math.floor(Math.random() * 15);
-                                }
-                            }
-                        }
                         for(const tree of this._region._trees)
                         {
                             if(this.enterTree(tree, groupOfVisitors))
@@ -118,12 +96,15 @@ class SimulationController {
                             }
 
                         }
-                        // groupOfVisitors._x = Math.floor(Math.random() * 15);
-                        // groupOfVisitors._y = Math.floor(Math.random() * 15);
-                        // while (!this.checkEmptyTile(groupOfVisitors._x, groupOfVisitors._y)) {
-                        //     groupOfVisitors._x = Math.floor(Math.random() * 15);
-                        //     groupOfVisitors._y = Math.floor(Math.random() * 15);
-                        // }
+                        for(const drinkstand of this._region._drinkstands)
+                        {
+                            if(this.enterDrinkStand(drinkstand, groupOfVisitors))
+                            {
+                                break;
+                            }
+                        }
+
+
                         break;
                     default:
                         let newX = Math.floor(Math.random() * 15);
