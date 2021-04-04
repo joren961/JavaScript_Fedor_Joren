@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a8d9699a-bd95-488d-b2ce-50f445c6968c" name="Default Changelist" comment="idk if this works please dont kill me if it doesnt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/Grid/GridController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Components/Grid/GridController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Components/Simulation/SimulationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Components/Simulation/SimulationController.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -95,7 +94,7 @@
       <workItem from="1617271378718" duration="17271000" />
       <workItem from="1617355725621" duration="1212000" />
       <workItem from="1617453110964" duration="4498000" />
-      <workItem from="1617530387088" duration="9984000" />
+      <workItem from="1617530387088" duration="15149000" />
     </task>
     <servers />
   </component>

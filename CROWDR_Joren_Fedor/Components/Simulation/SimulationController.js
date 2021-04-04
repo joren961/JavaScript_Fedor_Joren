@@ -32,8 +32,6 @@ class SimulationController {
             this.scanTickets();
         }
 
-        console.log(this._weather)
-        console.log(this._region)
         let interval = window.setInterval(()=>{
             this.fillAndEmptyTrashcans();
             this.moveCrowd();
@@ -45,7 +43,6 @@ class SimulationController {
     }
     moveCrowd() {
         for (const groupOfVisitors of this._groupsOfVisitors) {
-            //console.log(this._groupsOfVisitors);
             if(this._weather == null)
             {
                 let newX = Math.floor(Math.random() * 15);
@@ -72,9 +69,30 @@ class SimulationController {
                                continue;
                            }
                         }
-
-                    case 'Sunni':
-                        //todo add logic for scortching hot weather
+                        break;
+                    case 'Clear':
+                        for(const drinkstand of this._region._drinkstands)
+                        {
+                            if(this.enterDrinkStand(drinkstand, groupOfVisitors))
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                continue;
+                            }
+                        }
+                        for(const tree of this._region._trees)
+                        {
+                            if(this.enterTree(tree, groupOfVisitors))
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                continue;
+                            }
+                        }
                         break;
                     default:
                         let newX = Math.floor(Math.random() * 15);
@@ -93,26 +111,90 @@ class SimulationController {
     }
     enterTent(tent, crowd)
     {
-        //loop through all tiles and return cords
         for(let x = 0; x < 3; x++)
         {
             for(let y = 0; y < 3; y++)
             {
-                //console.log(this.checkEmptyTile(tent._x + x,tent._y + y) +"   "+ tent._x + x + "  " + tent._y + y);
                 if(this.checkEmptyTile(tent._x + x,tent._y + y))
                 {
                     crowd._x = tent._x + x;
                     crowd._y = tent._y + y;
-                    //console.log(crowd._x);
-                    //console.log(crowd._y);
-                    //console.log(tent._x);
-                    //console.log(tent._y);
+
                     return true;
                 }
             }
         }
         return false;
     }
+    enterDrinkStand(drinkstand, crowd)
+    {
+        for(let y = 0; y < 2; y++)
+        {
+            if(this.checkEmptyTile(drinkstand._x ,drinkstand._y + y))
+            {
+                crowd._x = drinkstand._x ;
+                crowd._y = drinkstand._y + y;
+
+                return true;
+            }
+        }
+        return false;
+    }
+    enterTree(tree, crowd)
+    {
+        if(tree._squares == null)
+        {
+            if(this.checkEmptyTile(tree._x ,tree._y))
+            {
+                crowd._x = tree._x ;
+                crowd._y = tree._y;
+                return true;
+            }
+        }
+        else
+        {
+            switch(tree._squares)
+            {
+                case 1:
+                    if(this.checkEmptyTile(tree._x ,tree._y))
+                    {
+                        crowd._x = tree._x ;
+                        crowd._y = tree._y;
+                        return true;
+                    }
+                    break;
+                case 2:
+                    for(let y = 0; y < 3; y++)
+                    {
+                        if(this.checkEmptyTile(tree._x ,tree._y + y))
+                        {
+                            crowd._x = tree._x ;
+                            crowd._y = tree._y + y;
+
+                            return true;
+                        }
+                    }
+                    break;
+                case 9:
+                    for(let x = 0; x < 3; x++)
+                    {
+                        for(let y = 0; y < 3; y++)
+                        {
+                            if(this.checkEmptyTile(tree._x + x,tree._y + y))
+                            {
+                                crowd._x = tree._x + x;
+                                crowd._y = tree._y + y;
+
+                                return true;
+                            }
+                        }
+                    }
+            }
+        }
+
+        return false;
+    }
+
 
 
     tileOnHover(gridCell) {
@@ -133,19 +215,14 @@ class SimulationController {
 
     checkEmptyTile(x,y) {
         let totalPeopleOnTile = 0;
-        //console.log(x + " " + y );
         for (const groupOfVisitors of this._groupsOfVisitors) {
             if (groupOfVisitors._x === x && groupOfVisitors._y === y) {
                 totalPeopleOnTile += groupOfVisitors._visitors.length;
             }
         }
-        console.log(totalPeopleOnTile);
-        if (totalPeopleOnTile >= 7) {
+        if (totalPeopleOnTile > 7) {
             return false;
         }
-        // else if (totalPeopleOnTile >= ) {
-        //     //TODO hoeveel mensen mogen in het festivalobject op coordinaten
-        // }
         if(this.getObjectOnCords(x, y) != -1) {
             if (this.getObjectOnCords(x, y)._maxVisitors > totalPeopleOnTile) {
                 return false;
@@ -167,6 +244,16 @@ class SimulationController {
                     {
                        return object;
                     }
+                }
+            }
+        }
+        for(const drinkstands of this._region._drinkstands)
+        {
+            for(let x = 0; x < 3; x++)
+            {
+                if(drinkstands._x + x == xCord && drinkstands._y == yCord)
+                {
+                    return drinkstands;
                 }
             }
         }
@@ -247,11 +334,6 @@ class SimulationController {
     setWeather(result) {
         this._weather = result;
         let icon = `https://openweathermap.org/img/wn/${result.icon}@2x.png`;
-        console.log("WEATHER:");
-        console.log(result);
-        console.log(this._weather.main);
-
-
         this._SimulationView.showWeather(icon);
     }
 
