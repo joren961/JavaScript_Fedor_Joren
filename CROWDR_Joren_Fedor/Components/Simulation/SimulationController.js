@@ -69,6 +69,12 @@ class SimulationController {
                             groupOfVisitors._x = Math.floor(Math.random() * 15);
                             groupOfVisitors._y = Math.floor(Math.random() * 15);
                         }
+                        groupOfVisitors._x = Math.floor(Math.random() * 15);
+                        groupOfVisitors._y = Math.floor(Math.random() * 15);
+                        while (!this.checkEmptyTile(groupOfVisitors._x, groupOfVisitors._y)) {
+                            groupOfVisitors._x = Math.floor(Math.random() * 15);
+                            groupOfVisitors._y = Math.floor(Math.random() * 15);
+                        }
                         break;
                     case 'Clear':
                         for (const drinkstand of this._region._drinkstands) {

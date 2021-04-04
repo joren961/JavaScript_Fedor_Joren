@@ -72,9 +72,10 @@ class GridController {
         }
     }
 
-    validateObjectPlacement(objectId, regionName, xCord, yCord) {
-        let object = this._StorageController.getItemOnId(regionName, objectId);
-        switch (object._squares) {
+    validateObjectPlacement(objectId, regionName, xCord, yCord)
+    {
+        let object = this._StorageController.getItemOnId(regionName,objectId);
+        switch(object._squares) {
             case 1:
                 if (!this.CheckCell(regionName, xCord, yCord, object)) {
                     return false;
@@ -84,11 +85,20 @@ class GridController {
                 if (!this.CheckCell(regionName, xCord, yCord, object) || !this.CheckCell(regionName, xCord, yCord + 1, object)) {
                     return false;
                 }
+                if(!this.CheckCellforObject(regionName, xCord, yCord + 1) )
+                {
+                    return false;
+                }
                 break;
             case 3:
                 if (!this.CheckCell(regionName, xCord, yCord, object) || !this.CheckCell(regionName, xCord, yCord + 1, object) || !this.CheckCell(regionName, xCord, yCord + 2, object)) {
                     return false;
                 }
+                if(!this.CheckCellforObject(regionName, xCord, yCord + 1) || !this.CheckCellforObject(regionName, xCord, yCord + 2))
+                {
+                    return false;
+                }
+
                 break;
             case 9:
                 for (let x = 0; x < 3; x++) {
@@ -96,6 +106,11 @@ class GridController {
                         if (!this.CheckCell(regionName, xCord + x, yCord + y, object)) {
                             return false;
                         }
+                        if(!this.CheckCellforObject(regionName, xCord, yCord + y))
+                        {
+                            return false;
+                        }
+
                     }
                 }
                 break;
@@ -106,9 +121,52 @@ class GridController {
         }
         return true;
     }
+    CheckCellforObject(regionName, xCord, yCord)
+    {
+        console.log(xCord + " " + yCord + "cords");
 
-    CheckCell(regionName, xCord, yCord, excludeObject) {
-        if (xCord > 14) {
+        let region = this._StorageController.getRegion(regionName);
+        for (let tent of region._tents) {
+
+            for(let x = 0; x < 3; x++)
+            {
+                for(let y = 0; y < 3; y++)
+                {
+
+                    if(xCord === tent._x + x && yCord === tent._y + y)
+                    {
+
+                        return false;
+                    }
+                }
+            }
+        }
+        for (let tree of region._trees) {
+
+            if(tree._squares == 9)
+            {
+                for(let x = 0; x < 3; x++)
+                {
+                    for(let y = 0; y < 3; y++)
+                    {
+
+                        if(xCord === tree._x + x && yCord === tree._y + y)
+                        {
+
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
+    CheckCell(regionName, xCord, yCord, excludeObject)
+    {
+        if(xCord > 14)
+        {
             return false;
         }
         if (yCord > 14) {
@@ -116,9 +174,13 @@ class GridController {
         }
         let region = this._StorageController.getRegion(regionName);
         for (let object of region._drinkstands) {
-            if (object._x === xCord && object._y === yCord) {
-                if (excludeObject._x === object._x && excludeObject._y === object._y && excludeObject._id === object._id && excludeObject._type === object._type) {
-                } else {
+            if(object._x === xCord && object._y === yCord )
+            {
+                if(excludeObject._x === object._x && excludeObject._y === object._y && excludeObject._id === object._id && excludeObject._type === object._type)
+                {
+                }
+                else
+                {
                     return false;
                 }
 
