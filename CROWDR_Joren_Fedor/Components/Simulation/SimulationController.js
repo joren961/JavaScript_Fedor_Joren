@@ -73,6 +73,15 @@ class SimulationController {
                         //todo add logic for scortching hot weather
                         break;
                     default:
+                        let newX = Math.floor(Math.random() * 15);
+                        let newY = Math.floor(Math.random() * 15);
+                        while (!this.checkEmptyTile(newX, newY)) {
+                            newX = Math.floor(Math.random() * 15);
+                            newY = Math.floor(Math.random() * 15);
+                        }
+                        groupOfVisitors._x = newX;
+                        groupOfVisitors._y = newY;
+
                 }
             }
         }
@@ -87,6 +96,7 @@ class SimulationController {
             {
                 if(this.checkEmptyTile(tent._x + x,tent._y + y))
                 {
+                    console.log(this.checkEmptyTile(tent._x + x,tent._y + y));
                     crowd._x = tent._x + x;
                     crowd._y = tent._y + y;
                     //console.log(crowd._x);
@@ -131,7 +141,32 @@ class SimulationController {
         // else if (totalPeopleOnTile >= ) {
         //     //TODO hoeveel mensen mogen in het festivalobject op coordinaten
         // }
+        if(this.getObjectOnCords(x, y) != -1) {
+            if (this.getObjectOnCords(x, y)._maxVisitors >= totalPeopleOnTile) {
+                return false;
+            }
+        }
         return true;
+    }
+
+    //returns object based on coordinates
+    getObjectOnCords(xCord, yCord)
+    {
+        for(const object of this._region._tents)
+        {
+            for(let x = 0; x < 3; x++)
+            {
+                for(let y = 0; y < 3; y++)
+                {
+                    if(object._x + x == xCord && object._y + y == yCord)
+                    {
+                       console.log("OBJECT MATCHED: TENT at" + xCord + yCord);
+                       return object;
+                    }
+                }
+            }
+        }
+        return -1;
     }
 
     stopSimulation() {
