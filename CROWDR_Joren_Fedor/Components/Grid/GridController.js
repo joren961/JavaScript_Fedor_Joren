@@ -84,7 +84,6 @@ class GridController {
     validateObjectPlacement(objectId, regionName, xCord, yCord)
     {
         let object = this._StorageController.getItemOnId(regionName,objectId);
-        console.log(object._squares + " validateObjectPlacement");
         switch(object._squares) {
             case 1:
                 if(!this.CheckCell(regionName,xCord,yCord, object))
@@ -97,12 +96,21 @@ class GridController {
                 {
                     return false;
                 }
+                if(!this.CheckCellforObject(regionName, xCord, yCord + 1) )
+                {
+                    return false;
+                }
                 break;
             case 3:
                 if(!this.CheckCell(regionName,xCord,yCord, object) || !this.CheckCell(regionName,xCord ,yCord + 1, object) || !this.CheckCell(regionName,xCord ,yCord + 2, object))
                 {
                     return false;
                 }
+                if(!this.CheckCellforObject(regionName, xCord, yCord + 1) || !this.CheckCellforObject(regionName, xCord, yCord + 2))
+                {
+                    return false;
+                }
+
                 break;
             case 9:
                 for(let x = 0; x < 3; x++)
@@ -113,6 +121,11 @@ class GridController {
                         {
                             return false;
                         }
+                        if(!this.CheckCellforObject(regionName, xCord, yCord + y))
+                        {
+                            return false;
+                        }
+
                     }
                 }
                 break;
@@ -124,6 +137,48 @@ class GridController {
         }
         return true;
     }
+    CheckCellforObject(regionName, xCord, yCord)
+    {
+        console.log(xCord + " " + yCord + "cords");
+
+        let region = this._StorageController.getRegion(regionName);
+        for (let tent of region._tents) {
+
+            for(let x = 0; x < 3; x++)
+            {
+                for(let y = 0; y < 3; y++)
+                {
+
+                    if(xCord === tent._x + x && yCord === tent._y + y)
+                    {
+
+                        return false;
+                    }
+                }
+            }
+        }
+        for (let tree of region._trees) {
+
+            if(tree._squares == 9)
+            {
+                for(let x = 0; x < 3; x++)
+                {
+                    for(let y = 0; y < 3; y++)
+                    {
+
+                        if(xCord === tree._x + x && yCord === tree._y + y)
+                        {
+
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
     CheckCell(regionName, xCord, yCord, excludeObject)
     {
         if(xCord > 14)
@@ -143,8 +198,6 @@ class GridController {
                 }
                 else
                 {
-                    console.log(excludeObject);
-                    console.log(object);
                     return false;
                 }
 
@@ -158,8 +211,6 @@ class GridController {
                 }
                 else
                 {
-                    console.log(excludeObject);
-                    console.log(object);
                     return false;
                 }
             }
@@ -172,8 +223,6 @@ class GridController {
                 }
                 else
                 {
-                    console.log(excludeObject);
-                    console.log(object);
                     return false;
                 }
             }
@@ -186,8 +235,6 @@ class GridController {
                 }
                 else
                 {
-                    console.log(excludeObject);
-                    console.log(object);
                     return false;
                 }
             }
@@ -200,8 +247,6 @@ class GridController {
                 }
                 else
                 {
-                    console.log(excludeObject);
-                    console.log(object);
                     return false;
                 }
             }
@@ -214,8 +259,6 @@ class GridController {
                 }
                 else
                 {
-                    console.log(excludeObject);
-                    console.log(object);
                     return false;
                 }
             }
@@ -223,6 +266,7 @@ class GridController {
 
         return true;
     }
+
 
     validateRegionLocking(region)
     {
