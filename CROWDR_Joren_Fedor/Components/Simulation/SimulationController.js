@@ -63,7 +63,6 @@ class SimulationController {
                     case 'Clouds':
                         for(const tent of this._region._tents)
                         {
-                            //console.log(tent);
                            if(this.enterTent(tent, groupOfVisitors))
                            {
                                break;
@@ -72,9 +71,7 @@ class SimulationController {
                            {
                                continue;
                            }
-
                         }
-
 
                     case 'Sunni':
                         //todo add logic for scortching hot weather

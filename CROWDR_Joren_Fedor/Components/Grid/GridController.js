@@ -36,8 +36,8 @@ class GridController {
                     if(object._x == null || object._y == null)
                     {
                         //random cords
-                        let randomX = Math.floor(Math.random() * 15);
-                        let randomY = Math.floor(Math.random() * 15);
+                        let randomX = Math.floor(Math.random() * 12);
+                        let randomY = Math.floor(Math.random() * 12);
 
                         this.placeObject(object, randomX, randomY);
                     }
