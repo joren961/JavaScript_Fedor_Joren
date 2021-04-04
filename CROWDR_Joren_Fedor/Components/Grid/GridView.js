@@ -225,6 +225,7 @@ class GridView {
 
         newDragble.addEventListener("dragstart", e => {
             e.dataTransfer.setData("text/plain", newDragble.id);
+            //todo hier is voor het drag
         });
         newDragble.draggable = true;
         newDragble.className = type;
